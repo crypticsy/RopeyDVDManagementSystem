@@ -1,18 +1,27 @@
 using Microsoft.EntityFrameworkCore;
 using RopeyDVDManagementSystem.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var ConnectionString = builder.Configuration.GetConnectionString("RopeyDVDDatabase");
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>( options =>
     {
         options.UseSqlServer(ConnectionString);
     }
 );
+
+builder.Services.AddDefaultIdentity<ApplicationUser>( options => 
+    options.SignIn.RequireConfirmedAccount = false
+)
+.AddEntityFrameworkStores<ApplicationDbContext>();
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 
@@ -24,15 +33,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();
