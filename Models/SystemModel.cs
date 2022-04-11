@@ -7,7 +7,8 @@ namespace RopeyDVDManagementSystem.Models
         public class Studio
         {
             [Key, Required]
-            public int StudioNumber { get; set; }
+            public uint StudioNumber { get; set; }
+
             [Required]
             public String StudioName { get; set; }
 
@@ -18,7 +19,8 @@ namespace RopeyDVDManagementSystem.Models
         public class Producer
         {
             [Key, Required]
-            public int ProducerNumber { get; set; }
+            public uint ProducerNumber { get; set; }
+
             [Required]
             public String ProducerName { get; set; }
             public ICollection<DVDDescription> DVDDescription { get; set; }
@@ -33,7 +35,8 @@ namespace RopeyDVDManagementSystem.Models
             }
 
             [Key, Required]
-            public int ActorNumber { get; set; }
+            public uint ActorNumber { get; set; }
+
             [Required]
             public String ActorFirstName { get; set; }
 
@@ -45,9 +48,11 @@ namespace RopeyDVDManagementSystem.Models
         public class DVDCategory
         {
             [Key, Required]
-            public int CategoryNumber { get; set; }
+            public uint CategoryNumber { get; set; }
+
             [Required]
             public String CategoryDescription { get; set; }
+
             [Required]
             public bool AgeRestricted { get; set; }
             public ICollection<DVDDescription> DVDDescription { get; set; }
@@ -60,73 +65,91 @@ namespace RopeyDVDManagementSystem.Models
                 this.Actor = new HashSet<Actor>();
             }
             [Key, Required]
-            public int DVDNumber { get; set; }
+            public uint DVDNumber { get; set; }
+
             [Required]
             public String DVDTitle { get; set; }
+
             [Required]
-            public int CategoryNumber { get; set; }
+            public uint CategoryNumber { get; set; }
             public DVDCategory DVDCategory { get; set; }
+
             [Required]
-            public int StudioNumber { get; set; }
+            public uint StudioNumber { get; set; }
             public Studio Studio { get; set; }
+
             [Required]
-            public int ProducerNumber { get; set; }
+            public uint ProducerNumber { get; set; }
             public Producer Producer { get; set; }
+
             [Required]
             public DateOnly DateReleased { get; set; }
+
             [Required]
-            public int StandardCharge { get; set; }
+            public uint StandardCharge { get; set; }
+
             [Required]
-            public int PenaltyCharge { get; set; }
+            public uint PenaltyCharge { get; set; }
 
             public virtual ICollection<Actor> Actor { get; set; }
-
-
+            public virtual ICollection<DVDCopy> DVDCopy { get; set; }
         }
 
         //public class CastMember
         //{
         //    [Key,Required]
-        //    public int ActorNumber { get; set; }
+        //    public uint ActorNumber { get; set; }
         //    [Key,Required]
-        //    public int DVDNumber { get; set; }
+        //    public uint DVDNumber { get; set; }
         //}
 
         public class DVDCopy
         {
             [Key, Required]
-            public int CopyNumber { get; set; }
+            public uint CopyNumber { get; set; }
+
             [Required]
-            public int DVDNumber { get; set; }
+            public uint DVDNumber { get; set; }
+            public DVDDescription DVDDescription { get; set; }
+
             [Required]
             public DateOnly DatePurchases { get; set; }
+
             public ICollection<Loan> Loans { get; set; }
         }
 
         public class MembershipCategory
         {
             [Key, Required]
-            public int MembershipCategoryNumber { get; set; }
+            public uint MembershipCategoryNumber { get; set; }
+
             [Required]
             public string MembershipCategoryDescription { get; set; }
+
             [Required]
-            public int MembershipCategoryTotalLoans { get; set; }
+            public uint MembershipCategoryTotalLoans { get; set; }
+
             public ICollection<Member> Members { get; set; }
         }
 
         public class Member
         {
             [Key, Required]
-            public int MemberNumber { get; set; }
+            public uint MemberNumber { get; set; }
+
             [Required]
-            public int MembershipCategoryNumber { get; set; }
-            public MembershipCategory membershipCategory { get; set; }
+            public uint MembershipCategoryNumber { get; set; }
+            public MembershipCategory MembershipCategory { get; set; }
+
             [Required]
             public String MemberFirstName { get; set; }
+
             [Required]
             public String MemberLastName { get; set; }
+
             [Required]
             public String MemberAddress { get; set; }
+
             [Required]
             public DateOnly MemberDateOfBirth { get; set; }
             public ICollection<Loan> Loan { get; set; }
@@ -134,47 +157,45 @@ namespace RopeyDVDManagementSystem.Models
         public class LoanType
         {
             [Key, Required]
-            public int LoanTypeNumber { get; set; }
+            public uint LoanTypeNumber { get; set; }
+
             [Required]
             public String LoanTypeTitle { get; set; }
+
             [Required]
-            public Double LoanDuration { get; set; }
+            public uint LoanDuration { get; set; }
+
             public ICollection<Loan> Loan { get; set; }
         }
 
         public class Loan
         {
             [Key, Required]
-            public int LoanNumber { get; set; }
+            public uint LoanNumber { get; set; }
+
             [Required]
-            public int LoanTypeNumber { get; set; }
+            public uint LoanTypeNumber { get; set; }
             public LoanType LoanType { get; set; }
+
             [Required]
-            public int CopyNumber { get; set; }
+            public uint CopyNumber { get; set; }
             public DVDCopy DVDCopy { get; set; }
+
             [Required]
-            public int MemberNumber { get; set; }
+            public uint MemberNumber { get; set; }
             public Member Member { get; set; }
+
             [Required]
             public DateOnly DateOut { get; set; }
+
             [Required]
             public DateOnly DateDue { get; set; }
+
             [Required]
             public DateOnly DateReturned { get; set; }
 
         }
-        public class User
-        {
-            [Key,Required]
-            public int UserNumber { get; set; }
-            [Required]
-            public String UserName { get; set; }
-            [Required]
-            public String UserType { get; set; }
-            [Required]
-            public String UserPassword { get; set; }
 
-        }
     }
 
 }
