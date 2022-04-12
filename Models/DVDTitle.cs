@@ -13,7 +13,7 @@ namespace RopeyDVDManagementSystem.Models
         public uint DVDNumber { get; set; }
 
         [Required]
-        public string DVDName { get; set; }
+        public string DVDTitleName { get; set; }
 
         [Required]
         public uint CategoryNumber { get; set; }
