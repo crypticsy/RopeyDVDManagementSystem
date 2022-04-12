@@ -10384,19 +10384,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\Dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Semester 6\\Application Development\\RopeyDVDManagementSystem\\RopeyDVDManagementSystem.csproj",
+      "projectUniqueName": "D:\\BSc. Computing Sem-6\\Application Development\\Coursework\\RopeyDVDManagementSystem\\RopeyDVDManagementSystem.csproj",
       "projectName": "RopeyDVDManagementSystem",
-      "projectPath": "E:\\Semester 6\\Application Development\\RopeyDVDManagementSystem\\RopeyDVDManagementSystem.csproj",
-      "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "E:\\Semester 6\\Application Development\\RopeyDVDManagementSystem\\obj\\",
+      "projectPath": "D:\\BSc. Computing Sem-6\\Application Development\\Coursework\\RopeyDVDManagementSystem\\RopeyDVDManagementSystem.csproj",
+      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+      "outputPath": "D:\\BSc. Computing Sem-6\\Application Development\\Coursework\\RopeyDVDManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
