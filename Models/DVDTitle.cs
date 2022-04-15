@@ -31,7 +31,7 @@ namespace RopeyDVDManagementSystem.Models
         [Required]
         public decimal PenaltyCharge { get; set; }
 
-        public ICollection<Actor> Actors { get; set; }
+
         public ICollection<DVDCopy> DVDCopys { get; set; }
         public ICollection<CastMember> CastMembers { get; set; }
     }

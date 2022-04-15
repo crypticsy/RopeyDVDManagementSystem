@@ -25,7 +25,7 @@ namespace RopeyDVDManagementSystem.Models
         [Required]
         public DateOnly DateDue { get; set; }
 
-        [Required]
+      
         public DateOnly DateReturned { get; set; }
     }
 }

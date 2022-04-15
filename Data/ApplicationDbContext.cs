@@ -21,6 +21,7 @@ namespace RopeyDVDManagementSystem.Data
 
             builder.Entity<CastMember>().HasOne(cm => cm.Actor).WithMany(cm => cm.CastMembers).HasForeignKey(m => m.ActorNumber);
             builder.Entity<CastMember>().HasOne(cm => cm.DVDTitle).WithMany(cm => cm.CastMembers).HasForeignKey(m => m.DVDNumber);
+            base.OnModelCreating(builder);
         }
     }
 }
