@@ -6,11 +6,11 @@ namespace RopeyDVDManagementSystem.Models
     {
         [Key]
         public uint ActorNumber { get; set; }
+        public virtual Actor Actor { get; set; }
+
         [Key]
         public uint DVDNumber { get; set; }
-
-        public Actor Actor { get; set; }
-        public DVDTitle DVDTitle { get; set; }
+        public virtual DVDTitle DVDTitle { get; set; }
 
     }
 }

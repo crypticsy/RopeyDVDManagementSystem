@@ -8,16 +8,18 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+
+
 namespace RopeyDVDManagementSystem.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AuthenticationController(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IConfiguration configuration)
         {
@@ -38,13 +40,16 @@ namespace RopeyDVDManagementSystem.Controllers
         // GET: Authentication/Login
         public IActionResult Login()
         {
-            return View();
+            return View(new UserLoginModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(UserLoginModel loginModel)
         {
+
+            if (!ModelState.IsValid) return View(loginModel);
+
             var user = await _userManager.FindByNameAsync(loginModel.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
             {
@@ -72,10 +77,11 @@ namespace RopeyDVDManagementSystem.Controllers
                 };
 
                 ViewBag.User = userDetails;
-                return RedirectToAction("UserDetails", ViewBag);
+                return RedirectToAction("UserDetails", ViewBag.User);
             }
 
-            return RedirectToAction("UnauthorizedAccess");
+            TempData["Error"] = "Invalid credentials. Please, try again!";
+            return View(loginModel);
         }
 
         // GET: Authentication/RegisterUser
@@ -92,7 +98,7 @@ namespace RopeyDVDManagementSystem.Controllers
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
-            IdentityUser user = new()
+            ApplicationUser user = new()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -104,9 +110,9 @@ namespace RopeyDVDManagementSystem.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.User))
+            if (await _roleManager.RoleExistsAsync(UserRoles.Assistant))
             {
-                await _userManager.AddToRoleAsync(user, UserRoles.User);
+                await _userManager.AddToRoleAsync(user, UserRoles.Assistant);
             }
 
             return RedirectToAction("Index", "Home");
@@ -126,7 +132,7 @@ namespace RopeyDVDManagementSystem.Controllers
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
 
-            IdentityUser user = new()
+            ApplicationUser user = new()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -138,14 +144,9 @@ namespace RopeyDVDManagementSystem.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+            if (await _roleManager.RoleExistsAsync(UserRoles.Manager))
             {
-                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
-
-            if (await _roleManager.RoleExistsAsync(UserRoles.User))
-            {
-                await _userManager.AddToRoleAsync(user, UserRoles.User);
+                await _userManager.AddToRoleAsync(user, UserRoles.Manager);
             }
 
             return RedirectToAction("Index", "Home");

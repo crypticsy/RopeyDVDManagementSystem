@@ -7,7 +7,7 @@ namespace RopeyDVDManagementSystem.Models
         public uint StudioNumber { get; set; }
 
         [Required]
-        public string StudioName { get; set; }
+        public string? StudioName { get; set; }
 
         public ICollection<DVDTitle> DVDTitles { get; set; }
 

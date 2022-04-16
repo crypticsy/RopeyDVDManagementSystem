@@ -7,7 +7,8 @@ namespace RopeyDVDManagementSystem.Models
         public uint ProducerNumber { get; set; }
 
         [Required]
-        public string ProducerName { get; set; }
+        public string? ProducerName { get; set; }
+
         public ICollection<DVDTitle> DVDTitles { get; set; }
     }
 }

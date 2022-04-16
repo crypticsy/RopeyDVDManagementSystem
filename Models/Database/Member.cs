@@ -9,7 +9,7 @@ namespace RopeyDVDManagementSystem.Models
 
         [Required]
         public uint MembershipCategoryNumber { get; set; }
-        public MembershipCategory MembershipCategory { get; set; }
+        public virtual MembershipCategory MembershipCategory { get; set; }
 
         [Required]
         public string MemberFirstName { get; set; }
@@ -21,7 +21,8 @@ namespace RopeyDVDManagementSystem.Models
         public string MemberAddress { get; set; }
 
         [Required]
-        public DateOnly MemberDateOfBirth { get; set; }
+        public DateTime MemberDateOfBirth { get; set; }
+
         public ICollection<Loan> Loans { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RopeyDVDManagementSystem.Data;
+using RopeyDVDManagementSystem.Models.Identity;
 using System.Text;
 
 
@@ -20,7 +21,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("RopeyDVDDatabase")));
 
 // For Identity
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
@@ -49,7 +50,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddMvc();
 
 
 var app = builder.Build();
