@@ -32,9 +32,9 @@ namespace RopeyDVDManagementSystem.Controllers
             return View();
         }
 
-        public IActionResult UserDetails()
+        public IActionResult UserDetails(UserDetailsViewModel userDetails)
         {
-            return View();
+            return View(userDetails);
         }
 
         // GET: Authentication/Login
@@ -76,8 +76,8 @@ namespace RopeyDVDManagementSystem.Controllers
                     Expiration = token.ValidTo
                 };
 
-                ViewBag.User = userDetails;
-                return RedirectToAction("UserDetails", ViewBag.User);
+                //ViewBag.User = userDetails;
+                return RedirectToAction("UserDetails", userDetails);
             }
 
             TempData["Error"] = "Invalid credentials. Please, try again!";
