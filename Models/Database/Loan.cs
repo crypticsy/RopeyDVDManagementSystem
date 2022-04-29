@@ -9,23 +9,22 @@ namespace RopeyDVDManagementSystem.Models
 
         [Required]
         public uint LoanTypeNumber { get; set; }
-        public LoanType LoanType { get; set; }
+        public virtual LoanType LoanType { get; set; }
 
         [Required]
         public uint CopyNumber { get; set; }
-        public DVDCopy DVDCopy { get; set; }
+        public virtual DVDCopy DVDCopy { get; set; }
 
         [Required]
         public uint MemberNumber { get; set; }
-        public Member Member { get; set; }
+        public virtual Member Member { get; set; }
 
         [Required]
-        public DateOnly DateOut { get; set; }
+        public DateTime DateOut { get; set; }
 
         [Required]
-        public DateOnly DateDue { get; set; }
+        public DateTime DateDue { get; set; }
 
-      
-        public DateOnly DateReturned { get; set; }
+        public DateTime DateReturned { get; set; }
     }
 }
