@@ -48,6 +48,14 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = configuration["JWT:ValidIssuer"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
     };
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            context.Token = context.Request.Cookies["X-Access-Token"];
+            return Task.CompletedTask;
+        }
+    };
 });
 
 
@@ -66,7 +74,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 

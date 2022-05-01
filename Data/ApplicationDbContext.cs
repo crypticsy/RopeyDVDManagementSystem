@@ -25,21 +25,26 @@ namespace RopeyDVDManagementSystem.Data
             builder.Entity<CastMember>().HasOne(cm => cm.Actor).WithMany(cm => cm.CastMembers).HasForeignKey(m => m.ActorNumber);
             builder.Entity<CastMember>().HasOne(cm => cm.DVDTitle).WithMany(cm => cm.CastMembers).HasForeignKey(m => m.DVDNumber);
 
+
             // Relationship mapping for DVDCopy
             builder.Entity<DVDCopy>().HasOne(dt => dt.DVDTitle).WithMany(dt => dt.DVDCopys).HasForeignKey(dt => dt.DVDNumber);
+
 
             // Relationship mapping for DVDTitle
             builder.Entity<DVDTitle>().HasOne(dt => dt.DVDCategory).WithMany(dt => dt.DVDTitles).HasForeignKey(dt => dt.CategoryNumber);
             builder.Entity<DVDTitle>().HasOne(dt => dt.Producer).WithMany(dt => dt.DVDTitles).HasForeignKey(dt => dt.ProducerNumber);
             builder.Entity<DVDTitle>().HasOne(dt => dt.Studio).WithMany(dt => dt.DVDTitles).HasForeignKey(dt => dt.StudioNumber);
+            
             // Property restrictions for DVDTitle
             builder.Entity<DVDTitle>().Property(dt => dt.PenaltyCharge).HasPrecision(10,2);
             builder.Entity<DVDTitle>().Property(dt => dt.StandardCharge).HasPrecision(10, 2);
+
 
             // Relationship mapping for Loan
             builder.Entity<Loan>().HasOne(dt => dt.DVDCopy).WithMany(dt => dt.Loans).HasForeignKey(dt => dt.CopyNumber);
             builder.Entity<Loan>().HasOne(dt => dt.LoanType).WithMany(dt => dt.Loans).HasForeignKey(dt => dt.LoanTypeNumber);
             builder.Entity<Loan>().HasOne(dt => dt.Member).WithMany(dt => dt.Loans).HasForeignKey(dt => dt.MemberNumber);
+
 
             // Relationship mapping for Members
             builder.Entity<Member>().HasOne(dt => dt.MembershipCategory).WithMany(dt => dt.Members).HasForeignKey(dt => dt.MembershipCategoryNumber);

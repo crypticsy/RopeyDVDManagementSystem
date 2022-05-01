@@ -1,0 +1,186 @@
+@using RopeyDVDManagementSystem.Models;
+@model UserRegisterModel;
+
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Ropey</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="~/css/login_util.css">
+	<link rel="stylesheet" type="text/css" href="~/css/login_main.css">
+	<link rel="stylesheet" type="text/css" href="~/css/style.css">
+
+	<style>
+		/* HIDE RADIO */
+		[type=radio] { 
+			position: absolute;
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		/* IMAGE STYLES */
+		[type=radio] + img {
+			cursor: pointer;
+		}
+
+		/* CHECKED STYLES */
+		[type=radio]:checked + img {
+			outline: 2px solid #bfdbf7;
+			border-radius: 20px;
+		}
+	</style>
+
+</head>
+
+
+
+<body>
+
+	<div class="container-fluid vh-100 py-4">
+
+		<main class="main-content mt-0 noselect">
+			<section class="my-auto">
+				<div class="page-header min-vh-90">
+					<div class="container">
+						<form asp-action="Register">
+							<div class="row my-auto" style="height:90vh">
+								
+								<div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto my-auto">
+									<div class="card card-plain mt-8 border-0">
+										<div class="card-header pb-0 text-left bg-transparent border-0">
+											<h3 class="login100-form-title p-b-20" style="text-align:left">Register</h3>
+											<p class="login100-form p-b-49">Become a part of the Ropey Community </p>
+										</div>
+
+										<div class="card-body">
+
+											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											
+											@if(TempData["Error"] != null)
+											{
+												<div class="col-md-12 alert alert-danger mb-5 text-center text-white">
+													<span>@TempData["Error"]</span>
+												</div>
+											}
+
+											<div class="row mb-5">
+												<label class="col">
+													<input asp-for="UserType" type="radio" value="assistant" checked>
+													<img class="mx-auto d-block img-responsive" style="width:15vh; height:15vh" src="~/images/assistant.png">
+												</label>
+												
+												<label class="col">
+													<input asp-for="UserType" type="radio" value="manager">
+													<img class="mx-auto d-block img-responsive" style="width:15vh; height:15vh" src="~/images/manager.png">
+												</label>
+											</div>
+											
+											<div class="wrap-input100 validate-input" data-validate = "First Name is required">
+												<span class="label-input100">First Name</span>
+												<input asp-for="FirstName" class="input100" type="text" placeholder="Type your first name">
+												<span class="focus-input100" data-symbol="&#xf206;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="FirstName" class="text-danger label-input100"></span>
+											</div>
+
+											<div class="wrap-input100 validate-input mt-3" data-validate = "Last Name is required">
+												<span class="label-input100">Last Name</span>
+												<input asp-for="LastName" class="input100" type="text" placeholder="Type your last name">
+												<span class="focus-input100" data-symbol="&#xf206;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="LastName" class="text-danger label-input100"></span>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto my-auto">
+									<div class="card card-plain mt-8 border-0">
+									
+										<div class="card-body">
+
+											<div class="wrap-input100 validate-input" data-validate = "Email is required">
+												<span class="label-input100">Email</span>
+												<input asp-for="Email" class="input100" type="text" placeholder="Type your email">
+												<span class="focus-input100" data-symbol="&#xf206;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="Email" class="text-danger label-input100"></span>
+											</div>
+
+											<div class="wrap-input100 validate-input mt-3" data-validate = "Username is required">
+												<span class="label-input100">Username</span>
+												<input asp-for="Username" class="input100" type="text" placeholder="Type your username">
+												<span class="focus-input100" data-symbol="&#xf206;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="Username" class="text-danger label-input100"></span>
+											</div>
+
+											<div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+												<span class="label-input100">Password</span>
+												<input asp-for="Password" class="input100" type="password" placeholder="Type your password">
+												<span class="focus-input100" data-symbol="&#xf190;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="Password" class="text-danger label-input100"></span>
+											</div>
+											
+											<div class="container-login100-form-btn mt-5 ">
+												<div class="wrap-login100-form-btn">
+													<div class="login100-form-bgbtn"></div>
+													<button class="login100-form-btn">
+														Sign Up
+													</button>
+												</div>
+											</div>
+
+											<div class="txt1 text-center p-t-54 p-b-49">
+												<span>
+													Already have an account ? <a asp-action="Login" style="font-weight: bold;"> Login </a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer pt-6">
+		   <div class="container">
+			   <div class="row">
+				   <div class="col-8 mx-auto text-center mt-1">
+					   <p class="mb-0 text-secondary copyright_mid">
+						   Copyright © <script> document.write(new Date().getFullYear()) </script> Ropey DVD Management System
+					   </p>
+				   </div>
+			   </div>
+		   </div>
+	   </footer>
+
+	</div>
+
+</body>
+
+</html>
