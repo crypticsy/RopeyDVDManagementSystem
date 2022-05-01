@@ -27,15 +27,21 @@ namespace RopeyDVDManagementSystem.Controllers
             _roleManager = roleManager;
             _configuration = configuration;
         }
+
+
+
+
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult UserDetails(UserDetailsViewModel userDetails)
         {
             return View(userDetails);
         }
+
+
 
         // GET: Authentication/Login
         public IActionResult Login()
@@ -76,6 +82,14 @@ namespace RopeyDVDManagementSystem.Controllers
                     Expiration = token.ValidTo
                 };
 
+                Response.Cookies.Append(    "X-Access-Token",
+                                            userDetails.Token,
+                                            new CookieOptions
+                                            {
+                                                HttpOnly = true,
+                                                SameSite = SameSiteMode.Strict
+                                            });
+
                 //ViewBag.User = userDetails;
                 return RedirectToAction("UserDetails", userDetails);
             }
@@ -84,80 +98,72 @@ namespace RopeyDVDManagementSystem.Controllers
             return View(loginModel);
         }
 
-        // GET: Authentication/RegisterUser
-        public IActionResult RegisterUser()
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("X-Access-Token");
+            return RedirectToAction("Index");
+        }
+
+
+
+        // GET: Authentication/Register
+        public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterUser(UserRegisterModel model)
+        public async Task<IActionResult> Register(UserRegisterModel model)
         {
+
+            if (!ModelState.IsValid) return View(model);
+
             var userExists = await _userManager.FindByNameAsync(model.Username);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
-
-            ApplicationUser user = new()
             {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
-            };
-
-            var result = await _userManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-
-            if (await _roleManager.RoleExistsAsync(UserRoles.Assistant))
-            {
-                await _userManager.AddToRoleAsync(user, UserRoles.Assistant);
+                TempData["Error"] = "Invalid credentials. Please, try again!";
+                return View(model);
             }
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        // GET: Authentication/RegisterAdmin
-        public IActionResult RegisterAdmin()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterAdmin(UserRegisterModel model)
-        {
-            var userExists = await _userManager.FindByNameAsync(model.Username);
-            if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
-
-            ApplicationUser user = new()
-            {
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
-            };
-
-            var result = await _userManager.CreateAsync(user, model.Password);
             
+            ApplicationUser user = new()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.Username
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.Manager))
+            if (model.UserType == "assistant")
             {
-                await _userManager.AddToRoleAsync(user, UserRoles.Manager);
+                if (await _roleManager.RoleExistsAsync(UserRoles.Assistant))
+                {
+                    await _userManager.AddToRoleAsync(user, UserRoles.Assistant);
+                }
+            }
+            else
+            {
+                if (await _roleManager.RoleExistsAsync(UserRoles.Manager))
+                {
+                    await _userManager.AddToRoleAsync(user, UserRoles.Manager);
+                }
             }
 
             return RedirectToAction("Index", "Home");
-
         }
+
+
 
         public IActionResult UnauthorizedAccess()
         {
             return View();
         }
-
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {

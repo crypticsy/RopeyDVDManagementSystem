@@ -2,54 +2,127 @@
 @model UserLoginModel;
 
 @{
-    ViewData["Title"] = "Login";
-}
-
-<h4>UserLoginModel</h4>
-
-<hr />
-
-@if(TempData["Error"] != null)
-{
-    <div class="col-md-12 alert alert-danger">
-        <span>@TempData["Error"]</span>
-    </div>
+    Layout = null;
 }
 
 
-<div class="row">
 
-    <div class="col-md-6">
+<!DOCTYPE html>
+<html lang="en">
 
-        <form asp-action="Login">
-            
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
+<head>
 
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Ropey</title>
 
-        </form>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="~/css/login_util.css">
+	<link rel="stylesheet" type="text/css" href="~/css/login_main.css">
+	<link rel="stylesheet" type="text/css" href="~/css/style.css">
 
-    </div>
-
-</div>
+</head>
 
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<body>
 
+	<div class="container-fluid vh-100 py-4">
+
+		<main class="main-content mt-0 noselect">
+			<section class="my-auto">
+				<div class="page-header min-vh-90">
+					<div class="container">
+						<div class="row my-auto" style="height:90vh">
+							
+
+							<div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto my-auto">
+								<div class="card card-plain mt-8 border-0">
+								
+									<div class="card-header pb-0 text-left bg-transparent border-0">
+										<h3 class="login100-form-title p-b-20" style="text-align:left">Welcome back</h3>
+										<p class="login100-form p-b-49">Enter your username and password to sign in</p>
+									</div>
+									
+									<div class="card-body">
+										<form asp-action="Login">
+											
+											<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											
+											@if(TempData["Error"] != null)
+											{
+												<div class="col-md-12 alert alert-danger mb-2 text-center text-white">
+													<span>@TempData["Error"]</span>
+												</div>
+											}
+											
+											<div class="wrap-input100 validate-input" data-validate = "Username is required">
+												<span class="label-input100">Username</span>
+												<input asp-for="Username" class="input100" type="text" placeholder="Type your username">
+												<span class="focus-input100" data-symbol="&#xf206;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="Username" class="text-danger label-input100"></span>
+											</div>
+
+											<div class="wrap-input100 validate-input mt-3" data-validate="Password is required">
+												<span class="label-input100">Password</span>
+												<input asp-for="Password" class="input100" type="password" placeholder="Type your password">
+												<span class="focus-input100" data-symbol="&#xf190;"></span>
+											</div>
+											<div class="text-right">
+												<span asp-validation-for="Password" class="text-danger label-input100"></span>
+											</div>
+											
+											<div class="container-login100-form-btn mt-5 ">
+												<div class="wrap-login100-form-btn">
+													<div class="login100-form-bgbtn"></div>
+													<button class="login100-form-btn" type="submit" value="Login" >
+														Login
+													</button>
+												</div>
+											</div>
+
+											<div class="txt1 text-center p-t-54 p-b-49">
+												<span>
+													Don't have an account ?
+													<a asp-action="Register" style="font-weight: bold;"> Register </a>
+												</span>
+											</div>
+											
+										</form>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-6 my-auto">
+								<div class="card card-plain mt-8 border-0">
+									<script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+									<lottie-player src="https://assets9.lottiefiles.com/packages/lf20_umsqbytq.json"  background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer pt-6">
+		   <div class="container">
+			   <div class="row">
+				   <div class="col-8 mx-auto text-center mt-1">
+					   <p class="mb-0 text-secondary copyright_mid">
+						   Copyright © <script> document.write(new Date().getFullYear()) </script> Ropey DVD Management System
+					   </p>
+				   </div>
+			   </div>
+		   </div>
+	   </footer>
+
+	</div>
+
+</body>
+
+</html>
