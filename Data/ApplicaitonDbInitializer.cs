@@ -71,61 +71,75 @@ namespace RopeyDVDManagementSystem.Data
 
                 context.Database.EnsureCreated();
 
+                var image_url = "images/";
+
 
                 //DVDCategory
                 if (!context.DVDCategories.Any())
                 {
                     context.DVDCategories.AddRange(new List<DVDCategory>()
+                    
                     {
+
                         new DVDCategory()
                         {
-                            CategoryDescription = "Comedy",
+                            CategoryName = "Comedy",
+                            CategoryDescription = "This is category for Comedy.",
                             AgeRestricted = false
                         },
 
                         new DVDCategory()
                         {
-                            CategoryDescription = "Drama",
+                            CategoryName = "Drama",
+                            CategoryDescription = "This is category for Drama.",
                             AgeRestricted = false
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Thriller",
+                            CategoryName = "Thriller",
+                            CategoryDescription = "This is category for Thriller.",
                             AgeRestricted = true
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Horror",
+                            CategoryName = "Horror",
+                            CategoryDescription = "This is category for Horror.",
                             AgeRestricted = true
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Romance",
+                            CategoryName = "Romance",
+                            CategoryDescription = "This is category for Romance.",
                             AgeRestricted = true
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Science-Fiction",
+                            CategoryName = "Science-Fiction",
+                            CategoryDescription = "This is category for Science-Fiction.",
                             AgeRestricted = false
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Fantasy",
+                            CategoryName = "Fantasy",
+                            CategoryDescription = "This is category for Fantasy.",
                             AgeRestricted = true
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Action",
+                            CategoryName = "Action",
+                            CategoryDescription = "This is category for Action.",
                             AgeRestricted = true
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Crime",
+                            CategoryName = "Crime",
+                            CategoryDescription = "This is category for Crime.",
                             AgeRestricted = true
                         },
                         new DVDCategory()
                         {
-                            CategoryDescription = "Sport",
+                            CategoryName = "Sport",
+                            CategoryDescription = "This is category for Sports.",
                             AgeRestricted = false
                         }
                     });
@@ -267,8 +281,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 10,
                             ProducerNumber = 1,
                             DateReleased = DateTime.ParseExact("1989-01-13","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "pumpkinhead.jpeg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
 
                         new DVDTitle()
@@ -278,8 +293,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 1,
                             ProducerNumber = 2,
                             DateReleased = DateTime.ParseExact("2020-03-05","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "moto8.jpeg"),
                             StandardCharge = 150,
-                            PenaltyCharge = 10,
+                            PenaltyCharge = 10
                         },
                         new DVDTitle()
                         {
@@ -288,8 +304,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 2,
                             ProducerNumber = 3,
                             DateReleased = DateTime.ParseExact("2019-04-26","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "avengers.jpg"),
                             StandardCharge = 300,
-                            PenaltyCharge = 25,
+                            PenaltyCharge = 25
                         },
                         new DVDTitle()
                         {
@@ -298,8 +315,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 7,
                             ProducerNumber = 4,
                             DateReleased = DateTime.ParseExact("2019-12-20","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "starwars9.jpg"),
                             StandardCharge = 250,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
                         new DVDTitle()
                         {
@@ -308,8 +326,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 3,
                             ProducerNumber = 6,
                             DateReleased = DateTime.ParseExact("2019-10-04","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "joker.jpg"),
                             StandardCharge = 150,
-                            PenaltyCharge = 10,
+                            PenaltyCharge = 10
                         },
                         new DVDTitle()
                         {
@@ -318,8 +337,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 4,
                             ProducerNumber = 5,
                             DateReleased = DateTime.ParseExact("2010-07-08","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "inception.jpg"),
                             StandardCharge = 250,
-                            PenaltyCharge = 20,
+                            PenaltyCharge = 20
                         },
                         new DVDTitle()
                         {
@@ -328,8 +348,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 5,
                             ProducerNumber = 8,
                             DateReleased = DateTime.ParseExact("2014-10-24","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "johnwick.jpg"),
                             StandardCharge = 150,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
                         new DVDTitle()
                         {
@@ -338,8 +359,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 6,
                             ProducerNumber = 7,
                             DateReleased = DateTime.ParseExact("2021-10-22","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "dune.jpg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
                         new DVDTitle()
                         {
@@ -348,8 +370,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 8,
                             ProducerNumber = 1,
                             DateReleased = DateTime.ParseExact("2016-07-01","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "kicks.jpeg"),
                             StandardCharge = 100,
-                            PenaltyCharge = 5,
+                            PenaltyCharge = 5
                         },
                         new DVDTitle()
                         {
@@ -358,8 +381,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 10,
                             ProducerNumber = 8,
                             DateReleased = DateTime.ParseExact("2021-10-20","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "pleasure.jpeg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 10,
+                            PenaltyCharge = 10
                         },
                         new DVDTitle()
                         {
@@ -368,8 +392,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 9,
                             ProducerNumber = 1,
                             DateReleased = DateTime.ParseExact("2016-03-12","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "dontbreathe.jpeg"),
                             StandardCharge = 100,
-                            PenaltyCharge = 10,
+                            PenaltyCharge = 10
                         },
                         new DVDTitle()
                         {
@@ -378,8 +403,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 1,
                             ProducerNumber = 9,
                             DateReleased = DateTime.ParseExact("2021-03-04","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "palmsprings.jpg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
                         new DVDTitle()
                         {
@@ -388,8 +414,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 6,
                             ProducerNumber = 10,
                             DateReleased = DateTime.ParseExact("2021-07-09","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "blackwidow.jpg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 20,
+                            PenaltyCharge = 20
                         },
                         new DVDTitle()
                         {
@@ -398,8 +425,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 5,
                             ProducerNumber = 4,
                             DateReleased = DateTime.ParseExact("1994-09-22","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "shawshankredemption.jpg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 20,
+                            PenaltyCharge = 20
                         },
                         new DVDTitle()
                         {
@@ -408,8 +436,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 3,
                             ProducerNumber = 7,
                             DateReleased = DateTime.ParseExact("1993-06-09","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "jurassicpark.jpg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
                         new DVDTitle()
                         {
@@ -418,8 +447,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 2,
                             ProducerNumber = 6,
                             DateReleased = DateTime.ParseExact("1991-05-24","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "backdraft.jpeg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 15,
+                            PenaltyCharge = 15
                         },
                         new DVDTitle()
                         {
@@ -428,8 +458,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 8,
                             ProducerNumber = 2,
                             DateReleased = DateTime.ParseExact("2015-03-27","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "itfollows.jpeg"),
                             StandardCharge = 150,
-                            PenaltyCharge = 5,
+                            PenaltyCharge = 5
                         },
                         new DVDTitle()
                         {
@@ -438,8 +469,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 9,
                             ProducerNumber = 3,
                             DateReleased = DateTime.ParseExact("1997-12-17","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "titanic.jpg"),
                             StandardCharge = 200,
-                            PenaltyCharge = 10,
+                            PenaltyCharge = 10
                         },
                         new DVDTitle()
                         {
@@ -448,8 +480,9 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 5,
                             ProducerNumber = 2,
                             DateReleased = DateTime.ParseExact("2022-03-04","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "thebatman.jpg"),
                             StandardCharge = 300,
-                            PenaltyCharge = 30,
+                            PenaltyCharge = 30
                         },
                         new DVDTitle()
                         {
@@ -458,6 +491,7 @@ namespace RopeyDVDManagementSystem.Data
                             StudioNumber = 10,
                             ProducerNumber = 10,
                             DateReleased = DateTime.ParseExact("1999-09-11","yyyy-MM-dd",null),
+                            DVDPoster = string.Concat(image_url, "fightclub.jpg"),
                             StandardCharge = 250,
                             PenaltyCharge = 25,
                         }
@@ -910,31 +944,36 @@ namespace RopeyDVDManagementSystem.Data
                     {
                         new MembershipCategory()
                         {
-                            MembershipCategoryDescription = "Basic",
+                            MembershipCategoryName = "Basic",
+                            MembershipCategoryDescription = "This is our most basic membership plan where you can loan a DVD for only 1 day.",
                             MembershipCategoryTotalLoans = 1
 
                         },
                         new MembershipCategory()
                         {
-                            MembershipCategoryDescription = "Standard",
+                            MembershipCategoryName = "Standard",
+                            MembershipCategoryDescription = "This is our standard membership plan where you can loan a DVD for 3 days.",
                             MembershipCategoryTotalLoans = 3
 
                         },
                         new MembershipCategory()
                         {
-                            MembershipCategoryDescription = "Medium",
+                            MembershipCategoryName = "Medium",
+                            MembershipCategoryDescription = "This is our medium membership plan where you can loan a DVD for 5 days.",
                             MembershipCategoryTotalLoans = 5
 
                         },
                         new MembershipCategory()
                         {
-                            MembershipCategoryDescription = "Premium",
+                            MembershipCategoryName = "Premium",
+                            MembershipCategoryDescription = "This is our premium membership plan where you can loan a DVD for 10 days.",
                             MembershipCategoryTotalLoans = 10
 
                         },
                         new MembershipCategory()
                         {
-                            MembershipCategoryDescription = "Ultimate",
+                            MembershipCategoryName = "Ultimate",
+                            MembershipCategoryDescription = "This is our ultimate membership plan where you can loan a DVD for 15 days.",
                             MembershipCategoryTotalLoans = 15
 
                         },

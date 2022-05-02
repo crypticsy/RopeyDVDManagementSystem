@@ -8,6 +8,9 @@ namespace RopeyDVDManagementSystem.Models
         public uint MembershipCategoryNumber { get; set; }
 
         [Required]
+        public string MembershipCategoryName { get; set; }
+
+        [Required]
         public string MembershipCategoryDescription { get; set; }
 
         [Required]
