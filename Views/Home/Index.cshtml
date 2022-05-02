@@ -2,7 +2,312 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="https://i.postimg.cc/nVmsc113/1.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <!-- <h6>Summer Collection</h6> -->
+                                <h2>Pirates of the Caribbean</h2>
+                                <p>Pirates of the Caribbean is a sweeping action-adventure story set in an era when villainous pirates 
+                                    scavenged the Caribbean seas. This roller coaster tale teams a young man, Will Turner, with an unlikely 
+                                    ally in rogue pirate Jack Sparrow.</p>
+                                <a href="#" class="primary-btn">Rent now <span class="arrow_right"></span></a>
+                              
+                            </div>
+                        </div>
+                        <div class="hero_image"><img src="~/images/img/hero/hero-1.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="~/images/img/1.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+                                <!-- <h6>Summer Collection</h6> -->
+                                <h2>Rio 2 (2014) -The Movie</h2>
+                                <p>After moving out of Rio de Janeiro, Blu, Jewel and their children try to cope with the new surroundings in the Amazon. 
+                                    But Blu encounters the revengeful Nigel who further complicates the situation.</p>
+                                <a href="#" class="primary-btn">Rent Now <span class="arrow_right"></span></a>
+                            
+                            </div>
+                        </div>
+                        
+                        <div class="hero_image"><br><br><br><img src="~/images/img/hero/hero-2.png" alt=""></div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="~/images/img/1.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-7 col-md-8">
+                            <div class="hero__text">
+
+                                <h2>Minions: The Rise of Gru</h2>
+                                <p>In 1968, Kevin, Stuart and Bob head to New York and Florida expecting to find a new boss 
+                                    while the rest of their tribe waits for them in Antarctica. They search for the evil Scarlet Overkill who 
+                                    travels to England with them and assigns the trio of minions to steal the Crown of the Queen.</p>
+                                <a href="#" class="primary-btn">Rent now <span class="arrow_right"></span></a>
+                            
+                            </div>
+                        </div>
+                        <div class="hero_image"><img src="~/images/img/hero/hero-3.png" alt=""></div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <br>
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">Best Sellers</li>
+                        <li data-filter=".new-arrivals">New Arrivals</li>
+                        <li data-filter=".hot-sales">Hot Sales</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row product__filter">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/vT3F4sts/1.jpg">
+
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Moto 8 - The Movie</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+
+                            <h5>$67.24</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/k5vd0KRG/2.jpg">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Don't Breathe</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                            <h5>$67.24</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/gJMbJpDP/3.jpg">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Pumpkinhead</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                            <h5>$43.48</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/Jn7WM0jq/4.jpg">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>The Return of the Living Dead</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+
+                            <h5>$60.9</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
+                            
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Teen Wolf</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                            
+                            <h5>$31.37</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/9XnjHW0d/6.jpg">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Child's Play</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                            <h5>$98.49</h5>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/PJ9GWM93/7.jpg">
+                            
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Leepers Creepers</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                            <h5>$49.66</h5>
+                            
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/WzhLqyWq/8.jpg">
+                            
+                        </div>
+                        <div class="product__item__text">
+                            <h6>Hannibal</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                          
+                            <h5>$26.28</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- Categories Section Begin -->
+    <section class="categories spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <br><br><br><br>
+                    <div class="categories__text">
+                        <h2>Hot Deals <br /> <span>Dune - F.H.</span> <br /> Science Friction</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="categories__hot__deal">
+                        <img src="https://i.postimg.cc/Kzy7NGFT/14.jpg" alt="">
+                        <div class="hot__deal__sticker">
+                            <span>Sale Of</span>
+                            <h5>$29.99</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 offset-lg-1">
+                    <br><br><br><br>
+                    <div class="categories__deal__countdown">
+                        <span>Deal Of The Week</span>
+                        <h2>Get yours before it ends.</h2>
+                        
+                        <div class="categories__deal__countdown__timer" id="countdown">
+                            <div class="cd-item">
+                                <span>3</span>
+                                <p>Days</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>1</span>
+                                <p>Hours</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>50</span>
+                                <p>Minutes</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>18</span>
+                                <p>Seconds</p>
+                            </div>
+                        </div>
+                        <a href="#" class="primary-btn">Rent now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+    <!-- Instagram Section Begin -->
+    <section class="instagram spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="instagram__pic">
+                        <div class="instagram__pic__item set-bg" data-setbg="https://i.postimg.cc/RhQsFL9J/1.jpg"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="https://i.postimg.cc/rySYQMWy/2.jpg"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="https://i.postimg.cc/zX82Q6SC/3.jpg"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="https://i.postimg.cc/Cx6vz1y7/4.jpg"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="https://i.postimg.cc/kXsYPsfk/5.jpg"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="https://i.postimg.cc/Jzh6rXFt/6.jpg"></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="instagram__text">
+                        <h2>Money Heist</h2>
+                        <p>Money Heist(Spanish: La Casa De Papel, “The House of Paped”) is a Spanish Heist 
+                            Drama television series made by Arlex Pina. This series tracks
+                             two recorders who have long been prepared by Professor (álvaro Morte), one at the Spanish Royal Mint, and one at the Bank of Spain.</p>
+                        <h3>#This_is_war</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Instagram Section End -->
+
+    <!-- Latest Blog Section Begin -->
+    <section class="latest spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Coming Soon</span>
+                        <h2>It's a keeper.</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="https://i.postimg.cc/X7FD8tk9/19.jpg"></div>
+                        <div class="blog__item__text">
+                            <span><img src="~/images/img/icon/calendar.png" alt=""> 16 May 2022</span>
+                            <h5>Avatar: The Way of Water - Frictional Adventure</h5>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="https://i.postimg.cc/8PVb1cLr/2.jpg"></div>
+                        <div class="blog__item__text">
+                            <span><img src="~/images/img/icon/calendar.png" alt=""> 10 June 2022</span>
+                            <h5>Star Wars: The Last Jedi (Episode VIII)</h5>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="https://i.postimg.cc/zD4cTqKJ/20.jpg"></div>
+                        <div class="blog__item__text">
+                            <span><img src="~/images/img/icon/calendar.png" alt=""> 28 May 2022</span>
+                            <h5>John Wick: Chapter 1 - Film Franchise</h5>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Latest Blog Section End -->
+
