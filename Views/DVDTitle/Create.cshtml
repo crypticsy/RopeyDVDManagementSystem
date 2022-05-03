@@ -1,0 +1,60 @@
+﻿@model DVDTitle
+
+@{
+    ViewData["Title"] = "Add a New DVD Title";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a New DVD Title</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action = "Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">DVD Title Name</label>
+                    <input asp-for="DVDTitleName" class="form-control" />
+                    <span asp-validation-for="DVDTitleName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Category Number</label>
+                    <input asp-for="CategoryNumber" class="form-control" />
+                    <span asp-validation-for="CategoryNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Studio Number</label>
+                    <input asp-for="StudioNumber" class="form-control" />
+                    <span asp-validation-for="StudioNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Producer Number</label>
+                    <input asp-for="ProducerNumber" class="form-control" />
+                    <span asp-validation-for="ProducerNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Date Released</label>
+                    <input asp-for="DateReleased" class="form-control" />
+                    <span asp-validation-for="DateReleased" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Standard Charge</label>
+                    <input asp-for="StandardCharge" class="form-control" />
+                    <span asp-validation-for="StandardCharge" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Penalty Charge</label>
+                    <input asp-for="PenaltyCharge" class="form-control" />
+                    <span asp-validation-for="PenaltyCharge" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin:5px;">
+                    <input type="submit" value="Create" class="btn btn-outline-success float right"/>
+                    <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
