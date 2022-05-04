@@ -26,6 +26,9 @@ namespace RopeyDVDManagementSystem.Models
         public DateTime DateReleased { get; set; }
 
         [Required]
+        public string? DVDPoster { get; set; }
+
+        [Required]
         public decimal StandardCharge { get; set; }
 
         [Required]

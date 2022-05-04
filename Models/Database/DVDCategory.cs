@@ -8,7 +8,11 @@ namespace RopeyDVDManagementSystem.Models
         public uint CategoryNumber { get; set; }
 
         [Required]
+        public string? CategoryName { get; set; }
+
+        [Required]
         public string? CategoryDescription { get; set; }
+         
 
         [Required]
         public bool AgeRestricted { get; set; }
