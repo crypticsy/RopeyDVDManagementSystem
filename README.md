@@ -5,4 +5,4 @@ Application development coursework for creating an application to support the ad
 
 ### Requirements
 
--   Change the name of the server from "Desktop-####" to "localhost" in your SSMS.
+-   Before running the application, perform "update-database" in the package console manager.
