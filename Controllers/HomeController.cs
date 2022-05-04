@@ -20,12 +20,6 @@ namespace RopeyDVDManagementSystem.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Shop()
         {
             return View();

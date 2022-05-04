@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+	var section = ViewData["Section"];
+} 
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,7 +48,7 @@
     <header class="header">
        
         <div class="container">
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
                         <a href="./index.html"><img src="~/images/img/logo.png" alt=""></a>
@@ -53,21 +57,40 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"> 
+                            <li class="@(section == "Home" ? "active" : "")"> 
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>        
+
+                            <li class="@(section == "Shop" ? "active" : "")">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Shop">Shop</a>
                             </li>
                            
-                            <li>
+                            <li class="@(section == "Contact" ? "active" : "")">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Contacts</a>
                             </li>
+                            
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                </li>
+                            }
+
                         </ul>
+
                     </nav>
                 </div>
-               <a href="#" class="login_btn">Login </a>
-               
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a class="login_btn  ml-0" asp-controller="Authentication" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="login_btn ml-0 mr-2" asp-controller="Authentication" asp-action="Register">Register</a>
+                    <a class="login_btn ml-0" asp-controller="Authentication" asp-action="Login">Login</a>
+                }
+
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>

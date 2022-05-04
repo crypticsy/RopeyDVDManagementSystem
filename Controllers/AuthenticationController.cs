@@ -36,11 +36,6 @@ namespace RopeyDVDManagementSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult UserDetails(UserDetailsViewModel userDetails)
-        {
-            return View(userDetails);
-        }
-
 
 
         // GET: Authentication/Login
@@ -72,26 +67,19 @@ namespace RopeyDVDManagementSystem.Controllers
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
                 }
 
+                // ----------------- Token Generation -----------------
                 var token = GetToken(authClaims);
 
-                UserDetailsViewModel userDetails = new UserDetailsViewModel()
-                {
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = token.ValidTo
-                };
-
+                // ----------------- Cookie Storage for token -----------------
                 Response.Cookies.Append(    "X-Access-Token",
-                                            userDetails.Token,
+                                            new JwtSecurityTokenHandler().WriteToken(token),
                                             new CookieOptions
                                             {
                                                 HttpOnly = true,
                                                 SameSite = SameSiteMode.Strict
                                             });
 
-                //ViewBag.User = userDetails;
-                return RedirectToAction("UserDetails", userDetails);
+                return RedirectToAction("Index");
             }
 
             TempData["Error"] = "Invalid credentials. Please, try again!";
