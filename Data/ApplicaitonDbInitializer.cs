@@ -1142,7 +1142,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 7,
                             DateOut = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-25","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-24","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-24","yyyy-MM-dd",null),
+                            ReturnAmount = 3s00
                         },
 
                         new Loan()
@@ -1152,7 +1153,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 2,
                             DateOut = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-18","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-18","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-18","yyyy-MM-dd",null),
+                            ReturnAmount = 200
                         },
 
                         new Loan()
@@ -1162,7 +1164,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 10,
                             DateOut = DateTime.ParseExact("2022-04-10","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-17","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-16","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-16","yyyy-MM-dd",null),
+                            ReturnAmount = 200
                         },
 
                         new Loan()
@@ -1172,7 +1175,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 9,
                             DateOut = DateTime.ParseExact("2022-03-20","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-16","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-16","yyyy-MM-dd",null),
+                            ReturnAmount = 200
                         },
 
                         new Loan()
@@ -1182,7 +1186,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 1,
                             DateOut = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
+                            ReturnAmount = 200
                         },
 
                         new Loan()
@@ -1192,7 +1197,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 3,
                             DateOut = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null),
+                            ReturnAmount = 200
                         },
 
                         new Loan()
@@ -1202,7 +1208,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 8,
                             DateOut = DateTime.ParseExact("2022-04-27","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
+                            ReturnAmount = 250
                         },
 
                         new Loan()
@@ -1212,7 +1219,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 5,
                             DateOut = DateTime.ParseExact("2022-03-17","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-17","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-17","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-17","yyyy-MM-dd",null),
+                            ReturnAmount = 250
                         },
 
                         new Loan()
@@ -1222,7 +1230,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 6,
                             DateOut = DateTime.ParseExact("2022-04-21","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-28","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-26","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-26","yyyy-MM-dd",null),
+                            ReturnAmount = 150
                         },
 
                         new Loan()
@@ -1232,7 +1241,8 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 4,
                             DateOut = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
-                            DateReturned = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null)
+                            DateReturned = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null),
+                            ReturnAmount = 100
                         }
 
                     });
