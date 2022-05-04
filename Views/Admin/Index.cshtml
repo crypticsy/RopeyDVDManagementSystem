@@ -1,0 +1,272 @@
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "Dashboard";
+    Layout = "_LayoutAdmin";
+}
+
+
+
+<div class="row">
+
+    <div class="col-sm-4 grid-margin">
+        <div class="card">
+            <div class="card-body p-4">
+                <h6 class="mb-3" >DVD</h6>
+                <div class="row">
+                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                        <div class="d-flex d-sm-block d-md-flex align-items-center">
+                            <h2>@ViewBag.StudentCount</h2>
+                        </div>
+                        <h6 class="text-muted font-weight-normal">Total DVD owned by Ropey</h6>
+                    </div>
+                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                        <i class="icon-lg mdi mdi-cards text-primary ml-auto"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4 grid-margin">
+        <div class="card">
+            <div class="card-body p-4">
+                <h6 class="mb-3" >User</h6>
+                <div class="row">
+                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                        <div class="d-flex d-sm-block d-md-flex align-items-center">
+                            <h2>@ViewBag.UserCount</h2>
+                        </div>
+                        <h6 class="text-muted font-weight-normal">Total Assistants in the system</h6>
+                    </div>
+                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                        <i class="icon-lg mdi mdi-human-male-female text-warning ml-auto"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4 grid-margin">
+        <div class="card">
+            <div class="card-body p-4">
+                <h6 class="mb-3" >Member</h6>
+                <div class="row">
+                    <div class="col-8 col-sm-12 col-xl-8 my-auto">
+                        <div class="d-flex d-sm-block d-md-flex align-items-center">
+                            <h2>@ViewBag.MemberCount</h2>
+                        </div>
+                        <h6 class="text-muted font-weight-normal">Total Ropey Members in the system</h6>
+                    </div>
+                    <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
+                        <i class="icon-lg mdi mdi-account-star text-success ml-auto"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                
+                <div class="d-flex flex-row justify-content-between">
+                    <h4 class="card-title mb-1">Loan Overview</h4>
+                    <p class="text-muted">Sales for the last two months</p>
+                </div>
+
+                <canvas id="loan-overview" class="my-4"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                
+                <div class="d-flex flex-row justify-content-between">
+                    <h4 class="card-title mb-3">Revenue Overview</h4>
+                    <p class="text-muted mb-3">Sales for the current year</p>
+                    
+                </div>
+                
+                <canvas id="revenue-line-chart" class="my-4"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+@section AddCustomScripts {
+    <script>
+		var ctx = document.getElementById("loan-overview").getContext("2d");
+
+		new Chart(ctx, {
+			type: "bar",
+			data: {
+				labels: @Html.Raw(ViewBag.DVDCategoryLabels),
+				datasets: [{
+				label: "Loan (NPR.) ",
+				tension: 0.4,
+				borderWidth: 0,
+				borderRadius: 4,
+				borderSkipped: false,
+				backgroundColor: "#9FB2E7",
+				data: @Html.Raw(ViewBag.DVDCategoryData),
+				maxBarThickness: 6
+				}, ],
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: true,
+				plugins: {
+					legend: {
+						display: false,
+					}
+				},
+				interaction: {
+					intersect: false,
+					mode: 'index',
+				},
+				scales: {
+				y: {
+					grid: {
+						drawBorder: false,
+						display: false,
+						drawOnChartArea: false,
+						drawTicks: false,
+					},
+					ticks: {
+						suggestedMin: 0,
+						suggestedMax: 500,
+						beginAtZero: true,
+						padding: 15,
+						font: {
+							size: 11,
+							family: "Helvetica",
+							style: 'normal',
+							lineHeight: 2
+						},
+						color: "#9FB2E7"
+					},
+				},
+				x: {
+					grid: {
+					drawBorder: false,
+					display: false,
+					drawOnChartArea: false,
+					drawTicks: false
+					},
+					ticks: {
+					padding: 15,
+					font: {
+						size: 11,
+						family: "Helvetica",
+						style: 'normal',
+						lineHeight: 2
+					},
+					color: "#9FB2E7"
+					},
+				},
+				},
+			},
+		});
+	</script>
+
+	<script>
+		
+		var ctx1 = document.getElementById("revenue-line-chart").getContext("2d");
+	
+		var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
+
+		gradientStroke1.addColorStop(1, 'rgba(159, 178, 231,0.2)');
+		gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+		gradientStroke1.addColorStop(0, 'rgba(159, 178, 231,0)'); 
+
+		new Chart(ctx1, {
+		  type: "line",
+		  data: {
+			labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			datasets: [{
+			  label: "Mobile apps",
+			  tension: 0.4,
+			  borderWidth: 0,
+			  pointRadius: 0,
+			  borderColor: "#9FB2E7",
+			  backgroundColor: gradientStroke1,
+			  borderWidth: 2,
+			  fill: true,
+			  data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+			  maxBarThickness: 6
+	
+			}],
+		  },
+		  options: {
+			responsive: true,
+			maintainAspectRatio: true,
+			plugins: {
+			  legend: {
+				display: false,
+			  }
+			},
+			interaction: {
+			  intersect: false,
+			  mode: 'index',
+			},
+			scales: {
+			  y: {
+				grid: {
+				  drawBorder: false,
+				  display: true,
+				  drawOnChartArea: true,
+				  drawTicks: false,
+				  borderDash: [5, 5]
+				},
+				ticks: {
+				  display: true,
+				  padding: 10,
+				  color: '#9FB2E7',
+				  font: {
+					size: 11,
+					family: "Helvetica",
+					style: 'normal',
+					lineHeight: 2
+				  },
+				}
+			  },
+			  x: {
+				grid: {
+				  drawBorder: false,
+				  display: false,
+				  drawOnChartArea: false,
+				  drawTicks: false,
+				  borderDash: [5, 5]
+				},
+				ticks: {
+				  display: true,
+				  color: '#b2b9bf',
+				  padding: 20,
+				  font: {
+					size: 11,
+					family: "Helvetica",
+					style: 'normal',
+					lineHeight: 2
+				  },
+				}
+			  },
+			},
+		  },
+		});
+
+	</script>
+}

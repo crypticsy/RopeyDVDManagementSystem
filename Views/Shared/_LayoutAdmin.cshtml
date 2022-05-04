@@ -121,22 +121,6 @@
 						<span class="menu-title">Details</span>
 					</a>
 				</li>
-
-
-				<!------------------------------------- Account section ----------------------------------- -->
-				
-				<li class="nav-item nav-category mt-2">
-					<span class="nav-link">Account</span>
-				</li>
-				
-				<li class="@(section == "UserProfile" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="#">
-						<span class="menu-icon">
-							<i class="mdi mdi-account"></i>
-						</span>
-						<span class="menu-title">Profile</span>
-					</a>
-				</li>
 				
 				
 			</ul>
@@ -170,10 +154,23 @@
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+								
+								<a class="dropdown-item preview-item">
+									<div class="preview-thumbnail">
+										<div class="preview-icon">
+											<i class="mdi mdi-account text-success"></i>
+										</div>
+									</div>
+
+									<div class="preview-item-content">
+										<p class="preview-subject mb-1">Profile</p>
+									</div>
+								</a>
+								
 								<a class="dropdown-item preview-item" asp-controller="Authentication" asp-action="Logout">
 									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-logout text-danger"></i>
+										<div class="preview-icon">
+											<i class="mdi mdi-logout text-success"></i>
 										</div>
 									</div>
 
@@ -181,6 +178,7 @@
 										<p class="preview-subject mb-1">Log out</p>
 									</div>
 								</a>
+
 							</div>
 
 						</li>
@@ -204,11 +202,10 @@
 	</div>
 
 
-    @RenderSection("AddCustomScripts", required: false)
 
 	<!-- Required JS Files  -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="~/admin_assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="~/admin_assets/vendors/chart.js/Chart.min.js"></script>
 	<script src="~/admin_assets/vendors/progressbar.js/progressbar.min.js"></script>
 	<script src="~/admin_assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
 	<script src="~/admin_assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -223,7 +220,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("AddCustomScripts", required: false)
 
 </body>
 
