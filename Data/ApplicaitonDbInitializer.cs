@@ -1143,7 +1143,7 @@ namespace RopeyDVDManagementSystem.Data
                             DateOut = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-04-25","yyyy-MM-dd",null),
                             DateReturned = DateTime.ParseExact("2022-04-24","yyyy-MM-dd",null),
-                            ReturnAmount = 3s00
+                            ReturnAmount = 300
                         },
 
                         new Loan()

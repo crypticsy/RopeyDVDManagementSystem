@@ -20,6 +20,8 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public IActionResult Index()
         {
+            int MaximumUnits = 5;
+
             ViewBag.StudentCount = _context.DVDTitles.Count();
             ViewBag.UserCount = _context.Users.Count();
             ViewBag.MemberCount = _context.Members.Count();
@@ -28,12 +30,12 @@ namespace RopeyDVDManagementSystem.Controllers
             var dvdCategoryCounts = (   from dvdTitle in _context.DVDTitles
                                         group dvdTitle by dvdTitle.DVDCategory.CategoryDescription into dvdCategoryGroup
                                         select new { Category = dvdCategoryGroup.Key, Count = dvdCategoryGroup.Count() })
-                                    .OrderBy(x => x.Count);
+                                    .OrderBy(x => x.Count).Reverse().Take(MaximumUnits);
 
-            List<string> dVDCategoryLabels = dvdCategoryCounts.Select(x => x.Category).Skip(Math.Max(0, dvdCategoryCounts.Count() - 5)).ToList();
+            List<string> dVDCategoryLabels = dvdCategoryCounts.Select(x => x.Category).ToList();
             ViewBag.DVDCategoryLabels = (string) System.Text.Json.JsonSerializer.Serialize(dVDCategoryLabels);
 
-            List<int> dvdCategoryData = dvdCategoryCounts.Select(x => x.Count).Skip(Math.Max(0, dvdCategoryCounts.Count() - 5)).ToList();
+            List<int> dvdCategoryData = dvdCategoryCounts.Select(x => x.Count).ToList();
             ViewBag.DVDCategoryData = (string)System.Text.Json.JsonSerializer.Serialize(dvdCategoryData);
 
 
