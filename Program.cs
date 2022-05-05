@@ -19,6 +19,7 @@ builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IMembersService, MembersService>();
+builder.Services.AddScoped<IDVDCopyService, DVDCopyService>();
 
 // add services to the continer
 // For Entity Framework

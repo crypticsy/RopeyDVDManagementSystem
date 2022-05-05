@@ -1,17 +1,19 @@
 ﻿@model Member
 
 @{
-    ViewData["Title"] = "Add a new Member";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "MemberManage";
+    Layout = "_LayoutAdmin";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h2>Add a new Member</h2>
+            <h2>Update Member</h2>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action = "Create">
+                <form asp-action = "Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label">First Name</label>
@@ -39,7 +41,7 @@
                     <span asp-validation-for="MemberDateOfBirth" class="text-danger"></span>
                 </div>
                 <div class="form-group" style="margin:5px;">
-                    <input type="submit" value="Create" class="btn btn-outline-success float right"/>
+                    <input type="submit" value="Update" class="btn btn-outline-success float right"/>
                     <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
                 </div>
                 </form>

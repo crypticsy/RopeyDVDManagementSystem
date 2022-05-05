@@ -3,7 +3,9 @@
 
 @*Defining ViewData*@
 @{
-    ViewData["Title"] = "List of Members";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "MemberManage";
+    Layout = "_LayoutAdmin";
 }
 
 @*Coding*@
@@ -16,7 +18,7 @@
             <thead>
                 <tr>
                     <th>Member Number</th>
-                    <th>Membership Category Number</th>
+                    <th>Membership Category </th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Address</th>
@@ -47,5 +49,5 @@
 </div>
 
 <div style="position:fixed; right:25px; bottom:25px;" class="text-white">
-    <a asp-controller="Members" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
+    <a asp-controller="MembersManage" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
 </div>

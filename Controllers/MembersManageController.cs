@@ -5,11 +5,11 @@ using RopeyDVDManagementSystem.Models;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
-    public class MembersController : Controller
+    public class MembersManageController : Controller
     {
         private readonly IMembersService _service;
 
-        public MembersController(IMembersService service)
+        public MembersManageController(IMembersService service)
         {
             _service = service;
         }
@@ -19,6 +19,7 @@ namespace RopeyDVDManagementSystem.Controllers
             return View(data);
         }
 
+       
         //Get: Members/Create
         public IActionResult Create()
         {
@@ -44,6 +45,7 @@ namespace RopeyDVDManagementSystem.Controllers
             if (memberDetails == null) return View("Not Found");
             return View(memberDetails);
         }
+
 
         //Get: Members/Edit/1
         public async Task<IActionResult> Edit(int id)

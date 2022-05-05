@@ -29,6 +29,14 @@ namespace RopeyDVDManagementSystem.Data.Services
             return result;
         }
 
+        public async Task<IEnumerable<Member>> GetAllDetailsAsync()
+        {
+            //var result = (List<Member>)result.OrderBy(r => r.MemberFirstName);
+            var result = await _context.Members.ToListAsync();
+            result.Sort((x, y) => string.Compare(x.MemberFirstName, y.MemberFirstName));
+            return result;
+        }
+
         public async Task<Member> UpdateAsync(int id, Member newMember)
         {
             _context.Update(newMember);

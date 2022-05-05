@@ -1,48 +1,51 @@
 ﻿@model Member
 
 @{
-    ViewData["Title"] = "Update Member";
+   ViewData["Title"] = "Dashboard";
+   ViewData["Section"] = "MemberManage";
+   Layout = "_LayoutAdmin";
 }
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h2>Update Member</h2>
+            <h2>Delete confirmation for @Model.MemberFirstName @Model.MemberLastName </h2>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action = "Edit">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label class="control-label">First Name</label>
-                    <input asp-for="MemberFirstName" class="form-control" />
+                    <input asp-for="MemberFirstName" class="form-control" readonly />
                     <span asp-validation-for="MemberFirstName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Last Name</label>
-                    <input asp-for="MemberLastName" class="form-control" />
+                    <input asp-for="MemberLastName" class="form-control" readonly />
                     <span asp-validation-for="MemberLastName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Membership Category Number</label>
-                    <input asp-for="MembershipCategoryNumber" class="form-control" />
+                    <input asp-for="MembershipCategoryNumber" class="form-control" readonly />
                     <span asp-validation-for="MembershipCategoryNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Address</label>
-                    <input asp-for="MemberAddress" class="form-control" />
+                    <input asp-for="MemberAddress" class="form-control" readonly />
                     <span asp-validation-for="MemberAddress" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Date of Birth</label>
-                    <input asp-for="MemberDateOfBirth" class="form-control" />
+                    <input asp-for="MemberDateOfBirth" class="form-control" readonly />
                     <span asp-validation-for="MemberDateOfBirth" class="text-danger"></span>
                 </div>
                 <div class="form-group" style="margin:5px;">
-                    <input type="submit" value="Update" class="btn btn-outline-success float right"/>
-                    <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
+                    <form asp-action="Delete">
+                        <input type = "hidden" asp-for="MemberNumber">
+                        <input type = "Submit" value ="Confirm" class="btn btn-danger"/>
+                        <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
+                    </form>
                 </div>
-                </form>
+               
             </div>
         </div>
     </div>
