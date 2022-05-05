@@ -16,9 +16,11 @@ namespace RopeyDVDManagementSystem.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Members.FirstOrDefaultAsync(n => n.MemberNumber == id);
+            _context.Members.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Member>> GetAllAsync()
@@ -27,9 +29,12 @@ namespace RopeyDVDManagementSystem.Data.Services
             return result;
         }
 
-        public Member Update(int id, Member newMember)
+        public async Task<Member> UpdateAsync(int id, Member newMember)
         {
-            throw new NotImplementedException();
+            _context.Update(newMember);
+            await _context.SaveChangesAsync();
+            return newMember;
+
         }
 
         public async Task<Member> GetByIdAsync(int id)

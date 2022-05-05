@@ -7,8 +7,8 @@ namespace RopeyDVDManagementSystem.Data.Services
         Task<IEnumerable<Member>> GetAllAsync();
         Task<Member> GetByIdAsync(int id);
         Task AddAsync(Member member);
-        Member Update(int id, Member newMember);
-        void Delete(int id);
+        Task<Member> UpdateAsync(int id, Member newMember);
+        Task DeleteAsync(int id);
         
     }
 }
