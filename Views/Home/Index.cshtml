@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<RopeyDVDManagementSystem.Models.ViewModels.DVDPreviewModel>
+@{
     ViewData["Title"] = "Home";
     ViewData["Section"] = "Home";
 }
@@ -81,105 +82,21 @@
                 </div>
             </div>
             <div class="row product__filter">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                
+                @foreach (var dvd in Model) {
+                <div class="@(dvd.DVDType == "top" ? "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales" : "col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals")" >
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/vT3F4sts/1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="/@dvd.DVDPoster">
+                        </div>
+                        <div class="product__item__text">
+                            <h6>@dvd.DVDTitleName</h6>
+                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
+                            <h5>$ @dvd.StandardCharge</h5>
+                        </div>
+                    </div>
+                </div>
+                }
 
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Moto 8 - The Movie</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-
-                            <h5>$67.24</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/k5vd0KRG/2.jpg">
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Don't Breathe</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-                            <h5>$67.24</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/gJMbJpDP/3.jpg">
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Pumpkinhead</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-                            <h5>$43.48</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/Jn7WM0jq/4.jpg">
-                        </div>
-                        <div class="product__item__text">
-                            <h6>The Return of the Living Dead</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-
-                            <h5>$60.9</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                            
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Teen Wolf</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-                            
-                            <h5>$31.37</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item sale">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/9XnjHW0d/6.jpg">
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Child's Play</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-                            <h5>$98.49</h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/PJ9GWM93/7.jpg">
-                            
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Leepers Creepers</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-                            <h5>$49.66</h5>
-                            
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/WzhLqyWq/8.jpg">
-                            
-                        </div>
-                        <div class="product__item__text">
-                            <h6>Hannibal</h6>
-                            <a class="add-cart" asp-area="" asp-controller="Home" asp-action="Shop">+ View More</a>
-                          
-                            <h5>$26.28</h5>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

@@ -832,102 +832,128 @@ namespace RopeyDVDManagementSystem.Data
                         new DVDCopy()
                         {
                             DVDNumber = 1,
-                            DatePurchased = DateTime.ParseExact("2022-04-11","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-11","yyyy-MM-dd",null),
+                            IsOnLoan = true
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 2,
-                            DatePurchased = DateTime.ParseExact("2022-04-10","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-10","yyyy-MM-dd",null),
+                            IsOnLoan = true
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 3,
-                            DatePurchased = DateTime.ParseExact("2022-04-01","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-01","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 4,
-                            DatePurchased = DateTime.ParseExact("2022-04-12","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-12","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 5,
-                            DatePurchased = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 6,
-                            DatePurchased = DateTime.ParseExact("2022-04-17","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-17","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 7,
-                            DatePurchased = DateTime.ParseExact("2022-03-20","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-03-20","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 8,
-                            DatePurchased = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-20","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 9,
-                            DatePurchased = DateTime.ParseExact("2022-04-12","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-12","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 10,
-                            DatePurchased = DateTime.ParseExact("2022-04-01","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-01","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 11,
-                            DatePurchased = DateTime.ParseExact("2022-04-08","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-08","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 12,
-                            DatePurchased = DateTime.ParseExact("2022-04-25","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-25","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 13,
-                            DatePurchased = DateTime.ParseExact("2022-04-04","yyyy-MM-dd",null)
-                        },
-                        new DVDCopy()
-                        {
-                            DVDNumber = 14,
-                            DatePurchased = DateTime.ParseExact("2022-04-06","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-04","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 15,
-                            DatePurchased = DateTime.ParseExact("2022-04-10","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-10","yyyy-MM-dd",null),
+                            IsOnLoan = true
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 16,
-                            DatePurchased = DateTime.ParseExact("2022-03-29","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-03-29","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 17,
-                            DatePurchased = DateTime.ParseExact("2022-04-27","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-27","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 18,
-                            DatePurchased = DateTime.ParseExact("2022-04-21","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-21","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 19,
-                            DatePurchased = DateTime.ParseExact("2022-04-09","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-09","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         },
                         new DVDCopy()
                         {
                             DVDNumber = 20,
-                            DatePurchased = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null)
+                            DatePurchased = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null),
+                            IsOnLoan = false
+                        },
+                        new DVDCopy()
+                        {
+                            DVDNumber = 20,
+                            DatePurchased = DateTime.ParseExact("2022-04-15","yyyy-MM-dd",null),
+                            IsOnLoan = false
+                        },
+                        new DVDCopy()
+                        {
+                            DVDNumber = 20,
+                            DatePurchased = DateTime.ParseExact("2022-04-16","yyyy-MM-dd",null),
+                            IsOnLoan = false
                         }
 
 
@@ -1243,6 +1269,33 @@ namespace RopeyDVDManagementSystem.Data
                             DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
                             DateReturned = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null),
                             ReturnAmount = 100
+                        },
+
+                        new Loan()
+                        {
+                            LoanTypeNumber = 1,
+                            CopyNumber = 15,
+                            MemberNumber = 10,
+                            DateOut = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
+                        },
+
+                        new Loan()
+                        {
+                            LoanTypeNumber = 1,
+                            CopyNumber = 1,
+                            MemberNumber = 7,
+                            DateOut = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
+                        },
+
+                        new Loan()
+                        {
+                            LoanTypeNumber = 1,
+                            CopyNumber = 2,
+                            MemberNumber = 8,
+                            DateOut = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
                         }
 
                     });

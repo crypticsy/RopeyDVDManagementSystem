@@ -961,6 +961,20 @@ ol {
 		top: 20px;
 	}
 
+	.product__item__pic .coming_soon_label {
+		color: #323232;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		display: inline-block;
+		padding: 4px 15px 2px;
+		background: #ffeb00;
+		position: absolute;
+		left: 0;
+		top: 20px;
+	}
+
 	.product__item__pic .product__hover {
 		position: absolute;
 		right: -200px;

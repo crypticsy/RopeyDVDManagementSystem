@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
-                            <h2>@ViewBag.StudentCount</h2>
+                            <h2>@ViewBag.DVDCount</h2>
                         </div>
                         <h6 class="text-muted font-weight-normal">Total DVD owned by Ropey</h6>
                     </div>
@@ -36,7 +36,7 @@
                         <div class="d-flex d-sm-block d-md-flex align-items-center">
                             <h2>@ViewBag.UserCount</h2>
                         </div>
-                        <h6 class="text-muted font-weight-normal">Total Assistants in the system</h6>
+                        <h6 class="text-muted font-weight-normal">Total Manager/Assistant in the system</h6>
                     </div>
                     <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                         <i class="icon-lg mdi mdi-human-male-female text-warning ml-auto"></i>
@@ -74,8 +74,8 @@
             <div class="card-body">
                 
                 <div class="d-flex flex-row justify-content-between">
-                    <h4 class="card-title mb-1">Loan Overview</h4>
-                    <p class="text-muted">Sales for the last two months</p>
+                    <h4 class="card-title mb-1">Highest DVD Category</h4>
+                    <p class="text-muted">Total DVD Count based on the Category</p>
                 </div>
 
                 <canvas id="loan-overview" class="my-4"></canvas>
@@ -89,8 +89,8 @@
             <div class="card-body">
                 
                 <div class="d-flex flex-row justify-content-between">
-                    <h4 class="card-title mb-3">Revenue Overview</h4>
-                    <p class="text-muted mb-3">Sales for the current year</p>
+                    <h4 class="card-title mb-3">Loans Overview</h4>
+                    <p class="text-muted mb-3">Sales for the Current Year</p>
                     
                 </div>
                 
@@ -116,7 +116,7 @@
 			data: {
 				labels: @Html.Raw(ViewBag.DVDCategoryLabels),
 				datasets: [{
-				label: "Loan (NPR.) ",
+				label: "Total DVD Count ",
 				tension: 0.4,
 				borderWidth: 0,
 				borderRadius: 4,
@@ -124,7 +124,7 @@
 				backgroundColor: "#9FB2E7",
 				data: @Html.Raw(ViewBag.DVDCategoryData),
 				maxBarThickness: 6
-				}, ],
+				},],
 			},
 			options: {
 				responsive: true,
@@ -196,9 +196,9 @@
 		new Chart(ctx1, {
 		  type: "line",
 		  data: {
-			labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+			labels: @Html.Raw(ViewBag.MonthLabels),
 			datasets: [{
-			  label: "Mobile apps",
+			  label: "Total Loan Amount ($)",
 			  tension: 0.4,
 			  borderWidth: 0,
 			  pointRadius: 0,
@@ -206,7 +206,7 @@
 			  backgroundColor: gradientStroke1,
 			  borderWidth: 2,
 			  fill: true,
-			  data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+			  data: @Html.Raw(ViewBag.LoansByMonth),
 			  maxBarThickness: 6
 	
 			}],

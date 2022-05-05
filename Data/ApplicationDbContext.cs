@@ -44,6 +44,8 @@ namespace RopeyDVDManagementSystem.Data
             builder.Entity<Loan>().HasOne(dt => dt.DVDCopy).WithMany(dt => dt.Loans).HasForeignKey(dt => dt.CopyNumber);
             builder.Entity<Loan>().HasOne(dt => dt.LoanType).WithMany(dt => dt.Loans).HasForeignKey(dt => dt.LoanTypeNumber);
             builder.Entity<Loan>().HasOne(dt => dt.Member).WithMany(dt => dt.Loans).HasForeignKey(dt => dt.MemberNumber);
+            // Property restrictions for DVDTitle
+            builder.Entity<Loan>().Property(dt => dt.ReturnAmount).HasPrecision(10, 2);
 
 
             // Relationship mapping for Members

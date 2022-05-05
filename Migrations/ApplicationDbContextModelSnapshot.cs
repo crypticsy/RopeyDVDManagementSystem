@@ -228,6 +228,9 @@ namespace RopeyDVDManagementSystem.Migrations
                     b.Property<DateTime>("DatePurchased")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsOnLoan")
+                        .HasColumnType("bit");
+
                     b.HasKey("CopyNumber");
 
                     b.HasIndex("DVDNumber");
@@ -379,8 +382,9 @@ namespace RopeyDVDManagementSystem.Migrations
                     b.Property<long>("MemberNumber")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ReturnAmount")
-                        .HasColumnType("bigint");
+                    b.Property<decimal>("ReturnAmount")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("LoanNumber");
 

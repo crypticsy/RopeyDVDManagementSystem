@@ -7,8 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
@@ -86,6 +85,7 @@ namespace RopeyDVDManagementSystem.Controllers
             return View(loginModel);
         }
 
+        [Authorize]
         public IActionResult Logout()
         {
             Response.Cookies.Delete("X-Access-Token");
@@ -145,7 +145,6 @@ namespace RopeyDVDManagementSystem.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
 
 
         public IActionResult UnauthorizedAccess()

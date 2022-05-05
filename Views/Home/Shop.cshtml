@@ -1,25 +1,8 @@
-﻿@{
+﻿@model IEnumerable<RopeyDVDManagementSystem.Models.ViewModels.DVDPreviewModel>
+@{
     ViewData["Title"] = "Shop";
     ViewData["Section"] = "Shop";
 }
-
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>Shop</h4>
-                        <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
 
     <!-- Shop Section Begin -->
     <section class="shop spad">
@@ -90,7 +73,10 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-9">
+
+                    @* --------------------------- Sorting secion --------------------------- *@
                     <div class="shop__product__option">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -110,98 +96,40 @@
                             </div>
                         </div>
                     </div>
+
+                    @* --------------------------- DVD secion --------------------------- *@
                     <div class="row">
+                        
+                        @foreach (var dvd in Model) {
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                                    <span class="available_label">Availabe</span>
+                                <div class="product__item__pic set-bg" data-setbg="/@dvd.DVDPoster">
+                                    
+                                    @if (dvd.AvailableQuantity == 0){
+                                        <span class="unavailable_label">Out of Stock</span>
+                                    }
+                                    else if (dvd.AvailableQuantity == -1){
+                                        <span class="coming_soon_label">Coming Soon</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="available_label">Stock : @dvd.AvailableQuantity</span>
+                                    }
+
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>Piqué Biker Jacket</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-
-                                    <h5>$67.24</h5>
+                                    <h7 style="font-weight: bold;">@dvd.DVDTitleName</h7>
+                                    <p style="margin:0;padding:1px;">Category: @dvd.DVDCategory</p>
+                                    <p style="margin:0;padding:1px;">Cast: @dvd.CastMember</p>
+                                    <p>Date Released : @Html.DisplayFor(modelItem => dvd.DateReleased)</p>
+                                    <h5 style="margin-bottom:15px">$ @dvd.StandardCharge</h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                                    <span class="unavailable_label">Unavailable</span>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Multi-pocket Chest Bag</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-
-                                    <h5>$43.48</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                                    <span class="available_label">Availabe</span>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Diagonal Textured Cap</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-
-                                    <h5>$60.9</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                                    <span class="available_label">Availabe</span>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Ankle Boots</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-
-                                    <h5>$98.49</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                                    <span class="available_label">Availabe</span>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>T-shirt Contrast Pocket</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-
-                                    <h5>$49.66</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="https://i.postimg.cc/3J0QKP0P/5.jpg">
-                                    <span class="unavailable_label">Unavailable</span>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>Basic Flowing Scarf</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-
-                                    <h5>$26.28</h5>
-                                </div>
-                            </div>
-                        </div>
+                        }
 
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="product__pagination">
-                                <a class="active" href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <span>...</span>
-                                <a href="#">21</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

@@ -27,6 +27,6 @@ namespace RopeyDVDManagementSystem.Models
 
         public DateTime DateReturned { get; set; }
 
-        public uint ReturnAmount { get; set; }
+        public decimal ReturnAmount { get; set; }
     }
 }
