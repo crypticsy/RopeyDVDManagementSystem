@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Models;
+using RopeyDVDManagementSystem.Models.Identity;
 using System.Diagnostics;
 
 namespace RopeyDVDManagementSystem.Controllers
@@ -9,11 +11,18 @@ namespace RopeyDVDManagementSystem.Controllers
     [Authorize]
     public class AdminController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<AdminController> _logger;
+        private readonly IConfiguration _configuration;
         private ApplicationDbContext _context;
 
-        public AdminController(ILogger<AdminController> logger, ApplicationDbContext context)
+        public AdminController( UserManager<ApplicationUser> userManager,
+                                IConfiguration configuration,
+                                ILogger<AdminController> logger, 
+                                ApplicationDbContext context)
         {
+            _userManager = userManager;
+            _configuration = configuration;
             _logger = logger;
             _context = context;
         }
@@ -57,6 +66,62 @@ namespace RopeyDVDManagementSystem.Controllers
 
             return View();
         }
+
+
+
+        public IActionResult Profile()
+        {
+            // Get current user details from the database
+            var user = _context.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            
+            // Display the user details
+            ViewBag.UserName = user.UserName;
+            ViewBag.Email = user.Email;
+            ViewBag.FirstName = user.FirstName;
+            ViewBag.LastName = user.LastName;
+            ViewBag.UserRole =  (from role in _context.Roles
+                                join userRole in _context.UserRoles on role.Id equals userRole.RoleId
+                                where userRole.UserId == user.Id
+                                select role.Name).FirstOrDefault();
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Profile(PasswordChangeModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            
+            // Get current user details from the database
+            var user = _context.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
+            // Change the password for the current user
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            
+            // Display the user details
+            ViewBag.UserName = user.UserName;
+            ViewBag.Email = user.Email;
+            ViewBag.FirstName = user.FirstName;
+            ViewBag.LastName = user.LastName;
+            ViewBag.UserRole =  (from role in _context.Roles
+                                join userRole in _context.UserRoles on role.Id equals userRole.RoleId
+                                where userRole.UserId == user.Id
+                                select role.Name).FirstOrDefault();
+
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Invalid Current Password");
+                return View(model);
+            }
+
+            ViewBag.IsSuccess = true;
+            ModelState.Clear();
+            return View(model);
+
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

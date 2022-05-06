@@ -1,6 +1,5 @@
 ﻿using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.Identity;
-using RopeyDVDManagementSystem.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

@@ -127,7 +127,7 @@ namespace RopeyDVDManagementSystem.Controllers
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 ViewBag.SearchTerm = searchTerm;
-                dvdDetails = dvdDetails.Where(d => d.CastMember.ToLower().Contains(searchTerm.ToLower()));
+                dvdDetails = dvdDetails.Where(d => d.CastMember.ToLower().Contains(searchTerm.ToLower()) || d.DVDTitleName.ToLower().Contains(searchTerm.ToLower()));
             }
 
             // filter dvd list by availability
