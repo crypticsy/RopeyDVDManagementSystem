@@ -9,14 +9,14 @@
 }
 
 @*Coding*@
-<h2>Members</h2>
-
-<div class = "row">
-    <div class="col-md-8 offset-md-2" style="float:left">
-
-        <table class="table" style="width:100%">
+<h1 style="text-align: center;">Member Details</h1>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body"> 
+            <div class="table-responsive">
+                <table class="table" >
             <thead>
-                <tr>
+                <tr style="text-align:center;">
                     <th>Member Number</th>
                     <th>Membership Category </th>
                     <th>First Name</th>
@@ -28,7 +28,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr style="text-align:center;">
                         <td class="align-middle">@item.MemberNumber</td>
                         <td class="align-middle">@item.MembershipCategoryNumber</td>
                         <td class="align-middle">@item.MemberFirstName</td>
@@ -36,13 +36,15 @@
                         <td class="align-middle">@item.MemberAddress</td>
                         <td class="align-middle">@item.MemberDateOfBirth</td>
                         <td class="align-middle">
-                            <a class="btn btn-outline-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.MemberNumber"><i class="bi bi-eye"></i>Details</a>
+                            <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.MemberNumber"><i class="bi bi-eye"></i>Details</a>
                         </td>
-
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-</div>
+    </div>
+    </div>
+    </div>
+
 
