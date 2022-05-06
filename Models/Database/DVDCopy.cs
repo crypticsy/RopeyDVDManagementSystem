@@ -15,6 +15,8 @@ namespace RopeyDVDManagementSystem.Models
         [Required]
         public DateTime DatePurchased { get; set; }
 
+        public bool IsOnLoan { get; set; }
+
         public ICollection<Loan> Loans { get; set; }
     }
 }

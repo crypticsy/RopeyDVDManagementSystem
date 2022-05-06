@@ -1,0 +1,133 @@
+@using RopeyDVDManagementSystem.Models.Identity;
+@model PasswordChangeModel;
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_LayoutAdmin";
+}
+
+
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                
+                <h4 class="card-title mb-2">User Profile</h4>
+                <p class="card-description mb-4"> Personal Info </p>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group row mb-0">
+                            <label class="col-sm-4 col-form-label text-gray">First Name :</label>
+                            <div class="col">@ViewBag.FirstName</div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <label class="col-sm-4 col-form-label text-gray">Last Name :</label>
+                            <div class="col">@ViewBag.LastName</div>
+                        </div>
+                        
+                        <div class="form-group row mb-0">
+                            <label class="col-sm-4 col-form-label text-gray">Email</label>
+                            <div class="col">@ViewBag.Email</div>
+                        </div>
+                    </div>
+                
+                    <div class="col-6">
+                        <div class="form-group row mb-0">
+                            <label class="col-sm-4 col-form-label text-gray">Username :</label>
+                            <div class="col">@ViewBag.UserName</div>
+                        </div>
+                        
+                        <div class="form-group row mb-0">
+                            <label class="col-sm-4 col-form-label text-gray">User Role :</label>
+                            <div class="col">@ViewBag.UserRole</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Change Password</h4>
+
+                <form asp-action="Profile">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    @if(TempData["Error"] != null)
+                    {
+                        <div class="alert text-danger mb-2 text-center mx-auto">
+                            <span>@TempData["Error"]</span>
+                        </div>
+                    }
+
+                    @if(ViewBag.IsSuccess == true)
+                    {
+                        <div class="alert text-success mb-2 text-center mx-auto">
+                            <span>Password changed successfully</span>
+                        </div>
+                    }
+
+                    <div class="form-group row validate-input" data-validate = "Current Password is required">
+                        <label asp-for="CurrentPassword" class="col-sm-3 col-form-label">Curernt Password</label>
+                        <div class="col-sm-9">
+                            <input asp-for="CurrentPassword" type="password" class="form-control" placeholder="Current Password"/>
+                        </div>
+                        <div class="text-right">
+                            <small><span asp-validation-for="CurrentPassword" class="text-danger text-sm text-right mb-2"></span></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row validate-input" data-validate = "New Password is required">
+                        <label asp-for="NewPassword" class="col-sm-3 col-form-label">New Password</label>
+                        <div class="col-sm-9">
+                            <input asp-for="NewPassword" type="password" class="form-control" placeholder="New Password" />
+                        </div>
+                        <div class="text-right">
+                            <small><span asp-validation-for="NewPassword" class="text-danger text-sm  text-right mb-2"></span></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-4 validate-input" data-validate = "Confirm Password is required">
+                        <label asp-for="ConfirmPassword" class="col-sm-3 col-form-label">Confirm Password</label>
+                        <div class="col-sm-9">
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password"/>
+                        </div>
+                        <div class="text-right">
+                            <small><span asp-validation-for="ConfirmPassword" class="text-danger text-sm text-right mb-2"></span></small>
+                        </div>
+                    </div>
+                    
+                    <div class="float-right mt-3">
+                        <button type="submit" class="btn btn-primary mr-2" value="Update">Update</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Password Requirements</h4>
+                
+                <ul class="mt-4">
+                    <li class="mb-1" style="opacity:35%"> Minimum 8 characters </li>
+                    <li class="mb-1" style="opacity:35%"> Must contain at least one number (0-9) </li>
+                    <li class="mb-1" style="opacity:35%"> Must contain at least one special character </li>
+                    <li class="mb-1" style="opacity:35%"> Must contain at least one lowercase letter (a-z) </li>
+                    <li class="mb-1" style="opacity:35%"> Must contain at least one uppercase letter (A-Z) </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

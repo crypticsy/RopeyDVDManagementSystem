@@ -961,6 +961,20 @@ ol {
 		top: 20px;
 	}
 
+	.product__item__pic .coming_soon_label {
+		color: #323232;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		display: inline-block;
+		padding: 4px 15px 2px;
+		background: #ffeb00;
+		position: absolute;
+		left: 0;
+		top: 20px;
+	}
+
 	.product__item__pic .product__hover {
 		position: absolute;
 		right: -200px;
@@ -1169,6 +1183,53 @@ ol {
 			top: 0;
 			height: 100%;
 		}
+
+
+	.shop__sidebar__search {
+		position: relative;
+	}
+
+		.shop__sidebar__search input {
+			width: 100%;
+			font-size: 15px;
+			color: #b7b7b7;
+			padding-left: 20px;
+			border: 1px solid #e5e5e5;
+			height: 42px;
+		}
+
+			.shop__sidebar__search input::-webkit-input-placeholder {
+				color: #b7b7b7;
+			}
+
+			.shop__sidebar__search input::-moz-placeholder {
+				color: #b7b7b7;
+			}
+
+			.shop__sidebar__search input:-ms-input-placeholder {
+				color: #b7b7b7;
+			}
+
+			.shop__sidebar__search input::-ms-input-placeholder {
+				color: #b7b7b7;
+			}
+
+			.shop__sidebar__search input::placeholder {
+				color: #b7b7b7;
+			}
+
+		.shop__sidebar__search button {
+			color: #b7b7b7;
+			font-size: 15px;
+			border: none;
+			background: transparent;
+			position: absolute;
+			right: 0;
+			padding: 0 15px;
+			top: 0;
+			height: 100%;
+		}
+		
 
 .shop__sidebar__accordion .card {
 	border: none;

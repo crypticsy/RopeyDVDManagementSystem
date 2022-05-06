@@ -35,6 +35,7 @@
 
 	<div class="container-scroller">
 		
+		<!------------------------------------- Side Bar section ----------------------------------- -->
 		<nav class="sidebar sidebar-offcanvas" id="sidebar">
 			
 			<div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -44,10 +45,9 @@
 
 			<ul class="nav">
 				
-				
 				<li class="@(section == "Dashboard" ? "nav-item menu-items active mt-3" : "nav-item menu-items mt-3")">
 				
-					<a class="nav-link"  asp-controller="Dashboard" asp-action="Index">
+					<a class="nav-link" asp-controller="Admin" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-chart-arc"></i>
 						</span>
@@ -125,11 +125,13 @@
 				
 			</ul>
 		</nav>
+		
 
 
 
 		<div class="container-fluid page-body-wrapper">
 
+			<!------------------------------------- Nav Bar section ----------------------------------- -->
 			<nav class="navbar p-0 fixed-top d-flex flex-row">
 				
 				<div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
@@ -155,7 +157,7 @@
 
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
 								
-								<a class="dropdown-item preview-item">
+								<a class="dropdown-item preview-item" asp-controller="Admin" asp-action="Profile">
 									<div class="preview-thumbnail">
 										<div class="preview-icon">
 											<i class="mdi mdi-account text-success"></i>
@@ -191,6 +193,7 @@
 				</div>
 			</nav>
 		
+			<!------------------------------------- Main Content section ----------------------------------- -->
 			<div class="main-panel">
 				<div class="content-wrapper ">
 					@RenderBody()

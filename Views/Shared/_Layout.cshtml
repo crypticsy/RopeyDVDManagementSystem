@@ -28,15 +28,15 @@
     <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/user_view_style.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
 
-    
     @RenderSection("AddCustomStyles", required: false)
 
 </head>
 
 
 
-<body>
+<body class="customScroll">
 
       <!-- Page Preloder -->
     <div id="preloder">
@@ -51,7 +51,9 @@
             <div class="row mb-3">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="~/images/img/logo.png" alt=""></a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="~/images/img/logo.png" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -87,7 +89,6 @@
                 }
                 else
                 {
-                    <a class="login_btn ml-0 mr-2" asp-controller="Authentication" asp-action="Register">Register</a>
                     <a class="login_btn ml-0" asp-controller="Authentication" asp-action="Login">Login</a>
                 }
 
@@ -98,17 +99,17 @@
     <!-- Header Section End -->
 
 
-     @RenderBody()
+    @RenderBody()
 
     @RenderSection("AddCustomScripts", required: false) 
 
 
-<!-- Footer Section Begin -->
+    <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">
             <div class="footer__about">
                 <div class="footer__logo">
-                    <a href="#"><img src="https://i.postimg.cc/qBFJvmkS/logo-white.png" alt="" /></a>
+                    <a href="#" style="margin-top:5vh;"><img src="https://i.postimg.cc/qBFJvmkS/logo-white.png" alt="" /></a>
                 </div>
                 <h6>Movies, music and more.</h6>
                 <p>
@@ -121,11 +122,11 @@
                     <div class="footer__copyright__text">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <p>
-                            Copyright ©
+                            Copyright © Ropey
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
-                            - 2020 All rights reserved 
+                            - All rights reserved 
                         </p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
