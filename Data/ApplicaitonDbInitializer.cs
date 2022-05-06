@@ -1243,6 +1243,48 @@ namespace RopeyDVDManagementSystem.Data
                             DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
                             DateReturned = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null),
                             ReturnAmount = 100
+                        },
+
+                        new Loan()
+                        {
+                            LoanTypeNumber = 3,
+                            CopyNumber = 2,
+                            MemberNumber = 9,
+                            DateOut = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-07","yyyy-MM-dd",null)
+                        },
+                        new Loan()
+                        {
+                            LoanTypeNumber = 1,
+                            CopyNumber = 4,
+                            MemberNumber = 2,
+                            DateOut = DateTime.ParseExact("2022-05-05","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-08","yyyy-MM-dd",null)
+                        },
+                        new Loan()
+                        {
+                            LoanTypeNumber = 2,
+                            CopyNumber = 10,
+                            MemberNumber = 1,
+                            DateOut = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-05","yyyy-MM-dd",null),
+                        },
+                        new Loan()
+                        {
+                            LoanTypeNumber = 4,
+                            CopyNumber = 5,
+                            MemberNumber = 6,
+                            DateOut = DateTime.ParseExact("2022-04-30","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-14","yyyy-MM-dd",null),
+
+                        },
+                        new Loan()
+                        {
+                            LoanTypeNumber = 5,
+                            CopyNumber = 19,
+                            MemberNumber = 8,
+                            DateOut = DateTime.ParseExact("2022-04-05","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-05-05","yyyy-MM-dd",null)
                         }
 
                     });

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<RopeyDVDManagementSystem.Models.ViewModels.DVDTranscation>
+@{
+    ViewData["Title"] = "DVDTransaction";
+    Layout = "_LayoutAdmin";
+}
+
+@section AddCustomStyles{
+
+  <!-- Loading CSS for saving the table and searching it -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+}
+
+@section AddCustomScripts{
+
+  <!-- Loading JavaScript for saving the table and searching it-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#searchs').DataTable({
+        dom: 'Bfrtip',
+      });
+    });
+  </script>
+}
+
+<h1 style="text-align: center;">DVD Transactions</h1>
+<br>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+                        <div id="the-basics">
+                  <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+                    <input class="typeahead tt-hint" type="text" readonly="" autocomplete="off" spellcheck="false" tabindex="-1" dir="ltr" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: none 0% 0% / auto repeat scroll padding-box padding-box rgb(42, 48, 56);">
+                   <input class="typeahead tt-input" type="text" placeholder="Enter Copy Number" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top; background-color: transparent;">
+                  <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Rubik, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;">1</pre>
+                  <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+                      <div class="tt-dataset tt-dataset-states">
+                          <div class="tt-suggestion tt-selectable"><strong class="tt-highlight">2</strong></div>
+                          </div></div></span>
+             </div>
+            <br>
+            <div class="table-responsive">
+                @if(Model.Count() > 0)
+                {
+                <table class="table" style="text-align: center;">
+                    <thead>
+                        <tr>
+                            <th> Member Name </th>
+                            <th> Copy Number </th>
+                            <th> DVD Title </th>
+                            <th> Date Out </th>
+                            <th> Date Due </th>
+                            <th> Date Returned </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var data in Model)
+                        {
+                        <tr>
+                            <td>@data.MemberName</td>
+                            <td>@data.CopyNumber</td>
+                            <td>@data.DVDTitleName</td>
+                            <td>@data.DateOut</td>
+                            <td>@data.DateDue</td>
+                            <td>@data.DateReturned</td>
+                            <!--only display button if the DateReturned is null-->
+                            <td><button type="button" class="btn btn-inverse-success btn-fw">Return</button></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                }
+            </div>
+            <a type="button" class="btn btn-outline-secondary" href="/DVDTransaction/DVDLoan" style="margin-top: 3%;">DVD on Loans</a>
+        </div>
+    </div>
+</div>
