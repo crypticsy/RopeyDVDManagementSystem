@@ -29,6 +29,8 @@ namespace RopeyDVDManagementSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("MemberFirstName, MemberLastName, MembershipCategoryNumber, MemberAddress, MemberDateofBirth")]Member member)
         {
+            if (!ModelState.IsValid) return View(member);
+
             if (ModelState.IsValid)
             {
                 return View(member);
@@ -62,6 +64,7 @@ namespace RopeyDVDManagementSystem.Controllers
             {
                 return View(member);
             }*/
+            if (!ModelState.IsValid) return View(member);
             member.MemberNumber = Convert.ToUInt32(id);
             await _service.UpdateAsync(id, member);
             return RedirectToAction(nameof(Index));
