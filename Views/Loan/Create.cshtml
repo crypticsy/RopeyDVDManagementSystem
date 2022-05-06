@@ -14,11 +14,6 @@
             <div class="col-md-8 offset-2">
                 <form asp-action = "Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @*<div class="form-group">
-                    <label class="control-label">Loan Number</label>
-                    <input asp-for="LoanNumber" class="form-control" />
-                    <span asp-validation-for="LoanNumber" class="text-danger"></span>
-                </div>*@
                 <div class="form-group">
                     <label class="control-label">Loan Type Number</label>
                     <input asp-for="LoanTypeNumber" class="form-control" />
@@ -33,26 +28,6 @@
                     <label class="control-label">Member Number</label>
                     <input asp-for="MemberNumber" class="form-control" />
                     <span asp-validation-for="MemberNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Date Out</label>
-                    <input asp-for="DateOut" class="form-control" />
-                    <span asp-validation-for="DateOut" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Date Due</label>
-                    <input asp-for="DateDue" class="form-control" />
-                    <span asp-validation-for="DateDue" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Date Returned</label>
-                    <input asp-for="DateReturned" class="form-control" />
-                    <span asp-validation-for="DateReturned" class="text-danger"></span>
-                </div>
-                 <div class="form-group">
-                    <label class="control-label">Return Amount</label>
-                    <input asp-for="ReturnAmount" class="form-control" />
-                    <span asp-validation-for="ReturnAmount" class="text-danger"></span>
                 </div>
                 <div class="form-group" style="margin:5px;">
                     <input type="submit" value="Create" class="btn btn-outline-success float right"/>

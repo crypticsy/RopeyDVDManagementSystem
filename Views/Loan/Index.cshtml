@@ -1,63 +1,121 @@
-﻿
-@*Defining Model*@
+﻿@*Defining Model*@ 
 @model List<Loan>
 
-@*Defining ViewData*@
-@{
-   ViewData["Title"] = "Dashboard";
-    ViewData["Section"] = "DVDManage";
-    Layout = "_LayoutAdmin";
-}
 
-@*Coding*@
-<h1 style="text-align: center;">View Loan</h1>
-<div style="margin-left:12px; margin-bottom:10px;" class="text-white">
-    <a asp-controller="Loan" asp-action="Create" class="btn btn-inverse-success"><i class="bi bi-plus-circle"></i> Add New</a>
-</div>
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
+    @*Defining ViewData*@ 
+    
+    @{  ViewData["Title"] = "Dashboard"; 
+        ViewData["Section"] = "DVDManage"; 
+        Layout = "_LayoutAdmin"; 
+    } 
 
-            <div class="table-responsive"> 
+    @*Coding*@
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2">Issue a new DVD loan</h4>
+                            <p class="card-description mb-4">
+                                Enter the following information.
+                            </p>
 
-        <table class="table" style="width:100%">
-            <thead>
-                <tr style="text-align: center;">
-                    <th>Copy Number </th>
-                    <th>Member Number</th>
-                    <th>Date Out</th>
-                    <th>Date Due</th>
-                    <th>Date Returned</th>
-                    <th>Return Amount</th>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Copy number :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Copy Number" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Select a Loan Type :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Loan Type" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Member ID :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Member ID" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="float-right mt-3">
+                                        <button type="Submit" class="btn btn-primary mr-2" value="Search">
+                                            Search
+                                        </button>
+                                    </div>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr style="text-align: center;">
-                        <td class="align-middle">@item.CopyNumber</td>
-                        <td class="align-middle">@item.MemberNumber</td>
-                        <td class="align-middle">@item.DateOut</td>
-                        <td class="align-middle">@item.DateDue</td>
-                        <td class="align-middle">@item.DateReturned</td>
-                        <td class="align-middle">@item.ReturnAmount</td>
-                        <td>
-                            <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.LoanNumber"><i class="bi bi-pencil-square"></i>Edit</a>
-                            <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.LoanNumber"><i class="bi bi-eye"></i>Details</a>
-                            <a class="btn btn-inverse-danger" style="margin:5px;"  asp-action="Delete" asp-route-id="@item.LoanNumber"><i class="bi bi-trash" asp-action="Delete" asp-route-id="@item.LoanNumber"></i>Delete</a> 
-                        </td>
+                                    <div style="margin-left: 12px; margin-bottom: 10px" class="text-white">
+                                        <a asp-controller="Loan" asp-action="Create" class="btn btn-inverse-success"><i
+                                                class="bi bi-plus-circle"></i> Add New</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    </tr>
-                }
-            </tbody>
-        </table>
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body mb-3 mx-3">
+                            <div class="table-responsive">
+                                <table class="table" style="width: 100%">
+                                    <thead>
+                                        <tr style="text-align: center">
+                                            <th>Copy Number</th>
+                                            <th>Member Number</th>
+                                            <th>Date Out</th>
+                                            <th>Date Due</th>
+                                            <th>Date Returned</th>
+                                            <th>Return Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model) {
+
+                                        <tr style="text-align: center">
+                                            <td class="align-middle">@item.CopyNumber</td>
+                                            <td class="align-middle">@item.MemberNumber</td>
+                                            <td class="align-middle">@item.DateOut</td>
+                                            <td class="align-middle">@item.DateDue</td>
+                                            <td class="align-middle">@item.DateReturned</td>
+                                            <td class="align-middle">@item.ReturnAmount</td>
+                                            <td>
+                                                <a class="btn btn-inverse-primary" style="margin: 5px" asp-action="Edit"
+                                                    asp-route-id="@item.LoanNumber"><i
+                                                        class="mdi mdi-table-edit"></i>Edit</a>
+                                                <a class="btn btn-inverse-info" style="margin: 5px" asp-action="Details"
+                                                    asp-route-id="@item.LoanNumber"><i
+                                                        class="mdi mdi-account-card-details"></i>Details</a>
+                                                <a class="btn btn-inverse-danger" style="margin: 5px"
+                                                    asp-action="Delete" asp-route-id="@item.LoanNumber"><i
+                                                        class="mdi mdi-delete" asp-action="Delete"
+                                                        asp-route-id="@item.LoanNumber"></i>Delete</a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-</div>
-
-
-
-
-
+</Loan>

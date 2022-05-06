@@ -27,7 +27,7 @@ namespace RopeyDVDManagementSystem.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("LoanTypeNumber, CopyNumber, MemberNumber, DateOut, DateDue, DateReturned, ReturnAmount")] Loan loan)
+        public async Task<IActionResult> Create([Bind("LoanTypeNumber, CopyNumber, MemberNumber")] Loan loan)
         {
 
 
