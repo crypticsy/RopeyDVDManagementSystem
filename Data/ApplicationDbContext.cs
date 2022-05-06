@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RopeyDVDManagementSystem.Controllers;
 using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.Identity;
 
@@ -65,5 +66,6 @@ namespace RopeyDVDManagementSystem.Data
         public DbSet<MembershipCategory> MembershipCategories { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Studio> Studios { get; set; }
+        public IEnumerable<DVDTransactionController> DVDTransactionContoller { get; internal set; }
     }
 }
