@@ -1,23 +1,49 @@
-﻿@model IEnumerable<RopeyDVDManagementSystem.Models.ViewModels.DVDPreviewModel>
+﻿@using RopeyDVDManagementSystem.Models.ViewModels
+@model IEnumerable<DVDPreviewModel>
+
 @{
     ViewData["Title"] = "Shop";
     ViewData["Section"] = "Shop";
 }
 
-    <!-- Shop Section Begin -->
-    <section class="shop spad">
-        <div class="container">
+@section AddCustomScripts{
+    <script>
+        function changeAgeRestriction(ageRestriction) {
+            document.getElementById("AgeRestricted").value = ageRestriction;
+            document.getElementById("PostShop").submit();
+        }
+
+        function changeAvailability(availability) {
+            document.getElementById("Availability").value = availability;
+            document.getElementById("PostShop").submit();
+        }
+
+        function changeGenre(genre) {
+            document.getElementById("DVDCategory").value = genre;
+            document.getElementById("PostShop").submit();
+        }
+    </script>
+}
+
+
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        
+        <form asp-action="PostShop" id="PostShop">
             <div class="row">
+                
                 <div class="col-lg-3">
+
                     <div class="shop__sidebar">
+                        
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search..." />
-                                <button type="submit">
-                                    <span class="icon_search"></span>
-                                </button>
-                            </form>
+                            <input type="text" placeholder="Search..." name="SearchTerm" value="@ViewBag.SearchTerm" />
+                            <button type="submit">
+                                <span class="icon_search"></span>
+                            </button>
                         </div>
+
                         <div class="shop__sidebar__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
@@ -28,9 +54,19 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
                                                 <ul >
-                                                    <li><a href="#">All</a></li>
-                                                    <li><a href="#">Available</a></li>
-                                                    <li><a href="#">Unavailable</a></li>
+                                                    <li onclick="changeAvailability('all')">
+                                                        <a class="@(ViewBag.Availability == "all"? "active-choice":"hell")">All</a>
+                                                    </li>
+                                                    <li onclick="changeAvailability('available')">
+                                                        <a class="@(ViewBag.Availability == "available"? "active-choice":"hell")">Available</a>
+                                                    </li>
+                                                    <li onclick="changeAvailability('unavailable')">
+                                                        <a class="@(ViewBag.Availability == "unavailable"? "active-choice":"hell")">Unavailable</a>
+                                                    </li>
+                                                    <li onclick="changeAvailability('comingSoon')">
+                                                        <a class="@(ViewBag.Availability == "comingSoon"? "active-choice":"hell")">Coming Soon</a>
+                                                    </li>
+                                                    <input type="hidden" id="Availability" name="Availability" value="@ViewBag.Availability" />
                                                 </ul>
                                             </div>
                                         </div>
@@ -44,8 +80,13 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__brand">
                                                 <ul>
-                                                    <li><a href="#">Yes</a></li>
-                                                    <li><a href="#">No</a></li>
+                                                    <li onclick="changeAgeRestriction('no')">
+                                                        <a class="@(ViewBag.AgeRestricted == "no"? "active-choice":"hell")">All</a>
+                                                    </li>
+                                                    <li onclick="changeAgeRestriction('yes')">
+                                                        <a class="@(ViewBag.AgeRestricted == "yes"? "active-choice":"hell")">Under 18</a>
+                                                    </li>
+                                                    <input type="hidden" id="AgeRestricted" name="AgeRestricted" value="@ViewBag.AgeRestricted" />
                                                 </ul>
                                             </div>
                                         </div>
@@ -59,11 +100,22 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll">
-                                                    <li><a href="#">All</a></li>
-                                                    <li><a href="#">Musical</a></li>
-                                                    <li><a href="#">Thriller</a></li>
-                                                    <li><a href="#">Horror</a></li>
-                                                    <li><a href="#">Comedy</a></li>
+                                                    <li onclick="changeGenre('all')">
+                                                        <a class="@(ViewBag.DVDCategory == "all"? "active-choice":"hell")">All</a>
+                                                    </li>
+                                                    <li onclick="changeGenre('action')">
+                                                        <a class="@(ViewBag.DVDCategory == "action"? "active-choice":"hell")">Action</a>
+                                                    </li>
+                                                    <li onclick="changeGenre('drama')">
+                                                        <a class="@(ViewBag.DVDCategory == "drama"? "active-choice":"hell")">Drama</a>
+                                                    </li>
+                                                    <li onclick="changeGenre('horror')">
+                                                        <a class="@(ViewBag.DVDCategory == "horror"? "active-choice":"hell")">Horror</a>
+                                                    </li>
+                                                    <li onclick="changeGenre('thriller')">
+                                                        <a class="@(ViewBag.DVDCategory == "thriller"? "active-choice":"hell")">Thriller</a>
+                                                    </li>
+                                                    <input type="hidden" id="DVDCategory" name="DVDCategory" value="@ViewBag.DVDCategory" />
                                                 </ul>
                                             </div>
                                         </div>
@@ -72,6 +124,7 @@
                             </div>
                         </div>
                     </div>
+            
                 </div>
 
                 <div class="col-lg-9">
@@ -80,17 +133,38 @@
                     <div class="shop__product__option">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__left">
-                                    <p>Showing 1–12 of 126 results</p>
-                                </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <select>
-                                        <option value="">Low To High</option>
-                                        <option value="">$0 - $55</option>
-                                        <option value="">$55 - $100</option>
+                                    <p>Sort by:</p>
+                                    <select name="sortBy" onChange="this.form.submit()">
+                                        @if(ViewBag.SortBy == "na")
+                                        {
+                                            <option value="na" selected>Name: A to Z</option>
+                                        }else{
+                                            <option value="na">Name: A to Z</option>
+                                        }
+
+                                        @if(ViewBag.SortBy == "nd")
+                                        {
+                                            <option value="nd" selected>Name: Z to A</option>
+                                        }else{
+                                            <option value="nd">Name: Z to A</option>
+                                        }
+
+                                        @if(ViewBag.SortBy == "pa")
+                                        {
+                                            <option value="pa" selected>Price: Low to High</option>
+                                        }else{
+                                            <option value="pa">Price: Low to High</option>
+                                        }
+
+                                        @if(ViewBag.SortBy == "pd")
+                                        {
+                                            <option value="pd" selected>Price: High to Low</option>
+                                        }else{
+                                            <option value="pd">Price: High to Low</option>
+                                        }
                                     </select>
                                 </div>
                             </div>
@@ -131,7 +205,10 @@
                     </div>
 
                 </div>
+
             </div>
-        </div>
-    </section>
-    <!-- Shop Section End -->
+        </form>
+
+    </div>
+</section>
+<!-- Shop Section End -->

@@ -59,32 +59,132 @@ namespace RopeyDVDManagementSystem.Controllers
             return View(topDVDsDetails);
         }
 
+
+
         public IActionResult Shop()
         {
+            // Get filter options from session
+            var searchTerm = HttpContext.Session.GetString("searchTerm");
+            var sortBy = HttpContext.Session.GetString("sortBy");
+            var availability = HttpContext.Session.GetString("Availability");
+            var ageRestricted = HttpContext.Session.GetString("AgeRestricted");
+            var dvdCategory = HttpContext.Session.GetString("DVDCategory");
+
+            var allDVDList = from dvd in _context.DVDTitles select dvd.DVDNumber;
+
+            // filter dvd list by age restriction
+            switch (ageRestricted)
+            {
+                case "yes":
+                    allDVDList = from dvd in allDVDList
+                                join dc in _context.DVDCategories on dvd equals dc.CategoryNumber
+                                where dc.AgeRestricted == false
+                                select dvd;
+                    break;
+            }
+
+            // filter dvd list by category
+            if (!string.IsNullOrEmpty(dvdCategory) && dvdCategory != "all")
+                allDVDList = from allList in allDVDList
+                            join dvd in _context.DVDTitles on allList equals dvd.DVDNumber
+                            join dc in _context.DVDCategories on dvd.CategoryNumber equals dc.CategoryNumber
+                            where dc.CategoryName.ToLower() == dvdCategory.ToLower()
+                            select allList;
+
+
+
+            // Initalizaiton of all remaining Viewbags
+            ViewBag.SortBy = string.IsNullOrEmpty(sortBy) ? "na" : sortBy;
+            ViewBag.Availability = string.IsNullOrEmpty(availability) ? "all" : availability;
+            ViewBag.AgeRestricted = string.IsNullOrEmpty(ageRestricted) ? "no" : ageRestricted;
+            ViewBag.DVDCategory = string.IsNullOrEmpty(dvdCategory) ? "all" : dvdCategory;
+
             // Get all the request DVD information from the database
-            var dvdDetails =from dvd in _context.DVDTitles
-                            join category in _context.DVDCategories on dvd.CategoryNumber equals category.CategoryNumber
-                            select new DVDPreviewModel
-                            {
-                                DVDTitleName = dvd.DVDTitleName,
-                                DVDPoster = dvd.DVDPoster,
-                                DVDCategory = category.CategoryName,
-                                StandardCharge = dvd.StandardCharge,
-                                DateReleased = dvd.DateReleased,
-                                CastMember = string.Join(   ", " , 
-                                                            (   from castMember in _context.CastMembers 
-                                                                where castMember.DVDNumber == dvd.DVDNumber 
-                                                                select string.Concat(castMember.Actor.ActorFirstName, " ", castMember.Actor.ActorSurName)
-                                                            ).ToList()
-                                                        ),
-                                AvailableQuantity =    _context.DVDCopies.Where(d => d.DVDNumber == dvd.DVDNumber).Count() == 0 ?
-                                                        -1 :
-                                                        (from dvdCopy in _context.DVDCopies
-                                                        where dvdCopy.DVDNumber == dvd.DVDNumber
-                                                        select dvdCopy.IsOnLoan? 0 : 1 ).Sum()
-                            };
+            IEnumerable<DVDPreviewModel> dvdDetails =   from allDVD in allDVDList
+                                                        join dvd in _context.DVDTitles on allDVD equals dvd.DVDNumber 
+                                                        join category in _context.DVDCategories on dvd.CategoryNumber equals category.CategoryNumber
+                                                        select new DVDPreviewModel
+                                                        {
+                                                            DVDTitleName = dvd.DVDTitleName,
+                                                            DVDPoster = dvd.DVDPoster,
+                                                            DVDCategory = category.CategoryName,
+                                                            StandardCharge = dvd.StandardCharge,
+                                                            DateReleased = dvd.DateReleased,
+                                                            CastMember = string.Join(   ", " , 
+                                                                                        (   from castMember in _context.CastMembers 
+                                                                                            where castMember.DVDNumber == dvd.DVDNumber 
+                                                                                            select string.Concat(castMember.Actor.ActorFirstName, " ", castMember.Actor.ActorSurName)
+                                                                                        ).ToArray()
+                                                                                    ),
+                                                            AvailableQuantity =    _context.DVDCopies.Where(d => d.DVDNumber == dvd.DVDNumber).Count() == 0 ?
+                                                                                    -1 :
+                                                                                    (from dvdCopy in _context.DVDCopies
+                                                                                    where dvdCopy.DVDNumber == dvd.DVDNumber
+                                                                                    select dvdCopy.IsOnLoan? 0 : 1 ).Sum()
+                                                        };
+
+            // fitler dvd list by search term if there is one
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                ViewBag.SearchTerm = searchTerm;
+                dvdDetails = dvdDetails.Where(d => d.CastMember.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            // filter dvd list by availability
+            switch (availability)
+            {
+                case "available":
+                    dvdDetails = dvdDetails.Where(d => d.AvailableQuantity > 0);
+                    break;
+
+                case "unavailable":
+                    dvdDetails = dvdDetails.Where(d => d.AvailableQuantity == 0);
+                    break;
+                
+                case "comingSoon":
+                    dvdDetails = dvdDetails.Where(d => d.AvailableQuantity == -1);
+                    break;
+            }
+            
+            // Sort the list by the selected option
+            switch (sortBy)
+            {
+                case "pa":
+                    dvdDetails = dvdDetails.OrderBy(d => d.StandardCharge);
+                    break;
+                
+                case "pd":
+                    dvdDetails = dvdDetails.OrderByDescending(d => d.StandardCharge);
+                    break;
+
+                case "nd":
+                    dvdDetails = dvdDetails.OrderByDescending(d => d.DVDTitleName);
+                    break;
+                
+                default:
+                    dvdDetails = dvdDetails.OrderBy(d => d.DVDTitleName);
+                    break;
+            }
+
             return View(dvdDetails);
         }
+        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult PostShop()
+        {
+            // Save filter options in session
+            HttpContext.Session.SetString("searchTerm", Request.Form["SearchTerm"]);
+            HttpContext.Session.SetString("sortBy", Request.Form["sortBy"]);
+            HttpContext.Session.SetString("Availability", Request.Form["Availability"]);
+            HttpContext.Session.SetString("AgeRestricted", Request.Form["AgeRestricted"]);
+            HttpContext.Session.SetString("DVDCategory", Request.Form["DVDCategory"]);
+
+            return RedirectToAction("Shop");
+        }
+
+
 
         public IActionResult Contacts()
         {

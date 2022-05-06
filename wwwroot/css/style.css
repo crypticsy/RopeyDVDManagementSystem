@@ -227,3 +227,12 @@ body{
         transform: translateX(0);
     }
 }
+
+.active-choice{
+    color:black !important;
+}
+
+.active-choice::after{
+    content: " ▪ ";
+    color: red;
+}
