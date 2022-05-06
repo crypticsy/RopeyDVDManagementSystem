@@ -30,7 +30,7 @@ namespace RopeyDVDManagementSystem.Data.Services
             return result;
         }
 
-        public async Task<DVDTitle> GetById(int id)
+        public async Task<DVDTitle> GetById(int idx`)
         {
             var res = await _context.DVDTitles.FirstOrDefaultAsync(n => n.DVDNumber == id);
             return res;
