@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using RopeyDVDManagementSystem.Data;
+using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models.Identity;
 using System.Text;
 
@@ -20,6 +21,12 @@ builder.Services.AddControllersWithViews();
 // add services to the continer
 // For Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("RopeyDVDDatabase")));
+
+//For services related to DVD Title
+builder.Services.AddScoped<IDVDTitleService, DVDTitleService>();
+
+//For Services related to Actor
+builder.Services.AddScoped<IActorService, ActorService>();
 
 // For Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

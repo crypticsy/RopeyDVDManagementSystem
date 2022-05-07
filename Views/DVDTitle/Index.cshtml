@@ -1,0 +1,62 @@
+﻿@*Defining Model*@
+@model List<DVDTitle>
+
+@*Defining ViewData*@
+@{
+    ViewData["Title"] = "List of DVDs";
+}
+
+@*Coding*@
+<h1>Welcome to the DVD Titles View</h1>
+
+<div class = "row">
+    <div class="col-md-8 offset-md-2">
+
+        <table class="table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>DVD Number</th>
+                    <th>DVD Poster</th>
+                    <th>DVD Title Name</th>
+                    <th>Category</th>
+                    <th>Studio</th>
+                    <th>Producer</th>
+                    <th>Date Released</th>
+                    <th>Standard Charge</th>
+                    <th>Penalty Charge</th>
+                    <th>DVD Copys</th>
+                    <th>Cast Members</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@item.DVDNumber</td>
+                        <td class="align-middle"><img class = "img-thumbnail" src ="@item.DVDPoster"style="max-width:100px;"/></td>
+                        <td class="align-middle">@item.DVDTitleName</td>
+                        <td class="align-middle">@item.DVDCategory.CategoryName</td>
+                        <td class="align-middle">@item.Studio.StudioName</td>
+                        <td class="align-middle">@item.Producer.ProducerName</td>
+                        <td class="align-middle">@item.DateReleased</td>
+                        <td class="align-middle">@item.StandardCharge</td>
+                        <td class="align-middle">@item.PenaltyCharge</td>
+                        <td class="align-middle">@item.DVDCopys</td>
+                        <td class="align-middle">@item.CastMembers</td>
+                        <td class>
+                            <a class="btn btn-outline-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.DVDNumber"><i class="bi bi-pencil-square"></i>Edit</a>
+                            <a class="btn btn-outline-primary" style="margin:5px;" asp-action="Details" asp-route-id="@item.DVDNumber"><i class="bi bi-eye"></i>Details</a>
+                            <a class="btn btn-danger" style="margin:5px;"  asp-action="Delete" asp-route-id="@item.DVDNumber"><i class="bi bi-trash" asp-action="Delete" asp-route-id="@item.DVDNumber"></i>Delete</a> 
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="position:fixed; right:25px; bottom:25px;" class="text-white">
+    <a asp-controller="DVDTitle" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
+</div>
