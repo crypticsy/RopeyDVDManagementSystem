@@ -88,7 +88,7 @@ namespace RopeyDVDManagementSystem.Controllers
                 allDVDList = from allList in allDVDList
                             join dvd in _context.DVDTitles on allList equals dvd.DVDNumber
                             join dc in _context.DVDCategories on dvd.CategoryNumber equals dc.CategoryNumber
-                            where dc.CategoryName.ToLower() == dvdCategory.ToLower()
+                            where dc.CategoryName.ToLower().Equals(dvdCategory.ToLower())
                             select allList;
 
 

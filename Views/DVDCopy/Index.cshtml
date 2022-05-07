@@ -1,12 +1,12 @@
 ﻿@*Defining Model*@
-@model List<DVDCopy>
+@using RopeyDVDManagementSystem.Models;
+@model List<DVDCopy>;
 
 @*Defining ViewData*@
 @{
     ViewData["Title"] = "DVDCopy";
-    //ViewData["Title"] = "Dashboard";
-    //ViewData["Section"] = "DVDCopy";
-    //Layout = "_LayoutAdmin";
+    ViewData["Section"] = "DVDCopy";
+    Layout = "_LayoutAdmin";
 }
 
 @*Coding*@
@@ -67,7 +67,7 @@
                                         <a class="btn btn-inverse-danger" style="margin:5px;"  asp-action="Delete" asp-route-id="@item.CopyNumber"><i class="mdi mdi-delete" style="mdi mdi-delete-sweep" asp-action="Delete" asp-route-id="@item.CopyNumber"></i>Delete</a> 
                                     </td>
                                 </tr>
-                            }SS
+                            }
                         </tbody>
                     </table>
                 </div>
