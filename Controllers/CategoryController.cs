@@ -25,7 +25,7 @@ namespace RopeyDVDManagementSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("ActorFirstName, ActorSurName")] DVDCategory category)
+        public async Task<IActionResult> Create([Bind("CategoryName, CategoryDescription, AgeRestricted")] DVDCategory category)
         {
 
             _service.Add(category);

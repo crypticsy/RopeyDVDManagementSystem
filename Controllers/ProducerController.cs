@@ -1,86 +1,88 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data.Services;
+using RopeyDVDManagementSystem.Models;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
     public class ProducerController : Controller
     {
-            private readonly IProducerService _service;
+        private readonly IProducerService _service;
 
-            public ProducerController(IProducerService service)
-            {
-                _service = service; //Assigning the service
-            }
+        public ProducerController(IProducerService service)
+        {
+            _service = service; //Assigning the service
+        }
 
-            public async Task<IActionResult> Index()
-            {
-                var data = await _service.GetAll(); //Assigning all DVDCategory table data to variable 'data'
-                return View(data);
-            }
+        public async Task<IActionResult> Index()
+        {
+            var data = await _service.GetAll(); //Assigning all DVDCategory table data to variable 'data'
+            return View(data);
+        }
 
-            public IActionResult Create()
-            {
-                return View();
-            }
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-            [HttpPost]
-            public async Task<IActionResult> Create([Bind("ActorFirstName, ActorSurName")] DVDCategory category)
-            {
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("ProducerName")] Producer producer)
+        {
 
-                _service.Add(category);
+            _service.Add(producer);
 
-                return RedirectToAction(nameof(Index));
-            }
+            return RedirectToAction(nameof(Index));
+        }
 
-            public async Task<IActionResult> Details(int id)
-            {
-                var categoryDetails = await _service.GetById(id);
+        public async Task<IActionResult> Details(int id)
+        {
+            var producerDetails = await _service.GetById(id);
 
-                if (categoryDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound");
 
-                return View(categoryDetails);
-            }
+            return View(producerDetails);
+        }
 
-            public async Task<IActionResult> Edit(int id)
-            {
+        public async Task<IActionResult> Edit(int id)
+        {
 
-                var categoryDetails = await _service.GetById(id);
+            var producerDetails = await _service.GetById(id);
 
-                if (categoryDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound");
 
-                return View(categoryDetails);
-            }
+            return View(producerDetails);
+        }
 
-            [HttpPost]
-            public async Task<IActionResult> Edit(int id, DVDCategory category)
-            {
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Producer producer)
+        {
 
-                category.CategoryNumber = Convert.ToUInt32(id);
-                await _service.Update(id, category);
+            producer.ProducerNumber = Convert.ToUInt32(id);
+            await _service.Update(id, producer);
 
-                return RedirectToAction(nameof(Index));
-            }
+            return RedirectToAction(nameof(Index));
+        }
 
-            public async Task<IActionResult> Delete(int id)
-            {
-                //if (!ModelState.IsValid)
-                //{
-                //    return View(actor);
-                //}
-                var categoryDetails = await _service.GetById(id);
+        public async Task<IActionResult> Delete(int id)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(actor);
+            //}
+            var producerDetails = await _service.GetById(id);
 
-                if (categoryDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound");
 
-                return View(categoryDetails);
-            }
+            return View(producerDetails);
+        }
 
-            [HttpPost, ActionName("Delete")]
-            public async Task<IActionResult> DeleteConfirmed(int id)
-            {
-                var categoryDetails = await _service.GetById(id);
-                if (categoryDetails == null) return View("NotFound");
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var producerDetails = await _service.GetById(id);
+            if (producerDetails == null) return View("NotFound");
 
-                await _service.Delete(id);
-                return RedirectToAction(nameof(Index));
-            }
+            await _service.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+    }
 }

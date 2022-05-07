@@ -25,28 +25,30 @@ namespace RopeyDVDManagementSystem.Controllers
         {
             var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
 
+
             ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
             ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
             ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
-            ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFirstName" + " " + "ActorSurname");
+            ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFullName");
 
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("DVDTitleName,CategoryNumber,StudioNumber,ProducerNumber,DateReleased,CastMembers,StandardCharge,PenaltyCharge, DVDCopys")] DVDTitle dvdTitle)
+        public async Task<IActionResult> Create([Bind("DVDPoster,DVDTitleName,CategoryNumber,StudioNumber,ProducerNumber,DateReleased,CastMembers,StandardCharge,PenaltyCharge")] DVDTitle dvdTitle) //ADD DVCOPYS HERE
         {
 
-            if (!ModelState.IsValid) 
-            {
-                var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
+            //if (!ModelState.IsValid) 
+            //{
+            //    var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
 
-                ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
-                ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
-                ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
-                ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFirstName" + " " + "ActorSurname");
-                return View(dvdTitle);
-            }
+            //    ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFirstName");
+            //    ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
+            //    ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
+            //    ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
+                
+            //    return View(dvdTitle);
+            //}
 
             _service.Add(dvdTitle);
 
