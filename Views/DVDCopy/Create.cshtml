@@ -4,30 +4,34 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div class="row text">
-    <div class="col-md-8 offset-2">
-        <p>
-            <h2>Add new DVD Copy</h2>
-        </p>
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <form asp-action = "Create">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                     <label class="control-label">Copy Number</label>
-                    <input asp-for="CopyNumber" class="form-control" readonly />
-                    <span asp-validation-for="CopyNumber" class="text-danger"></span>
+<h1 style="text-align: center;">Add DVD Copy</h1>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8 offset-2">s
+                    <div class="row">
+                        <div class="col-md-8 offset-2">
+                            <form asp-action = "Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                 <label class="control-label">Copy Number</label>
+                                <input asp-for="CopyNumber" class="form-control" readonly />
+                                <span asp-validation-for="CopyNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">DVD Number</label>
+                                <input asp-for="DVDNumber" class="form-control" />
+                                <span asp-validation-for="DVDNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group" style="margin:5px;">
+                                <input type="submit" value="Create" class="btn btn-outline-success float right"/>
+                                <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">DVD Number</label>
-                    <input asp-for="DVDNumber" class="form-control" />
-                    <span asp-validation-for="DVDNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group" style="margin:5px;">
-                    <input type="submit" value="Create" class="btn btn-outline-success float right"/>
-                    <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
-                </div>
-                </form>
             </div>
         </div>
     </div>
