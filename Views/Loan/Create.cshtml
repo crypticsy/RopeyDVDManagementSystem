@@ -6,11 +6,19 @@
     Layout = "_LayoutAdmin";
 }
 
-<h1 style="text-align: center;">Add Loan</h1>
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-        <div class="row">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            
+            <div class="row">
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2">Issue a new DVD loan</h4>
+                            <p class="card-description mb-4">
+                                Enter the following information.
+                            </p>
+
+                            <div class="row">
             <div class="col-md-8 offset-2">
                 <form asp-action = "Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -37,7 +45,57 @@
                 
             </div>
         </div>
-    </div>
-</div>
-</div>
+
+                           @* <div class="row">
+                                <div class="col">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Copy number :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Copy Number" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Select a Loan Type :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Loan Type" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Member ID :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Member ID" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="float-right mt-3">
+                                        <button type="Submit" class="btn btn-primary mr-2" value="Search">
+                                            Search
+                                        </button>
+                                    </div>
+
+                                    <div style="margin-left: 12px; margin-bottom: 10px" class="text-white">
+                                        <a asp-controller="Loan" asp-action="Create" class="btn btn-inverse-success"><i
+                                                class="bi bi-plus-circle"></i> Add New</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            </div>
+            </div>
+
+
+
 
