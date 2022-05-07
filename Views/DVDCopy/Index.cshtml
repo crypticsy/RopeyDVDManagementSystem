@@ -1,0 +1,77 @@
+﻿@*Defining Model*@
+@using RopeyDVDManagementSystem.Models;
+@model List<DVDCopy>;
+
+@*Defining ViewData*@
+@{
+    ViewData["Title"] = "DVDCopy";
+    ViewData["Section"] = "DVDCopy";
+    Layout = "_LayoutAdmin";
+}
+
+@*Coding*@
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+	        <div class="card">
+		        <div class="card-body">
+			        <h4 class="card-title mb-2">Manage DVDCopy</h4>
+			        <p class="card-description mb-4"> Choose the DVDCopy that you wish to manage </p>
+			        <div class="row">
+				        <div class="col">
+					        <div class="form-group row mb-0">
+						        <label class="col-sm-3 col-form-label">Copy Number :</label>
+							    <div class="col">
+								    <div id="the-basics">
+									    <input style="width: 400px;" class="typeahead" type="text" placeholder="Select a Copy Number">
+									</div>
+							    </div>
+						    </div>
+					        <div class="float-right mt-2">
+					            <button type="submit" class="btn btn-inverse-primary mr-2" value="Search"><i class="mdi mdi-account-search" style="align-content:space-evenly;"></i>Search</button>
+					        </div>
+                            <div class="text-white float-left mt-2">
+                                <a asp-controller="DVDCopy" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
+                            </div>
+				        </div>
+			        </div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+    
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mb-3 mx-3"> 
+                <div class="table-responsive">
+                <table class="table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th class="text-white text-center">Copy Number</th>
+                            <th class="text-white text-center">DVD Number</th>
+                            <th class="text-white text-center">Date Purchased</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle">@item.CopyNumber</td>
+                                    <td class="align-middle">@item.DVDNumber</td>
+                                    <td class="align-middle">@item.DatePurchased</td>
+                                    <td class="align-middle">
+                                        <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.CopyNumber"><i class="mdi mdi-table-edit" style="align-content:space-evenly;"></i>Edit</a>
+                                        <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.CopyNumber"><i class="mdi mdi-account-card-details" style="align-content:space-evenly;"></i>Details</a>
+                                        <a class="btn btn-inverse-danger" style="margin:5px;"  asp-action="Delete" asp-route-id="@item.CopyNumber"><i class="mdi mdi-delete" style="mdi mdi-delete-sweep" asp-action="Delete" asp-route-id="@item.CopyNumber"></i>Delete</a> 
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

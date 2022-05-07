@@ -22,6 +22,9 @@ builder.Services.AddScoped<ILoanService, LoanService>();
 
 
 
+builder.Services.AddScoped<IMembersService, MembersService>();
+builder.Services.AddScoped<IDVDCopyService, DVDCopyService>();
+
 // add services to the continer
 // For Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("RopeyDVDDatabase")));

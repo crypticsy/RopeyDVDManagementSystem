@@ -42,7 +42,7 @@ namespace RopeyDVDManagementSystem.Controllers
             IEnumerable<DVDReturnModel> loanRecord = GetAllLoanRecords();
 
             // Get a list of all DVD Copy that are on loan
-            ViewBag.LoanedCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(_context.DVDCopies.Select(x => x.CopyNumber).Distinct().ToList());
+            ViewBag.LoanedCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(_context.DVDCopies.Select(x => x.CopyNumber).ToList());
 
             return View(loanRecord);
         }
@@ -55,7 +55,7 @@ namespace RopeyDVDManagementSystem.Controllers
             ViewBag.SearchCopyNumber = CopyNumber;
 
             // Get a list of all DVD Copy that are on loan
-            ViewBag.LoanedCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(_context.DVDCopies.Select(x => x.CopyNumber).Distinct().ToList());
+            ViewBag.LoanedCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(_context.DVDCopies.Select(x => x.CopyNumber).ToList());
 
             if (CopyNumber != null &&
                 int.TryParse(CopyNumber, out int copyNumber) &&

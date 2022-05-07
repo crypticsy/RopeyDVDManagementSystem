@@ -7,20 +7,20 @@ namespace RopeyDVDManagementSystem.Models
         [Key]
         public uint MemberNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Membership Category Number is required!")]
         public uint MembershipCategoryNumber { get; set; }
         public virtual MembershipCategory MembershipCategory { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "First name is required!")]
         public string MemberFirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Last name is required!")]
         public string MemberLastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Address is required!")]
         public string MemberAddress { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date of birth is required!")]
         public DateTime MemberDateOfBirth { get; set; }
 
         public ICollection<Loan> Loans { get; set; }

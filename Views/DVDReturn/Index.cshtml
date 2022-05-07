@@ -1,5 +1,5 @@
 ﻿@using RopeyDVDManagementSystem.Models.ViewModels;
-@model IEnumerable<RopeyDVDManagementSystem.Models.ViewModels.DVDReturnModel>
+@model IEnumerable<RopeyDVDManagementSystem.Models.ViewModels.DVDReturnModel>;
 @{
     ViewData["Title"] = "DVD Return";
     ViewData["Section"] = "DVDReturn";
@@ -30,13 +30,16 @@
                                 <label class="col-sm-3 col-form-label">Copy number :</label>
                                 <div class="col">
                                     <div id="the-basics">
-                                        <input class="typeahead" type="text" name="SearchCopyNumber" placeholder="Select a Copy Number" value=@ViewBag.SearchCopyNumber>
+                                        <input class="typeahead" type="text" name="SearchCopyNumber" placeholder="Search . . ." value=@ViewBag.SearchCopyNumber>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="float-right mt-3">
-                                <button type="submit" class="btn btn-primary mr-2" value="Search">Search</button>
+                                <button type="submit" class="btn btn-inverse-primary mr-2" value="Search">
+                                    <i class="mdi mdi-magnify" style="align-content:space-evenly;"></i>
+                                    Search
+                                </button>
                             </div>
                         </form>
 
