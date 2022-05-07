@@ -1,5 +1,5 @@
 ﻿@*Defining Model*@
-@model List<Actor>
+@model List<DVDCategory>
 
 @*Defining ViewData*@
 @{
@@ -15,12 +15,12 @@
                 <div class="card-body">
                 <div class="row">
                     <div class="col-md-6" >
-                        <h4 class="card-title mb-2">Actors</h4>
-                        <p class="card-description mb-4"> List of Actors </p>
+                        <h4 class="card-title mb-2">Categories</h4>
+                        <p class="card-description mb-4"> List of Categories </p>
                     </div>
                     <div class="col-md-6" >
                          <div class="text-white float-right mt-2">
-                                <a asp-controller="Actor" asp-action="Create" class="btn btn-inverse-success"><i class="mdi mdi-account-plus"></i> Add New</a>
+                                <a asp-controller="DVDCategory" asp-action="Create" class="btn btn-inverse-success"><i class="mdi mdi-account-plus"></i> Add New</a>
                             </div>
                     </div>
                 </div>
@@ -37,9 +37,9 @@
                         <table class="table" style="width:100%">
                             <thead>
                                 <tr style="text-align:center;">
-                                    <th class="text-white text-center">Actor Number</th>
-                                    <th class="text-white text-center">First Name</th>
-                                    <th class="text-white text-center">Last Name</th>
+                                    <th class="text-white text-center">Category Number</th>
+                                    <th class="text-white text-center">Name</th>
+                                    <th class="text-white text-center">Description</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -49,12 +49,12 @@
                                 <tr style="text-align:center;">@*
                                     <td class="align-middle"><img class="img-thumbnail" src="@item.DVDPoster"
                                             style="max-width:100px;" /></td>*@
-                                    <td class="align-middle">@item.ActorNumber</td>
-                                    <td class="align-middle">@item.ActorFirstName</td>
-                                    <td class="align-middle">@item.ActorSurName</td>
+                                    <td class="align-middle">@item.CategoryNumber</td>
+                                    <td class="align-middle">@item.CategoryName</td>
+                                    <td class="align-middle">@item.CategoryDescription</td>
                                     <td class>
-                                        <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.ActorNumber"><i class="mdi mdi-table-edit"></i></a>
-                                        <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.ActorNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.ActorNumber"></i></a>
+                                        <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.CategoryNumber"><i class="mdi mdi-table-edit"></i></a>
+                                        <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.CategoryNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.CategoryNumber"></i></a>
                                     </td>
 
                                 </tr>

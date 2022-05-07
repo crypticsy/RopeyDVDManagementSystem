@@ -1,10 +1,94 @@
 ﻿@model DVDTitle
 
 @{
-    ViewData["Title"] = "Delete DVD Title";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "DVDDetails";
+    Layout = "_LayoutAdmin";
 }
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mx-3">
+                <h4 class="card-title mb-2">Delete DVD</h4>
+                <p class="card-description mb-4"> Deletion of the DVD Title </p>
+          
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <img src = "@Model.DVDPoster" />
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">DVD Name:</label>
+                                <div class="col">@Model.DVDTitleName</div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">DVD Category:</label>
+                                <div class="col">@Model.DVDCategory.CategoryName</div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Studio:</label>
+                                <div class="col">@Model.Studio.StudioName</div>
+                            </div>
 
-<div class="row text">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Producer:</label>
+                                <div class="col">@Model.Producer.ProducerName</div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Standard Charge:</label>
+                                <div class="col">@Model.StandardCharge</div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Penalty Charge:</label>
+                                <div class="col">@Model.PenaltyCharge</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Release Dates:</label>
+                                <div class="col">@Model.DateReleased</div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Cast Members :</label>
+                                <div class="col">@Model.CastMembers</div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">No. of copies:</label>
+                                <div class="col">1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row mt-5">
+                        <div class="form-group float-right" style="margin:5px;">
+                            <div class="col-md-6 col-sm-12 align-content-center" style="margin-left:80%;">
+                            <form asp-action="Delete">
+                                <input type = "hidden" asp-for="DVDNumber">
+                                <input type = "Submit" value ="Confirm" class="btn btn-inverse-danger"/><i class="bi bi-trash"></i>
+                                <a class = "btn btn-inverse-secondary" asp-action="Index">Show All</a>
+                            </form>
+                        </div>
+                        </div>
+                      </div>
+                        </div>
+                        <br/>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function())
+        {
+            var output = document.getElementById('DVDPosterPreview');
+            output.src = $("#DVDPoster").val();
+        }
+    </script>
+}
+@*<div class="row text">
     <div class="col-md-8 offset-2">
         <p>
             <h1>DVD Title Delete Confirmation: @Model.DVDTitleName</h1>
@@ -67,10 +151,9 @@
                         <input type = "Submit" value ="Confirm" class="btn btn-danger"/>
                         <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
                     </form>
-                   
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>*@
 

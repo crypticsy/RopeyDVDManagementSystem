@@ -68,6 +68,12 @@ namespace RopeyDVDManagementSystem.Controllers
         {
 
             var dvdTitleDetails = await _service.GetById(id);
+            var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
+
+            ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
+            ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
+            ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
+            ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFullName");
 
             if (dvdTitleDetails == null) return View("NotFound");
 
@@ -77,10 +83,10 @@ namespace RopeyDVDManagementSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, DVDTitle dvdTitle)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(dvdTitle);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(dvdTitle);
+            //}
             dvdTitle.DVDNumber = Convert.ToUInt32(id);
             await _service.Update(id, dvdTitle);
 
