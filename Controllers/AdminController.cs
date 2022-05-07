@@ -13,16 +13,13 @@ namespace RopeyDVDManagementSystem.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<AdminController> _logger;
-        private readonly IConfiguration _configuration;
         private ApplicationDbContext _context;
 
         public AdminController( UserManager<ApplicationUser> userManager,
-                                IConfiguration configuration,
                                 ILogger<AdminController> logger, 
                                 ApplicationDbContext context)
         {
             _userManager = userManager;
-            _configuration = configuration;
             _logger = logger;
             _context = context;
         }
@@ -91,14 +88,9 @@ namespace RopeyDVDManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Profile(PasswordChangeModel model)
         {
-            if (!ModelState.IsValid) return View(model);
-            
             // Get current user details from the database
             var user = _context.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
 
-            // Change the password for the current user
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-            
             // Display the user details
             ViewBag.UserName = user.UserName;
             ViewBag.Email = user.Email;
@@ -108,6 +100,12 @@ namespace RopeyDVDManagementSystem.Controllers
                                 join userRole in _context.UserRoles on role.Id equals userRole.RoleId
                                 where userRole.UserId == user.Id
                                 select role.Name).FirstOrDefault();
+
+
+            if (!ModelState.IsValid) return View(model);
+
+            // Change the password for the current user
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
 
             if (!result.Succeeded)
             {

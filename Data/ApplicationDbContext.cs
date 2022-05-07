@@ -66,6 +66,6 @@ namespace RopeyDVDManagementSystem.Data
         public DbSet<MembershipCategory> MembershipCategories { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Studio> Studios { get; set; }
-        public IEnumerable<DVDTransactionController> DVDTransactionContoller { get; internal set; }
+        public IEnumerable<DVDReturnController> DVDTransactionContoller { get; internal set; }
     }
 }

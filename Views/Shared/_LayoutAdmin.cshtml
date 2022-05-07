@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="~/admin_assets/vendors/owl-carousel-2/owl.carousel.min.css">
 	<link rel="stylesheet" href="~/admin_assets/vendors/owl-carousel-2/owl.theme.default.min.css">
 	<link rel="stylesheet" href="~/admin_assets/css/style.css">
+    <link rel="stylesheet" href="~/admin_assets/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/admin_assets/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
 	
 	<!-- Custom CSS Files  -->
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
@@ -31,7 +33,7 @@
 
 
 
-<body>
+<body class="customScrollDark">
 
 	<div class="container-scroller">
 		
@@ -52,6 +54,22 @@
 							<i class="mdi mdi-chart-arc"></i>
 						</span>
 						<span class="menu-title">Dashboard</span>
+					</a>
+				</li>
+
+
+				<!------------------------------------- Assistant section ----------------------------------- -->
+				
+				<li class="nav-item nav-category mt-2">
+					<span class="nav-link">Assistants</span>
+				</li>
+				
+				<li class="@(section == "AssistantDetails" ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" href="#">
+						<span class="menu-icon">
+							<i class="mdi mdi-account-star"></i>
+						</span>
+						<span class="menu-title">Details</span>
 					</a>
 				</li>
 
@@ -95,30 +113,31 @@
 						<span class="menu-title">Details</span>
 					</a>
 				</li>
+				
+				<li class="@(section == "DVDCopy" ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" href="#">
+						<span class="menu-icon">
+							<i class="mdi mdi-checkbox-multiple-blank"></i>
+						</span>
+						<span class="menu-title">Copy</span>
+					</a>
+				</li>
 
-
-				<li class="@(section == "DVDManage" ? "nav-item menu-items active" : "nav-item menu-items")">
+				<li class="@(section == "DVDRent" ? "nav-item menu-items active" : "nav-item menu-items")">
 					<a class="nav-link" href="#">
 						<span class="menu-icon">
 							<i class="mdi mdi-ticket-confirmation"></i>
 						</span>
-						<span class="menu-title">Loan</span>
+						<span class="menu-title">Rent</span>
 					</a>
 				</li>
 
-
-				<!------------------------------------- DVD Transaction section ----------------------------------- -->
-				
-				<li class="nav-item nav-category mt-2">
-					<span class="nav-link">DVD Transaction</span>
-				</li>
-				
-				<li class="@(section == "DVDTransactionDetails" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="../DVDTransaction/DVDTransaction">
+				<li class="@(section == "DVDReturn" ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" asp-controller="DVDReturn" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-clipboard-text"></i>
 						</span>
-						<span class="menu-title">Details</span>
+						<span class="menu-title">Return</span>
 					</a>
 				</li>
 				
@@ -219,10 +238,16 @@
 	<script src="~/admin_assets/js/settings.js"></script>
 	<script src="~/admin_assets/js/todolist.js"></script>
 	<script src="~/admin_assets/js/dashboard.js"></script>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+	
+	<script src="~/admin_assets/vendors/select2/select2.min.js"></script>
+	<script src="~/admin_assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+	<script src="~/admin_assets/js/off-canvas.js"></script>
+	<script src="~/admin_assets/js/hoverable-collapse.js"></script>
+	<script src="~/admin_assets/js/misc.js"></script>
+	<script src="~/admin_assets/js/settings.js"></script>
+	<script src="~/admin_assets/js/todolist.js"></script>
+	<script src="~/admin_assets/js/file-upload.js"></script>
+	<script src="~/admin_assets/js/select2.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
     @RenderSection("AddCustomScripts", required: false)
