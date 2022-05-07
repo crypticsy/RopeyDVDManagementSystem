@@ -1278,6 +1278,7 @@ namespace RopeyDVDManagementSystem.Data
                             MemberNumber = 10,
                             DateOut = DateTime.ParseExact("2022-04-29","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-05-01","yyyy-MM-dd",null),
+
                         },
 
                         new Loan()

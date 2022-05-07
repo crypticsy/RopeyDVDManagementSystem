@@ -147,11 +147,30 @@
     border-radius: 20px;
 }
 
+.customScrollDark::-webkit-scrollbar {
+    width: 10px;
+}
+
+.customScrollDark::-webkit-scrollbar-thumb:hover {
+    background: #3a3939;
+    border-radius: 20px;
+}
+
+.customScrollDark::-webkit-scrollbar-thumb {
+    background: #5f5e5e;
+    background-color: #5f5e5e;
+    border-radius: 20px;
+}
+
+.customScrollDark::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px #0000;
+    border-radius: 20px;
+}
+
 .customScroll::-webkit-scrollbar-thumb:hover {
     background: #5c5c5c;
     border-radius: 20px;
 }
-
 
 .customScrollTable::-webkit-scrollbar {
     width: 8px !important;
