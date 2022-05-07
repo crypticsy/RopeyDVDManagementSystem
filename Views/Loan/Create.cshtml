@@ -1,0 +1,101 @@
+﻿@model Loan 
+
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "DVDManage";
+    Layout = "_LayoutAdmin";
+}
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            
+            <div class="row">
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-2">Issue a new DVD loan</h4>
+                            <p class="card-description mb-4">
+                                Enter the following information.
+                            </p>
+
+                            <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action = "Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">Loan Type Number</label>
+                    <input asp-for="LoanTypeNumber" class="form-control" />
+                    <span asp-validation-for="LoanTypeNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Copy Number</label>
+                    <input asp-for="CopyNumber" class="form-control" />
+                    <span asp-validation-for="CopyNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Member Number</label>
+                    <input asp-for="MemberNumber" class="form-control" />
+                    <span asp-validation-for="MemberNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin:5px;">
+                    <input type="submit" value="Create" class="btn btn-outline-success float right"/>
+                    <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+
+                           @* <div class="row">
+                                <div class="col">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Copy number :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Copy Number" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Select a Loan Type :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Loan Type" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="form-group row mb-0">
+                                        <label class="col-sm-3 col-form-label">Member ID :</label>
+                                        <div class="col">
+                                            <div id="the-basics">
+                                                <input style="width: 400px" class="typeahead" type="text"
+                                                    placeholder="Select a Member ID" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="float-right mt-3">
+                                        <button type="Submit" class="btn btn-primary mr-2" value="Search">
+                                            Search
+                                        </button>
+                                    </div>
+
+                                    <div style="margin-left: 12px; margin-bottom: 10px" class="text-white">
+                                        <a asp-controller="Loan" asp-action="Create" class="btn btn-inverse-success"><i
+                                                class="bi bi-plus-circle"></i> Add New</a>
+                                    </div>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            </div>
+            </div>
+
+
+
+

@@ -1,0 +1,70 @@
+﻿@using RopeyDVDManagementSystem.Models
+@*Defining Model*@ 
+@model List<Loan>
+
+
+    @*Defining ViewData*@ 
+    
+    @{  ViewData["Title"] = "Dashboard"; 
+        ViewData["Section"] = "DVDManage"; 
+        Layout = "_LayoutAdmin"; 
+    } 
+
+    @*Coding*@
+    <div class="main-panel">
+        <div class="content-wrapper">
+            
+            <div style="margin-left: 12px; margin-bottom: 10px" class="text-white">
+                                        <a asp-controller="Loan" asp-action="Create" class="btn btn-inverse-success"><i
+                                                class="bi bi-plus-circle"></i> Add New</a>
+                                    </div>
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body mb-3 mx-3">
+                            <div class="table-responsive">
+                                <table class="table" style="width: 100%">
+                                    <thead>
+                                        <tr style="text-align: center">
+                                            <th>Copy Number</th>
+                                            <th>Member Number</th>
+                                            <th>Date Out</th>
+                                            <th>Date Due</th>
+                                            <th>Date Returned</th>
+                                            <th>Return Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model) {
+
+                                        <tr style="text-align: center">
+                                            <td class="align-middle">@item.CopyNumber</td>
+                                            <td class="align-middle">@item.MemberNumber</td>
+                                            <td class="align-middle">@item.DateOut</td>
+                                            <td class="align-middle">@item.DateDue</td>
+                                            <td class="align-middle">@item.DateReturned</td>
+                                            <td class="align-middle">@item.ReturnAmount</td>
+                                            <td>
+                                                <a class="btn btn-inverse-primary" style="margin: 5px" asp-action="Edit"
+                                                    asp-route-id="@item.LoanNumber"><i
+                                                        class="mdi mdi-table-edit"></i>Edit</a>
+                                                <a class="btn btn-inverse-info" style="margin: 5px" asp-action="Details"
+                                                    asp-route-id="@item.LoanNumber"><i
+                                                        class="mdi mdi-account-card-details"></i>Details</a>
+                                                <a class="btn btn-inverse-danger" style="margin: 5px"
+                                                    asp-action="Delete" asp-route-id="@item.LoanNumber"><i
+                                                        class="mdi mdi-delete" asp-action="Delete"
+                                                        asp-route-id="@item.LoanNumber"></i>Delete</a>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Loan>

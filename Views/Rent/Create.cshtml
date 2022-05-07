@@ -1,0 +1,89 @@
+﻿@using RopeyDVDManagementSystem.Models
+@using RopeyDVDManagementSystem.Models.ViewModels;
+@model Loan 
+
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "DVDRent";
+    Layout = "_LayoutAdmin";
+    var returnDetail = ViewData["ReturnDVD"] as RentModel; 
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mx-3">
+                <h4 class="card-title mb-2">Issue new DVD Loan</h4>
+                <p class="card-description mb-4"> Enter the following information. </p>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">DVD Tile :</label>
+                                <div class="col">This is Title</div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">DVD Category :</label>
+                                <div class="col">This is category</div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Copy Number :</label>
+                                <div class="col">2</div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Age Restricted :</label>
+                                <div class="col">true</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+
+                            <br />
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Member ID :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="LoanTypeNumber" style="width: 400px" class="typeahead"
+                                            type="text" placeholder="Select a Member ID" />
+                                        <span asp-validation-for="MemberNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Loan Type :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberNumber" style="width: 400px" class="typeahead" type="text"
+                                            placeholder="Select a Member ID" />
+                                        <span asp-validation-for="LoanTypeNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row mt-5">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group row mb-0">
+                                    <label class="col-sm-4 col-form-label text-gray">Standard Charge :</label>
+                                    <div class="col">$ 200</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+
+                                <button value="Create" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Save
+                                </button>
+                                <a type="button" class="btn btn-inverse-danger btn-fw" asp-action="Index">Cancel</a>
+                            </div>
+                        </div>
+                        <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
