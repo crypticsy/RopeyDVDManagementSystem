@@ -19,6 +19,9 @@ builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ILoanService, LoanService>();
 
+
+
+
 // add services to the continer
 // For Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("RopeyDVDDatabase")));
