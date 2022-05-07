@@ -9,42 +9,68 @@
 }
 
 @*Coding*@
-<h1 style="text-align: center;">Member Details</h1>
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body"> 
-            <div class="table-responsive">
-                <table class="table" >
-            <thead>
-                <tr style="text-align:center;">
-                    <th>Member Number</th>
-                    <th>Membership Category </th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
-                    <th>Date of Birth</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr style="text-align:center;">
-                        <td class="align-middle">@item.MemberNumber</td>
-                        <td class="align-middle">@item.MembershipCategoryNumber</td>
-                        <td class="align-middle">@item.MemberFirstName</td>
-                        <td class="align-middle">@item.MemberLastName</td>
-                        <td class="align-middle">@item.MemberAddress</td>
-                        <td class="align-middle">@item.MemberDateOfBirth</td>
-                        <td class="align-middle">
-                            <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.MemberNumber"><i class="bi bi-eye"></i>Details</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+	        <div class="card">
+		        <div class="card-body">
+			        <h4 class="card-title mb-2">Member's Loan Details</h4>
+			        <p class="card-description mb-4"> Choose a member to view their loan deatils.</p>
+			        <div class="row">
+				        <div class="col">
+					        <div class="form-group row mb-0">
+						        <label class="col-sm-3 col-form-label">Member Number :</label>
+							    <div class="col-sm-9">
+								    <div id="the-basics">
+									    <input style="width: 400px;" class="typeahead" type="text" placeholder="Select a Member Number">
+									</div>
+							    </div>
+						    </div>
+					       <div class="float-right mt-2">
+					            <button type="submit" class="btn btn-inverse-primary mr-2" value="Search"><i class="mdi mdi-account-search" style="align-content:space-evenly;"></i>Search</button>
+					        </div>
+				        </div>
+			        </div>
+			    </div>
+		    </div>
+	    </div>
     </div>
-    </div>
-    </div>
-    </div>
-
-
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body"> 
+                <div class="table-responsive">
+                    <table class="table" >
+                        <thead>
+                            <tr style="text-align:center;">
+                                <th class="text-white text-center">Member Number</th>
+                                <th class="text-white text-center">Membership Category </th>
+                                <th class="text-white text-center">First Name</th>
+                                <th class="text-white text-center">Last Name</th>
+                                <th class="text-white text-center">DVDs on Loan</th>
+                                <th class="text-white text-center">Loan Limit</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr style="text-align:center;">
+                                <td class="align-middle">@item.MemberNumber</td>
+                                <td class="align-middle">@item.MembershipCategoryNumber</td>
+                                <td class="align-middle">@item.MemberFirstName</td>
+                                <td class="align-middle">@item.MemberLastName</td>
+                                <td class="align-middle">1</td>
+                                <td class="align-middle" style="color:red;">Too many DVDs!</td>
+                                <td class="align-middle">
+                                    <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.MemberNumber"><i class="mdi mdi-account-card-details"></i>Details</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+ 
