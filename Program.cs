@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using RopeyDVDManagementSystem.Data;
+using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models.Identity;
 using System.Text;
 
@@ -16,6 +17,7 @@ ConfigurationManager configuration = builder.Configuration;
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ILoanService, LoanService>();
 
 // add services to the continer
 // For Entity Framework
