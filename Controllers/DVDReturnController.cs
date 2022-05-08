@@ -81,9 +81,7 @@ namespace RopeyDVDManagementSystem.Controllers
 
                 if(loanRecord.Count() > 0)
                 {
-                    var loanRecordFirst = loanRecord.First();
-                    if(loanRecordFirst.DateReturned != DateTime.MinValue) loanRecordFirst.OverDue = 1;
-                    ViewData["LoanRecord"] = loanRecordFirst;
+                    ViewData["LoanRecord"] = loanRecord.First();
                 }
                 return View();
             }
@@ -125,7 +123,7 @@ namespace RopeyDVDManagementSystem.Controllers
                                                                         DateDue = l.DateDue,
                                                                         MemberName = m.MemberFirstName + ' ' + m.MemberLastName,
                                                                         LoanNumber = l.LoanNumber,
-                                                                        StandardCharge = dt.StandardCharge,
+                                                                        StandardCharge = l.ReturnAmount,
                                                                         PenaltyCharge = dt.PenaltyCharge
                                                                     }).First();
 
@@ -157,6 +155,7 @@ namespace RopeyDVDManagementSystem.Controllers
             var loan = _context.Loans.Find(returnDVD.LoanNumber);
             loan.DateReturned = DateTime.Today;
             loan.ReturnAmount = returnDVD.Payment;
+            _context.SaveChanges();
             
             // Update the DVD copy record
             var copy = _context.DVDCopies.Find(returnDVD.CopyNumber);

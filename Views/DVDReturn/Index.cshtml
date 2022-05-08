@@ -66,7 +66,7 @@
                                     <th class="text-white text-center"> Member Name </th>
                                     <th class="text-white text-center"> Date Out </th>
                                     <th class="text-white text-center"> Date Due </th>
-                                    <th class="text-white text-center"> Total Loans on Due Date </th>
+                                    <th class="text-white text-center"> Total Loans on Date Out </th>
                                     <th class="text-white"></th>
                                 </tr>
                             </thead>
@@ -143,7 +143,7 @@ else if(dvdReturnDisplay)
                                 <div class="col">@Html.DisplayFor(modelItem => dvdReturn.DateDue)</div>
                             </div>
                             
-                            @if(dvdReturn.OverDue == 1)
+                            @if(dvdReturn.DateReturned != DateTime.MinValue)
                             {
                                 <div class="form-group row mb-0">
                                     <label class="col-sm-4 col-form-label text-gray">Date Returned :</label>
