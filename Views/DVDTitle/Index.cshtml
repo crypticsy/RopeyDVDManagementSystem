@@ -1,0 +1,88 @@
+﻿@*Defining Model*@
+@model List<DVDTitle>
+
+    @*Defining ViewData*@
+    @{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "DVDDetails";
+    Layout = "_LayoutAdmin";
+
+    }
+
+    @*Coding*@
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-2">DVD Titles</h4>
+                    <p class="card-description mb-4"> List of DVD Titles </p>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">DVD Title Number :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input style="width: 400px;" class="typeahead" type="text"
+                                            placeholder="Select a DVD Title Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="float-right mt-2">
+                                <button type="submit" class="btn btn-inverse-primary mr-2" value="Search"><i
+                                        class="mdi mdi-account-search"
+                                        style="align-content:space-evenly;"></i>Search</button>
+                            </div>
+                            <div class="text-white float-left mt-2">
+                                <a asp-controller="DVDTitle" asp-action="Create" class="btn btn-inverse-success"><i
+                                        class="mdi mdi-account-plus"></i> Add New</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table" style="width:100%">
+                            <thead>
+                                <tr style="text-align:center;">
+                                    <th class="text-white text-center">DVD Number</th>
+                                    <th class="text-white text-center">DVD Title Name</th>
+                                    <th class="text-white text-center">Studio</th>
+                                    <th class="text-white text-center">Category</th>
+                                    <th class="text-white text-center">DVD Copys</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr style="text-align:center;">@*
+                                    <td class="align-middle"><img class="img-thumbnail" src="@item.DVDPoster"
+                                            style="max-width:100px;" /></td>*@
+                                    <td class="align-middle">@item.DVDNumber</td>
+                                    <td class="align-middle">@item.DVDTitleName</td>
+                                    <td class="align-middle">@item.Studio.StudioName</td>
+                                    <td class="align-middle">@item.DVDCategory.CategoryName</td>
+                                    <td class="align-middle">@item.DVDCopys</td>
+                                    <td class>
+                                        <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.DVDNumber"><i class="mdi mdi-table-edit"></i></a>
+                                        <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.DVDNumber"><i class="mdi mdi-account-card-details"></i></a>
+                                        <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.DVDNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.DVDNumber"></i></a>
+                                    </td>
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

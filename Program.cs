@@ -29,6 +29,21 @@ builder.Services.AddScoped<IDVDCopyService, DVDCopyService>();
 // For Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("RopeyDVDDatabase")));
 
+//For services related to DVD Title
+builder.Services.AddScoped<IDVDTitleService, DVDTitleService>();
+
+//For Services related to Actor
+builder.Services.AddScoped<IActorService, ActorService>();
+
+//For Services related to Producer
+builder.Services.AddScoped<IProducerService, ProducerService>();
+
+//For Services related to Studio
+builder.Services.AddScoped<IStudioService, StudioService>();
+
+//For Services related to Category
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 // For Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()

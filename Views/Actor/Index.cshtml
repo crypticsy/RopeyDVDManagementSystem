@@ -1,0 +1,69 @@
+﻿@*Defining Model*@
+@model List<Actor>
+
+@*Defining ViewData*@
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "DVDDetails";
+    Layout = "_LayoutAdmin";
+}
+
+@*Coding*@
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6" >
+                        <h4 class="card-title mb-2">Actors</h4>
+                        <p class="card-description mb-4"> List of Actors </p>
+                    </div>
+                    <div class="col-md-6" >
+                         <div class="text-white float-right mt-2">
+                                <a asp-controller="Actor" asp-action="Create" class="btn btn-inverse-success"><i class="mdi mdi-account-plus"></i> Add New</a>
+                            </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table" style="width:100%">
+                            <thead>
+                                <tr style="text-align:center;">
+                                    <th class="text-white text-center">Actor Number</th>
+                                    <th class="text-white text-center">First Name</th>
+                                    <th class="text-white text-center">Last Name</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr style="text-align:center;">@*
+                                    <td class="align-middle"><img class="img-thumbnail" src="@item.DVDPoster"
+                                            style="max-width:100px;" /></td>*@
+                                    <td class="align-middle">@item.ActorNumber</td>
+                                    <td class="align-middle">@item.ActorFirstName</td>
+                                    <td class="align-middle">@item.ActorSurName</td>
+                                    <td class>
+                                        <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.ActorNumber"><i class="mdi mdi-table-edit"></i></a>
+                                        <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.ActorNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.ActorNumber"></i></a>
+                                    </td>
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>

@@ -1,0 +1,167 @@
+﻿@model DVDTitle
+
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "DVDDetails";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mx-3">
+                <h4 class="card-title mb-2">Update DVD Title</h4>
+                <p class="card-description mb-4"> Update an existing DVD title </p>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">DVD Title Poster :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="DVDPoster" style="width: 400px" class="typeahead" type="text"/>
+                                        <span asp-validation-for="DVDPoster" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            
+                             <div class="form-group row mb-0" style="width:400px;">
+                                <img id ="DVDPosterPreview" />
+                            </div>
+                            <br />
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">DVD Name:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="DVDTitleName" style="width: 400px" class="typeahead" type="text" />
+                                        <span asp-validation-for="DVDTitleName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                             <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">DVD Category:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <select asp-for="CategoryNumber" class="form-select" style="display:list-item"  asp-items="ViewBag.CategoryNumber"></select>
+                                        <span asp-validation-for="CategoryNumber" class="text-danger"></span>
+                                        <a style="margin-top:3%" class="btn btn-success" asp-controller="Category" asp-action="Create" style="margin-left:1%;"><i class="bi bi-plus-circle"></i>Add New Category</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                             <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Date Released:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="DateReleased" style="width: 400px" class="typeahead" />
+                                        <span asp-validation-for="DateReleased" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                             <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">DVD Copies:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="DVDCopys" style="width: 400px" class="typeahead" type="text"/>
+                                        <span asp-validation-for="DVDCopys" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Studio Number:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <select asp-for="StudioNumber" class="form-select" style="display:list-item"  asp-items="ViewBag.StudioNumber"></select><a style="margin-top:3%" class="btn btn-success" asp-controller="Studio" asp-action="Create" style="margin-left:1%;"><i class="bi bi-plus-circle"></i>Add New Studio</a>
+                                        <span asp-validation-for="StudioNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Producer Number:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <select asp-for="ProducerNumber" class="form-select" style="display:list-item"  asp-items="ViewBag.ProducerNumber"></select><a style="margin-top:3%" class="btn btn-success" asp-controller="Producer" asp-action="Create" style="margin-left:1%;"><i class="bi bi-plus-circle"></i>Add New Producer</a>
+                                        <span asp-validation-for="ProducerNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <br />
+
+                         <div class="col-md-3 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-6 col-form-label">Cast Member :</label>
+                                <div class="col-md-12">
+                                    <div id="the-basics">
+                                        <select asp-for="CastMembers" class="form-select" style="display:list-item"  asp-items="ViewBag.ActorNumber" multiple="true"></select><a style="margin-top:3%" class="btn btn-success" asp-controller="Actor" asp-action="Create" style="margin-left:1%;"><i class="bi bi-plus-circle"></i>Add New Actor</a><br>
+                    <span asp-validation-for="CastMembers" class="text-danger"></span><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                       
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-7 col-form-label">Standard Charge :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="StandardCharge" style="width: 400px" class="typeahead" type="text"/>
+                                        <span asp-validation-for="StandardCharge" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group row mb-0">
+                                <label class="col-sm-7 col-form-label">Penalty Charge :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="PenaltyCharge" style="width: 400px" class="typeahead" type="text"/>
+                                        <span asp-validation-for="PenaltyCharge" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <br>
+
+                            </div>
+                            <br />
+                         
+                        <br />
+                        <div class="col-md-6 col-sm-12">
+                            <button value="Create" type="submit" style="margin:10px;" class="btn btn-inverse-success btn-fw mr-4"> Update
+                            </button>
+                            <a type="button" style="margin-left:10px;" class="btn btn-inverse-secondary btn-fw" asp-action="Index">Show All</a>
+                        </div>
+                    </div>
+                    <br/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $("#DVDPoster").on("change", function()
+        {
+            var output = document.getElementById('DVDPosterPreview');
+            output.src = $(this).val();
+        })
+    </script>
+}
