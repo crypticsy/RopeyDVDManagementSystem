@@ -83,7 +83,12 @@ namespace RopeyDVDManagementSystem.Controllers
             ViewBag.MemberAddress = currentMember.MemberAddress;
             ViewBag.Birthday = currentMember.MemberDateOfBirth.ToString("MMM d, yyyy");
             ViewBag.MemebershipType = _context.MembershipCategories.Where(x => x.MembershipCategoryNumber == currentMember.MembershipCategoryNumber).FirstOrDefault().MembershipCategoryName;
-            ViewBag.LastLoan = _context.Loans.Where(x => x.MemberNumber == currentMember.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut.ToString("MMM d, yyyy");
+            
+            if(_context.Loans.Where(x => x.MemberNumber == id).Count() > 0)
+            {
+                ViewBag.LastLoan = _context.Loans.Where(x => x.MemberNumber == currentMember.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut.ToString("MMM d, yyyy");
+            }
+            
             ViewBag.TotalLoans = _context.Loans.Where(x => x.MemberNumber == currentMember.MemberNumber).Count();
             
             IEnumerable<DVDReturnModel> loanRecord = (  from dt in _context.DVDTitles
@@ -119,13 +124,14 @@ namespace RopeyDVDManagementSystem.Controllers
 
             IEnumerable<MemberDetailViewModel>  data =  from m in _context.Members
                                                 join mc in _context.MembershipCategories on m.MembershipCategoryNumber equals mc.MembershipCategoryNumber
+                                                where filteredLoan.Where(x => x.MemberNumber == m.MemberNumber).Count()  == 0
                                                 select new MemberDetailViewModel
                                                 {
                                                     MemberNumber = m.MemberNumber,
                                                     MemberFirstName = m.MemberFirstName,
                                                     MemberLastName = m.MemberLastName,
                                                     MemberAddress = m.MemberAddress,
-                                                    LastLoanDate = filteredLoan.Where(x => x.MemberNumber == m.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut,
+                                                    LastLoanDate = _context.Loans.Where(x => x.MemberNumber == m.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut,
                                                     LastLoanDVDTitle = (from mem in _context.Members
                                                                         join l in filteredLoan on mem.MemberNumber equals l.MemberNumber
                                                                         join c in _context.DVDCopies on l.CopyNumber equals c.CopyNumber
@@ -133,10 +139,11 @@ namespace RopeyDVDManagementSystem.Controllers
                                                                         where mem.MemberNumber == m.MemberNumber
                                                                         orderby l.DateOut descending
                                                                         select dt.DVDTitleName).FirstOrDefault(),
-                                                    LastActivity = (DateTime.Today - filteredLoan.Where(x => x.MemberNumber == m.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut).Days,
+                                                    LastActivity = (DateTime.Today - _context.Loans.Where(x => x.MemberNumber == m.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut).Days,
                                                 };
             
             data = data.OrderBy(x => x.LastLoanDate);
+            
             return View(data);
         }
     }

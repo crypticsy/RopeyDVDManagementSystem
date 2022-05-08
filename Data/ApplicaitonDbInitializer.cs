@@ -805,8 +805,8 @@ namespace RopeyDVDManagementSystem.Data
                         },
                         new Actor()
                         {
-                            ActorFirstName = "",
-                            ActorSurName = ""
+                            ActorFirstName = "Elijah",
+                            ActorSurName = "Wood"
 
                         },
                         new Actor()
@@ -1079,7 +1079,6 @@ namespace RopeyDVDManagementSystem.Data
                             ActorNumber = 37
 
                         }
-
                     });
 
                     context.SaveChanges();
@@ -1433,6 +1432,33 @@ namespace RopeyDVDManagementSystem.Data
                             MemberAddress = "Lubhu, Lalitpur",
                             MemberDateOfBirth = DateTime.ParseExact("2000-07-21","yyyy-MM-dd",null)
 
+                        },
+                        new Member()
+                        {
+                            MembershipCategoryNumber = 2,
+                            MemberFirstName = "Steven",
+                            MemberLastName = "Harvey",
+                            MemberAddress = "Cairo, Egypt",
+                            MemberDateOfBirth = DateTime.ParseExact("1998-07-21","yyyy-MM-dd",null)
+
+                        },
+                        new Member()
+                        {
+                            MembershipCategoryNumber = 3,
+                            MemberFirstName = "Marc",
+                            MemberLastName = "Spector",
+                            MemberAddress = "London, UK",
+                            MemberDateOfBirth = DateTime.ParseExact("1992-02-12","yyyy-MM-dd",null)
+
+                        },
+                        new Member()
+                        {
+                            MembershipCategoryNumber = 1,
+                            MemberFirstName = "John",
+                            MemberLastName = "Doe",
+                            MemberAddress = "Kalimati, Lalitpur",
+                            MemberDateOfBirth = DateTime.ParseExact("2000-07-21","yyyy-MM-dd",null)
+                        
                         }
 
                     });
@@ -1849,8 +1875,39 @@ namespace RopeyDVDManagementSystem.Data
                             DateOut = DateTime.ParseExact("2022-05-04","yyyy-MM-dd",null),
                             DateDue = DateTime.ParseExact("2022-05-09","yyyy-MM-dd",null),
                             ReturnAmount = 20
-                        }
+                        },
+                        new Loan()
+                        {
+                            LoanTypeNumber = 2,
+                            CopyNumber = 24,
+                            MemberNumber = 11,
+                            DateOut = DateTime.ParseExact("2022-02-06","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-02-11","yyyy-MM-dd",null),
+                            DateReturned = DateTime.ParseExact("2022-02-11","yyyy-MM-dd",null),
+                            ReturnAmount = 17.5m
+                        },
 
+                        new Loan()
+                        {
+                            LoanTypeNumber = 2,
+                            CopyNumber = 32,
+                            MemberNumber = 12,
+                            DateOut = DateTime.ParseExact("2022-01-04","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-01-09","yyyy-MM-dd",null),
+                            DateReturned = DateTime.ParseExact("2022-01-08","yyyy-MM-dd",null),
+                            ReturnAmount = 20
+                        },
+
+                        new Loan()
+                        {
+                            LoanTypeNumber = 2,
+                            CopyNumber = 25,
+                            MemberNumber = 13,
+                            DateOut = DateTime.ParseExact("2022-02-04","yyyy-MM-dd",null),
+                            DateDue = DateTime.ParseExact("2022-02-09","yyyy-MM-dd",null),
+                            DateReturned = DateTime.ParseExact("2022-02-09","yyyy-MM-dd",null),
+
+                        }
                     });
 
                     context.SaveChanges();
