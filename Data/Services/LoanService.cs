@@ -11,13 +11,13 @@ namespace RopeyDVDManagementSystem.Data.Services
             _context = context;
         }
 
-        public async Task AddAsync(Loan loan)
+        public async Task AddAsync(Loan loan) //Add a new loan
         {
             _context.Loans.AddAsync(loan);
             _context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int id) //Delete an existing loan
         {
             var res = await _context.Loans.FirstOrDefaultAsync(n => n.LoanNumber == id);
             _context.Loans.Remove(res);

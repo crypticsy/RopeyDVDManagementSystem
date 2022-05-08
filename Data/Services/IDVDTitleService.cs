@@ -5,12 +5,13 @@
 
     public interface IDVDTitleService
     {
+        //This is the interface for the DVD Title Service
         Task<IEnumerable<DVDTitle>> GetAll();
         Task<DVDTitle> GetById(int id);
 
-        void Add(DVDTitle dvdTitle);
+        Task Add(NewDVDTitleVM data);
 
-        Task<DVDTitle> Update(int id, DVDTitle dvdTitle);
+        Task Update(NewDVDTitleVM dvdTitle);
 
         Task Delete(int id);
 

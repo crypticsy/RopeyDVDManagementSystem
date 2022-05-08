@@ -2,6 +2,7 @@
 
 namespace RopeyDVDManagementSystem.Data.Services
 {
+    //Interface for the studio service
     public interface IStudioService
     {
         Task<IEnumerable<Studio>> GetAll();

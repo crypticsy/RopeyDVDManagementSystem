@@ -35,7 +35,7 @@ namespace RopeyDVDManagementSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("DVDPoster,DVDTitleName,CategoryNumber,StudioNumber,ProducerNumber,DateReleased,CastMembers,StandardCharge,PenaltyCharge")] DVDTitle dvdTitle) //ADD DVCOPYS HERE
+        public async Task<IActionResult> Create(NewDVDTitleVM dvdTitle) //ADD DVCOPYS HERE
         {
 
             //if (!ModelState.IsValid) 
@@ -50,7 +50,7 @@ namespace RopeyDVDManagementSystem.Controllers
             //    return View(dvdTitle);
             //}
 
-            _service.Add(dvdTitle);
+            await _service.Add(dvdTitle);
 
             return RedirectToAction(nameof(Index));
         }
@@ -68,6 +68,21 @@ namespace RopeyDVDManagementSystem.Controllers
         {
 
             var dvdTitleDetails = await _service.GetById(id);
+
+            var response = new NewDVDTitleVM()
+            {
+                DVDNumber = dvdTitleDetails.DVDNumber,
+                DVDTitleName = dvdTitleDetails.DVDTitleName,
+                CategoryNumber = dvdTitleDetails.CategoryNumber,
+                StudioNumber = dvdTitleDetails.StudioNumber,
+                ProducerNumber = dvdTitleDetails.ProducerNumber,
+                DVDPoster = dvdTitleDetails.DVDPoster,
+                StandardCharge = dvdTitleDetails.StandardCharge,
+                PenaltyCharge = dvdTitleDetails.PenaltyCharge,
+                CastMembers = dvdTitleDetails.CastMembers.Select(n => n.ActorNumber).ToList()
+            };
+
+
             var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
 
             ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
@@ -77,18 +92,18 @@ namespace RopeyDVDManagementSystem.Controllers
 
             if (dvdTitleDetails == null) return View("NotFound");
 
-            return View(dvdTitleDetails);
+            return View(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, DVDTitle dvdTitle)
+        public async Task<IActionResult> Edit(int id, NewDVDTitleVM dvdTitle)
         {
             //if (!ModelState.IsValid)
             //{
             //    return View(dvdTitle);
             //}
             dvdTitle.DVDNumber = Convert.ToUInt32(id);
-            await _service.Update(id, dvdTitle);
+            await _service.Update(dvdTitle);
 
             return RedirectToAction(nameof(Index));
         }
