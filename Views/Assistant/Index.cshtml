@@ -1,0 +1,77 @@
+﻿@*Defining Model*@
+@using RopeyDVDManagementSystem.Models;
+@using RopeyDVDManagementSystem.Models.Identity
+@model List<ApplicationUser>
+
+@*Defining ViewData*@
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "AssistantDetails";
+    Layout = "_LayoutAdmin";
+}
+
+@*Coding*@
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mx-3">
+                <h4 class="card-title mb-2">Manage Assistants</h4>
+                <p class="card-description mb-4"> Choose the assistant that you wish to manage </p>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row mb-0">
+                            <label class="col-sm-3 col-form-label">First Name / Last Name:</label>
+                            <div class="col">
+                                <div id="the-basics">
+                                    <input style="width: 400px;" class="typeahead" type="text" placeholder="Select an assistant">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-right mt-3">
+                            <button type="submit" class="btn btn-inverse-primary mr-2" value="Search"><i class="mdi mdi-account-search" style="align-content:space-evenly;"></i>Search</button>
+                        </div>
+                        <div class="text-white float-left mt-3 mr-3">
+                            <a asp-controller="Assistant" asp-action="Create" class="btn btn-inverse-success"><i class="mdi mdi-account-plus"></i> Add New</a>
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mb-3 mx-3"> 
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                             <tr  style="text-align:center;">
+                               <th class="text-white text-center">Username</th>
+                                <th class="text-white text-center">First Name</th>
+                                <th class="text-white text-center">Last Name</th>
+                                <th class="text-white text-center">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           @* @foreach (var item in Model)
+                            {*@
+                            <tr class="border-0 text-center">
+                                <td class="align-middle" ></td>
+                                <td class="align-middle" ></td>
+                                <td class="align-middle"></td>
+                                <td class="align-middle"></td>
+                                <td class="align-middle">
+                                    <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id=""><i class="mdi mdi-table-edit" style="align-content:space-evenly;"></i></a>
+                                    <a class="btn btn-inverse-danger" style="margin:5px;"  asp-action="Delete" asp-route-id=""><i class="mdi mdi-delete" style="mdi mdi-delete-sweep" asp-action="Delete" asp-route-id=""></i></a> 
+                                </td>
+                            </tr>
+                            @*}*@
+                        </tbody>
+                    </table>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>

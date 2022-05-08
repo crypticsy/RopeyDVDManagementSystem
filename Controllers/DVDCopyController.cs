@@ -43,6 +43,11 @@ namespace RopeyDVDManagementSystem.Controllers
             return View(dvdCopyDetails);
         }
 
+        public async Task<IActionResult> OldDVDCopy()
+        {
+            var data = await _service.GetAllAsync();
+            return View(data);
+        }
 
         //Get: Members/Edit/1
         public async Task<IActionResult> Edit(int id)
