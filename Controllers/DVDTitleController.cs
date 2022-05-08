@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RopeyDVDManagementSystem.Data;
@@ -9,6 +10,7 @@ using System.Web;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class DVDTitleController : Controller
     {
         private readonly IDVDTitleService _service;

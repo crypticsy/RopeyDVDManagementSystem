@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models.ViewModels;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class MembersDetailsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -133,7 +135,7 @@ namespace RopeyDVDManagementSystem.Controllers
                                                     MemberAddress = m.MemberAddress,
                                                     LastLoanDate = _context.Loans.Where(x => x.MemberNumber == m.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut,
                                                     LastLoanDVDTitle = (from mem in _context.Members
-                                                                        join l in filteredLoan on mem.MemberNumber equals l.MemberNumber
+                                                                        join l in _context.Loans on mem.MemberNumber equals l.MemberNumber
                                                                         join c in _context.DVDCopies on l.CopyNumber equals c.CopyNumber
                                                                         join dt in _context.DVDTitles on c.DVDNumber equals dt.DVDNumber
                                                                         where mem.MemberNumber == m.MemberNumber

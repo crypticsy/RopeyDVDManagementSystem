@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.ViewModels;
@@ -6,7 +7,6 @@ using System.Diagnostics;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
-
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
