@@ -12,11 +12,9 @@
             <div class="card-body mx-3">
                 <h4 class="card-title mb-2">Add new DVD Title</h4>
                 <p class="card-description mb-4"> Enter the following information. </p>
-                <form asp-action="Create">
+                <form asp-action="Create" enctype ="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
-
-
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">DVD Name:</label>
@@ -56,7 +54,7 @@
                             </div>
                             <br />
 
-                            <div class="form-group row mb-0">
+@*                            <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">DVD Copies:</label>
                                 <div class="col">
                                     <div id="the-basics">
@@ -64,7 +62,7 @@
                                         <span asp-validation-for="DVDCopys" class="text-danger"></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                             <br />
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">Studio:</label>
@@ -114,7 +112,7 @@
                             </div>
                             <br />
                             <div class="form-group row mb-0">
-                                <label class="col-sm-4 col-form-label">Standard Charge :</label>
+                                <label class="col-sm-3 col-form-label">Standard Charge :</label>
                                 <div class="col">
                                     <div id="the-basics">
                                         <input asp-for="StandardCharge" style="width: 400px" class="typeahead"
@@ -145,16 +143,12 @@
                                 <label class="col-sm-3 col-form-label">DVD Title Poster :</label>
                                 <div class="col">
                                     <div id="the-basics">
-                                        <input asp-for="DVDPoster" style="width: 400px" class="typeahead" type="text" />
-                                        <span asp-validation-for="DVDPoster" class="text-danger"></span>
+                                        <input asp-for="image" style="width: 400px" class="typeahead" type="file" />
+                                        <span asp-validation-for="image" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <br />
-
-                            <div class="form-group row mb-0" style="width:400px;">
-                                <img id="DVDPosterPreview" />
-                            </div>
                             <br />
                         </div>
 

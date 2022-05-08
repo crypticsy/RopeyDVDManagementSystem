@@ -67,7 +67,6 @@
                                 <th class="text-white text-center">Studio</th>
                                 <th class="text-white text-center">Category</th>
                                 <th class="text-white text-center">Release Date</th>
-                                <th class="text-white text-center">Total Copies</th>
                                 <th class="text-white text-center"></th>
                             </tr>
                         </thead>
@@ -76,7 +75,7 @@
                             {
                             <tr class="border-0 text-center">
                                 <td class="align-middle">@item.DVDTitleName</td>
-                                <td class="text-left" style="opactity:50%">
+                                <td class="text-left" style="opcaity:50%">
                                     @foreach(var x in item.CastMembers)
                                     {
                                         <li class="my-2">@x</li>
@@ -86,7 +85,6 @@
                                 <td class="align-middle">@item.StudioName</td>
                                 <td class="align-middle">@item.DVDCategory</td>
                                 <td class="align-middle">@Html.DisplayFor(modelItem => item.DateReleased)</td>
-                                <td class="align-middle">@item.AvailableQuantity</td>
                                 <td class>
                                     <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.DVDNumber"><i class="mdi mdi-table-edit"></i></a>
                                     <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.DVDNumber"><i class="mdi mdi-account-card-details"></i></a>

@@ -15,7 +15,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12">
-                            <img src = "@Model.DVDPoster" />
+                            <img src = "/@Model.DVDPoster" style="max-height: 300px; max-width:200px;"/>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group row mb-0">
@@ -46,12 +46,8 @@
                         </div>
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group row mb-0">
-                                <label class="col-sm-4 col-form-label text-gray">Release Dates:</label>
+                                <label class="col-sm-4 col-form-label text-gray">Release Date:</label>
                                 <div class="col">@Model.DateReleased</div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <label class="col-sm-4 col-form-label text-gray">No. of copies:</label>
-                                <div class="col">1</div>
                             </div>
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">Cast Members :</label>
@@ -94,72 +90,4 @@
         }
     </script>
 }
-@*<div class="row text">
-    <div class="col-md-8 offset-2">
-        <p>
-            <h1>DVD Title Delete Confirmation: @Model.DVDTitleName</h1>
-        </p>
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <div class="form-group">
-                    <label class="control-label">DVD Title Poster</label>
-                    <input asp-for="DVDPoster" class="form-control" readonly/>
-                    <span asp-validation-for="DVDPoster" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">DVD Title Name</label>
-                    <input asp-for="DVDTitleName" class="form-control" readonly/>
-                    <span asp-validation-for="DVDTitleName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Category Number</label>
-                    <input asp-for="CategoryNumber" class="form-control" readonly/>
-                    <span asp-validation-for="CategoryNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Studio Number</label>
-                    <input asp-for="StudioNumber" class="form-control" readonly/>
-                    <span asp-validation-for="StudioNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Producer Number</label>
-                    <input asp-for="ProducerNumber" class="form-control" readonly/>
-                    <span asp-validation-for="ProducerNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Date Released</label>
-                    <input asp-for="DateReleased" class="form-control" readonly/>
-                    <span asp-validation-for="DateReleased" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Cast Members</label>
-                    <input asp-for="CastMembers" class="form-control" readonly/>
-                    <span asp-validation-for="CastMembers" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Standard Charge</label>
-                    <input asp-for="StandardCharge" class="form-control" readonly/>
-                    <span asp-validation-for="StandardCharge" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Penalty Charge</label>
-                    <input asp-for="PenaltyCharge" class="form-control" readonly/>
-                    <span asp-validation-for="PenaltyCharge" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">DVD Copies</label>
-                    <input asp-for="DVDCopys" class="form-control" readonly/>
-                    <span asp-validation-for="DVDCopys" class="text-danger"></span>
-                </div>
-                <div class="form-group" style="margin:5px;">
-                    <form asp-action="Delete">
-                        <input type = "hidden" asp-for="DVDNumber">
-                        <input type = "Submit" value ="Confirm" class="btn btn-danger"/>
-                        <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
 

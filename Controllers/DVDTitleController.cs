@@ -1,3 +1,4 @@
+﻿using Microsoft.AspNetCore.Http;
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -5,6 +6,7 @@ using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.ViewModels;
+using System.Web;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
@@ -151,20 +153,17 @@ namespace RopeyDVDManagementSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(NewDVDTitleVM dvdTitle) //ADD DVCOPYS HERE
+        public async Task<IActionResult> Create(NewDVDTitleVM dvdTitle) 
         {
+            IFormFile imgFile = dvdTitle.image;
 
-            //if (!ModelState.IsValid) 
-            //{
-            //    var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
+            dvdTitle.DVDPoster = "images/" + imgFile.FileName;
 
-            //    ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFirstName");
-            //    ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
-            //    ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
-            //    ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
-                
-            //    return View(dvdTitle);
-            //}
+            string path = Path.Combine("images/",imgFile.FileName);
+
+            Stream fileStream = new FileStream(path, FileMode.Create);
+
+            await dvdTitle.image.CopyToAsync(fileStream);
 
             await _service.Add(dvdTitle);
 
