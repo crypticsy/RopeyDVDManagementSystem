@@ -82,7 +82,6 @@ namespace RopeyDVDManagementSystem.Data.Services
                 dbDvdTitle.CategoryNumber = data.CategoryNumber;
                 dbDvdTitle.StudioNumber = data.StudioNumber;
                 dbDvdTitle.ProducerNumber = data.ProducerNumber;
-                dbDvdTitle.DVDPoster = data.DVDPoster;
                 dbDvdTitle.DateReleased = data.DateReleased;
                 dbDvdTitle.StandardCharge = data.StandardCharge;
                 dbDvdTitle.PenaltyCharge = data.PenaltyCharge;

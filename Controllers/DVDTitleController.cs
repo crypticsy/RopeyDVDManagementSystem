@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.ViewModels;
+using System.Web;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
@@ -151,7 +153,15 @@ namespace RopeyDVDManagementSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(NewDVDTitleVM dvdTitle) 
         {
+            IFormFile imgFile = dvdTitle.image;
 
+            dvdTitle.DVDPoster = "images/" + imgFile.FileName;
+
+            string path = Path.Combine("images/",imgFile.FileName);
+
+            Stream fileStream = new FileStream(path, FileMode.Create);
+
+            await dvdTitle.image.CopyToAsync(fileStream);
 
             await _service.Add(dvdTitle);
 

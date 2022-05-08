@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-    
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace RopeyDVDManagementSystem.Models
 {
     public class DVDTitle
@@ -32,6 +33,9 @@ namespace RopeyDVDManagementSystem.Models
 
         [Required]
         public decimal PenaltyCharge { get; set; }
+
+        [NotMapped]
+        public IFormFile image { get; set; }
 
         public ICollection<DVDCopy> DVDCopys { get; set; }
         
