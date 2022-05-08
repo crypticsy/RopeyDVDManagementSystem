@@ -1,36 +1,40 @@
 ﻿@*Defining Model*@
-@model List<DVDTitle>
+@using RopeyDVDManagementSystem.Models.ViewModels;
+@model IEnumerable<DVDPreviewModel>;
 
-    @*Defining ViewData*@
-    @{
-    ViewData["Title"] = "Dashboard";
+@*Defining ViewData*@
+@{
+    ViewData["Title"] = "DVD Details";
     ViewData["Section"] = "DVDDetails";
     Layout = "_LayoutAdmin";
+}
 
-    }
-
-    @*Coding*@
-    <div class="row">
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-2">DVD Titles</h4>
-                    <p class="card-description mb-4"> List of DVD Titles </p>
+@*Coding*@
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-2">DVD Titles</h4>
+                <p class="card-description mb-4"> List of DVD Titles </p>
+                <form asp-action="Index" method="post">
                     <div class="row">
                         <div class="col">
                             <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label">DVD Title Number :</label>
+                                <label class="col-sm-3 col-form-label">DVD Title :</label>
                                 <div class="col">
                                     <div id="the-basics">
-                                        <input style="width: 400px;" class="typeahead" type="text"
-                                            placeholder="Select a DVD Title Number">
+                                        <input class="typeahead" type="text" name="SearchDVDTitle" placeholder="Search . . ." value=@ViewBag.SearchMemberNumber>
                                     </div>
                                 </div>
                             </div>
                             <div class="float-right mt-2">
-                                <button type="submit" class="btn btn-inverse-primary mr-2" value="Search"><i
-                                        class="mdi mdi-account-search"
-                                        style="align-content:space-evenly;"></i>Search</button>
+                                <button type="submit" class="btn btn-inverse-primary mr-2" value="Search">
+                                    <i class="mdi mdi-account-search" style="align-content:space-evenly;"></i>Search
+                                </button>
+                            </div>
+                            <div class="text-white float-right mr-2 mt-2">
+                                <a asp-controller="DVDTitle" asp-action="Inactive" class="btn btn-inverse-info"><i
+                                        class="mdi mdi-account-plus"></i> Inactive List</a>
                             </div>
                             <div class="text-white float-left mt-2">
                                 <a asp-controller="DVDTitle" asp-action="Create" class="btn btn-inverse-success"><i
@@ -38,51 +42,142 @@
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model != null && Model.Count() > 0)
+{
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <table class="table" style="width:100%">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="text-white text-center">Title</th>
+                                <th class="text-white text-center">Cast Members</th>
+                                <th class="text-white text-center">Producer</th>
+                                <th class="text-white text-center">Studio</th>
+                                <th class="text-white text-center">Category</th>
+                                <th class="text-white text-center">Release Date</th>
+                                <th class="text-white text-center">Total Copies</th>
+                                <th class="text-white text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr class="border-0 text-center">
+                                <td class="align-middle">@item.DVDTitleName</td>
+                                <td class="text-left" style="opactity:50%">
+                                    @foreach(var x in item.CastMembers)
+                                    {
+                                        <li class="my-2">@x</li>
+                                    }
+                                </td>
+                                <td class="align-middle">@item.ProducerName</td>
+                                <td class="align-middle">@item.StudioName</td>
+                                <td class="align-middle">@item.DVDCategory</td>
+                                <td class="align-middle">@Html.DisplayFor(modelItem => item.DateReleased)</td>
+                                <td class="align-middle">@item.AvailableQuantity</td>
+                                <td class>
+                                    <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.DVDNumber"><i class="mdi mdi-table-edit"></i></a>
+                                    <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.DVDNumber"><i class="mdi mdi-account-card-details"></i></a>
+                                    <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.DVDNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.DVDNumber"></i></a>
+                                </td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
+</div>
+}
+else
+{
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-center text-center" >
 
-                        <table class="table" style="width:100%">
-                            <thead>
-                                <tr style="text-align:center;">
-                                    <th class="text-white text-center">DVD Number</th>
-                                    <th class="text-white text-center">DVD Title Name</th>
-                                    <th class="text-white text-center">Studio</th>
-                                    <th class="text-white text-center">Category</th>
-                                    <th class="text-white text-center">DVD Copys</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                <tr style="text-align:center;">@*
-                                    <td class="align-middle"><img class="img-thumbnail" src="@item.DVDPoster"
-                                            style="max-width:100px;" /></td>*@
-                                    <td class="align-middle">@item.DVDNumber</td>
-                                    <td class="align-middle">@item.DVDTitleName</td>
-                                    <td class="align-middle">@item.Studio.StudioName</td>
-                                    <td class="align-middle">@item.DVDCategory.CategoryName</td>
-                                    <td class="align-middle">@item.DVDCopys</td>
-                                    <td class>
-                                        <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.DVDNumber"><i class="mdi mdi-table-edit"></i></a>
-                                        <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.DVDNumber"><i class="mdi mdi-account-card-details"></i></a>
-                                        <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.DVDNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.DVDNumber"></i></a>
-                                    </td>
+                        <div class="d-flex justify-content-center">
+                            <script src="https://unpkg.com/@@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_a72gydf0.json"  background="transparent"  speed="1"  style="width: 400px; height: 400px;"  loop  autoplay></lottie-player>
+                        </div>
 
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
+                        <p class="text-gray text-center" >Uh Oh! Details for particular DVD were not found.</p>
                     </div>
                 </div>
             </div>
         </div>
+}
 
-    </div>
+
+
+
+
+
+@section AddCustomScripts{
+    <script>
+        (function($) {
+            'use strict';
+            var substringMatcher = function(strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+
+                    // an array that will be populated with substring matches
+                    matches = [];
+
+                    // regex used to determine if a string contains the substring `q`
+                    var substrRegex = new RegExp(q, 'i');
+
+                    // iterate through the pool of strings and for any string that
+                    // contains the substring `q`, add it to the `matches` array
+                    for (var i = 0; i < strs.length; i++) {
+                        if (substrRegex.test(strs[i])) {
+                            matches.push(strs[i]);
+                        }
+                    }
+
+                    cb(matches);
+                };
+            };
+
+            var states = @Html.Raw(ViewBag.DVDSearchList);
+
+            $('#the-basics .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                name: 'states',
+                source: substringMatcher(states)
+            });
+
+            // constructs the suggestion engine
+            var states = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                // `states` is an array of state names defined in "The Basics"
+                local: states
+            });
+
+            $('#bloodhound .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                name: 'states',
+                source: states
+            });
+        })(jQuery);
+    </script>
+}
