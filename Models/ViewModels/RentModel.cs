@@ -12,6 +12,10 @@ namespace RopeyDVDManagementSystem.Models.ViewModels
 
         public bool AgeRestricted { get; set; }
 
+        public int LoanTypeNumber { get; set; }
+
+        public int MemberNumber { get; set; }
+
 
     }
 }

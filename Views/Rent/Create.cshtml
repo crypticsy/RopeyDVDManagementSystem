@@ -1,87 +1,111 @@
-﻿@using RopeyDVDManagementSystem.Models
-@using RopeyDVDManagementSystem.Models.ViewModels;
-@model Loan 
+﻿@using RopeyDVDManagementSystem.Models.ViewModels;
 
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Rental Form";
     ViewData["Section"] = "DVDRent";
     Layout = "_LayoutAdmin";
-    var returnDetail = ViewData["ReturnDVD"] as RentModel; 
+
+    var rental = ViewData["AvailableDVD"] as RentModel; 
+    var memeberList = ViewData["MemberNumberList"] as IEnumerable<SelectViewModel>; 
+    var loanTypeList = ViewData["LoanTypeList"] as IEnumerable<SelectViewModel>; 
 }
 
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body mx-3">
-                <h4 class="card-title mb-2">Issue new DVD Loan</h4>
-                <p class="card-description mb-4"> Enter the following information. </p>
+                <h4 class="card-title mb-2">DVD Rental Form</h4>
+                <p class="card-description mb-4"> Issue a rental in current time </p>
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">DVD Tile :</label>
-                                <div class="col">This is Title</div>
+                                <div class="col">@rental.DVDTitleName</div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">DVD Category :</label>
-                                <div class="col">This is category</div>
+                                <div class="col">@rental.DVDCategory</div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">Copy Number :</label>
-                                <div class="col">2</div>
+                                <div class="col">@rental.CopyNumber</div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">Age Restricted :</label>
-                                <div class="col">true</div>
+                                <div class="col">
+                                    @if(rental.AgeRestricted ){
+                                    <i class="mdi mdi-checkbox-marked-circle-outline text-success"></i>
+                                    }else{
+                                    <i class="mdi mdi-comment-remove-outline text-danger"></i>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+
+                            @if(TempData["Error"] != null)
+                            {
+                                <div class="alert text-danger mb-2 text-center mx-auto">
+                                    <span>@TempData["Error"]</span>
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <label class="col-sm-3 col-form-label">Member :</label>
+                                <div class="col-sm-8">
+                                    <select class="js-example-basic-single" style="width:50%" name="MemberNumber" value=@ViewBag.MemberNumber>
+                                        @foreach(var member in memeberList){
+                                            @if (@ViewBag.MemberNumber == member.SelectValue)
+                                            {
+                                                <option value=@member.SelectValue selected>@member.SelectKey</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=@member.SelectValue>@member.SelectKey</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-form-label">Loan Type :</label>
+                                <div class="col-sm-8">
+                                    <select class="js-example-basic-single" style="width:50%" name="LoanTypeNumber" value=@ViewBag.LoanTypeNumber>
+                                        @foreach(var loan in loanTypeList){
+                                            @if (@ViewBag.LoanTypeNumber == loan.SelectValue)
+                                            {
+                                                <option value=@loan.SelectValue selected>@loan.SelectKey</option>
+                                            }
+                                            else
+                                            {
+                                                <option value=@loan.SelectValue>@loan.SelectKey</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="CopyNumber" value=@ViewBag.CopyNumber />
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group row mb-0">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">
-
-                            <br />
-                            <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label">Member ID :</label>
-                                <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="LoanTypeNumber" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Select a Member ID" />
-                                        <span asp-validation-for="MemberNumber" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label">Loan Type :</label>
-                                <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="MemberNumber" style="width: 400px" class="typeahead" type="text"
-                                            placeholder="Select a Member ID" />
-                                        <span asp-validation-for="LoanTypeNumber" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>
+                            <button value="Create" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Save
+                            </button>
+                            <a type="button" class="btn btn-inverse-danger btn-fw" asp-action="Index">Cancel</a>
                         </div>
                     </div>
-                    <br />
-                    <div class="row mt-5">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="form-group row mb-0">
-                                    <label class="col-sm-4 col-form-label text-gray">Standard Charge :</label>
-                                    <div class="col">$ 200</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
 
-                                <button value="Create" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Save
-                                </button>
-                                <a type="button" class="btn btn-inverse-danger btn-fw" asp-action="Index">Cancel</a>
-                            </div>
-                        </div>
-                        <br />
                 </form>
             </div>
         </div>

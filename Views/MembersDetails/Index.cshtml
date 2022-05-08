@@ -79,12 +79,12 @@
                                         <td class="align-middle">@item.LoanCount</td>
 
                                         <td class="align-middle">
-                                            @if (item.Remarks == "")
+                                            @if (item.Remarks != "")
                                             {
                                                     <span class="text-danger">@item.Remarks</span>
                                             }
                                         </td>
-
+ 
                                         <td class="align-middle">
                                             <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.MemberNumber">
                                                 <i class="mdi mdi-format-list-bulleted-type"></i>

@@ -218,16 +218,6 @@
     background-image: linear-gradient(to right, #9ec0fd, #9fb2e7) !important;
 }
 
-select{
-    display:none;
-}
-
-label[title],
-label[title]:hover:after,
-label[title]:after {
-    transition-delay: 0ms;
-    font-family: intro_rust;
-}
 
 
 body{
