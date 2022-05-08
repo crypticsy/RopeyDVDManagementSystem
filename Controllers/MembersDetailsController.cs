@@ -49,7 +49,7 @@ namespace RopeyDVDManagementSystem.Controllers
                 _context.Members.Where(x => x.MemberNumber == memNumber).Count() > 0)
             {
                 // Get all member details
-                var data = await _service.GetAllDetailsAsync(memNumber, "");
+                var data = await _service.GetAllDetailsAsync(memNumber, "●");
                 return View(data);
             }
             else if (MemberNumber == "")

@@ -143,7 +143,7 @@ else if(dvdReturnDisplay)
                                 <div class="col">@Html.DisplayFor(modelItem => dvdReturn.DateDue)</div>
                             </div>
                             
-                            @if(dvdReturn.OverDue == 1)
+                            @if(dvdReturn.DateReturned != DateTime.MinValue)
                             {
                                 <div class="form-group row mb-0">
                                     <label class="col-sm-4 col-form-label text-gray">Date Returned :</label>
