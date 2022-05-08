@@ -6,17 +6,17 @@ namespace RopeyDVDManagementSystem.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View(); //Assigning view to display Assistant data
         }
 
         public IActionResult Create()
         {
-            return View();
+            return View(); //Assigning view to add new Assistant
         }
 
         public IActionResult Edit()
         {
-            return View();
+            return View(); //Assigning view to update Assistant data
         }
 
 

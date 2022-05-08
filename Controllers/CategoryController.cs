@@ -21,9 +21,10 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            return View(); //Assigning view to add new Category
         }
 
+        //Request to post data 
         [HttpPost]
         public async Task<IActionResult> Create([Bind("CategoryName, CategoryDescription, AgeRestricted")] DVDCategory category)
         {
@@ -35,11 +36,11 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var categoryDetails = await _service.GetById(id);
+            var categoryDetails = await _service.GetById(id);  //Assigning selected Actor table data to variable 'categoryDetails'
 
-            if (categoryDetails == null) return View("NotFound");
+            if (categoryDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(categoryDetails);
+            return View(categoryDetails); //Assigning view to view details
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -49,9 +50,11 @@ namespace RopeyDVDManagementSystem.Controllers
 
             if (categoryDetails == null) return View("NotFound");
 
-            return View(categoryDetails);
+            return View(categoryDetails); //Assigning view to edit
         }
 
+
+        //Request to post edited data
         [HttpPost]
         public async Task<IActionResult> Edit(int id, DVDCategory category)
         {
@@ -64,17 +67,15 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(actor);
-            //}
+
             var categoryDetails = await _service.GetById(id);
 
-            if (categoryDetails == null) return View("NotFound");
+            if (categoryDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(categoryDetails);
+            return View(categoryDetails); //Assigning view to delete
         }
 
+        //Request to delete data
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -82,7 +83,7 @@ namespace RopeyDVDManagementSystem.Controllers
             if (categoryDetails == null) return View("NotFound");
 
             await _service.Delete(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); //Assigning view to delete
         }
     }
 }

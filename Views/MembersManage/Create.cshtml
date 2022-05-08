@@ -1,5 +1,7 @@
-﻿@model Member
+﻿@*Defining Model*@
+@model Member
 
+@*Defining ViewData*@
 @{
 ViewData["Title"] = "Dashboard";
 ViewData["Section"] = "MemberManage";
@@ -7,17 +9,19 @@ Layout = "_LayoutAdmin";
 }
 
 
-
+@*Coding*@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body mx-3">
                 <h4 class="card-title mb-2">Add new Member</h4>
                 <p class="card-description mb-4"> Enter the following information. </p>
+                @*Defining Controller*@
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
+                            @*Code for Member data input fields*@
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">First Name :</label>
                                 <div class="col">
@@ -81,6 +85,7 @@ Layout = "_LayoutAdmin";
                         </div>
                         <br />
                         <br />
+                        @*Code for action buttons*@
                         <div class="col-md-6 col-sm-12">
                             <button value="Create" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Save
                             </button>

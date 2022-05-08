@@ -1,10 +1,14 @@
-﻿@model DVDCategory
+﻿@*Defining Model*@
+@model DVDCategory
 
+@*Defining ViewData*@
 @{
     ViewData["Title"] = "Dashboard";
     ViewData["Section"] = "DVDDetails";
     Layout = "_LayoutAdmin";
 }
+
+@*Coding*@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
@@ -13,6 +17,7 @@
                 <p class="card-description mb-4"> Deleting Category Information </p>
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*Code for Selected Category data view*@
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group row mb-0">
@@ -29,6 +34,7 @@
                         </div>
                     </div>
                     <br />
+                    @*Code for delte confirmation action button*@
                     <div class="row mt-5">
                         <div class="col-md-6 col-sm-12 align-content-center" style="margin-left:40%;">
                             <div class="form-group float-right">
@@ -45,4 +51,4 @@
             </div>
         </div>
     </div>
-
+</div>

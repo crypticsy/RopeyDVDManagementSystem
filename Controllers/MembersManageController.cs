@@ -58,7 +58,6 @@ namespace RopeyDVDManagementSystem.Controllers
 
             return View();
         }
-
        
         //Get: Members/Create
         public IActionResult Create()
@@ -80,11 +79,10 @@ namespace RopeyDVDManagementSystem.Controllers
         }
 
         //Get: Members/Details/1
-
         public async Task<IActionResult> Details(int id)
         {
             var memberDetails = await _service.GetByIdAsync(id);
-            if (memberDetails == null) return View("Not Found");
+            if (memberDetails == null) return View("Not Found"); //Handeling errors
             return View(memberDetails);
         }
 
@@ -93,18 +91,14 @@ namespace RopeyDVDManagementSystem.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var memberDetails = await _service.GetByIdAsync(id);
-            if (memberDetails == null) return View("Not Found");
+            if (memberDetails == null) return View("Not Found"); //Handeling errors
             return View(memberDetails);
         }
 
+        //Request to post edited data
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("MemberNumber, MemberFirstName, MemberLastName, MembershipCategoryNumber, MemberAddress, MemberDateofBirth")] Member member)
         {
-            /*if (ModelState.IsValid)
-            {
-                return View(member);
-            }*/
-            
             member.MemberNumber = Convert.ToUInt32(id);
             await _service.UpdateAsync(id, member);
             return RedirectToAction(nameof(Index));
@@ -113,15 +107,16 @@ namespace RopeyDVDManagementSystem.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var memberDetails = await _service.GetByIdAsync(id);
-            if (memberDetails == null) return View("Not Found");
+            if (memberDetails == null) return View("Not Found"); //Handeling errors
             return View(memberDetails);
         }
 
+        //Request to delete data
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var memberDetails = await _service.GetByIdAsync(id);
-            if (memberDetails == null) return View("Not Found");
+            if (memberDetails == null) return View("Not Found"); //Handeling errors
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }

@@ -1,17 +1,21 @@
-﻿@model Studio
+﻿@*Defining Model*@
+@model Studio
 
+@*Defining ViewData*@
 @{
     ViewData["Title"] = "Dashboard";
     ViewData["Section"] = "DVDDetails";
     Layout = "_LayoutAdmin";
 }
+
+@*Coding*@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body mx-3">
                 <h4 class="card-title mb-2">Delete Studio</h4>
                 <p class="card-description mb-4"> Deleting Studio Information </p>
-
+                @*Code for Selected Studio data view*@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="col-md-3 col-sm-12">
@@ -22,6 +26,7 @@
 
                     </div>
                     <br />
+                    @*Code for delte confirmation action button*@
                     <div class="row mt-5">
                         <div class="col-md-6 col-sm-12 align-content-center" style="margin-left:40%;">
                             <div class="form-group float-right">
@@ -38,4 +43,4 @@
             </div>
         </div>
     </div>
-
+</div>

@@ -6,7 +6,7 @@ namespace RopeyDVDManagementSystem.Controllers
 {
     public class DVDCopyController : Controller
     {
-        private readonly IDVDCopyService _service;
+        private readonly IDVDCopyService _service; //Assigning the service
 
         public DVDCopyController(IDVDCopyService service)
         {
@@ -14,7 +14,7 @@ namespace RopeyDVDManagementSystem.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAllAsync();
+            var data = await _service.GetAllAsync(); //Assigning all Actor table data to variable 'data'
             ViewBag.AllCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(data.Select(x => x.CopyNumber).ToList());
             return View(data);
         }
@@ -23,16 +23,19 @@ namespace RopeyDVDManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(string request)
         {
+            //Search through input 
             string CopyNumber = Request.Form["SearchCopyNumber"];
             ViewBag.SearchCopyNumber = CopyNumber;
 
             var data = await _service.GetAllAsync();
             ViewBag.AllCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(data.Select(x => x.CopyNumber).ToList());
 
+            //View all data on search field empty 
             if (CopyNumber == "")
             {
                 return View(data);
             }
+            //View matched data on search field value entered
             else if (uint.TryParse(CopyNumber,out uint result) && data.Where(x => x.CopyNumber == result).Count() > 0)
             {   
                 data = data.Where(x => x.CopyNumber == result).ToList();
@@ -44,9 +47,10 @@ namespace RopeyDVDManagementSystem.Controllers
         //Get: DVDCopy/Create
         public IActionResult Create()
         {
-            return View();
+            return View(); //Assigning view to add new Actor
         }
 
+        //Request to post data 
         [HttpPost]
         public async Task<IActionResult> Create([Bind("DVDNumber, DVDTitle, DatePurchased")] DVDCopy dvdcopy)
         {
@@ -62,8 +66,8 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public async Task<IActionResult> Details(int id)
         {
-            var dvdCopyDetails = await _service.GetByIdAsync(id);
-            if (dvdCopyDetails == null) return View("Not Found");
+            var dvdCopyDetails = await _service.GetByIdAsync(id); //Assigning selected Actor table data to variable 'dvdCopyDetails'
+            if (dvdCopyDetails == null) return View("Not Found"); //Handeling errors
             return View(dvdCopyDetails);
         }
 
@@ -95,10 +99,11 @@ namespace RopeyDVDManagementSystem.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var dvdCopyDetails = await _service.GetByIdAsync(id);
-            if (dvdCopyDetails == null) return View("Not Found");
+            if (dvdCopyDetails == null) return View("Not Found"); //Handeling errors
             return View(dvdCopyDetails);
         }
 
+        //Request to post edited data
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("DVDNumber, DVDTitle, DatePurchased")] DVDCopy dvdcopy)
         {
@@ -115,15 +120,16 @@ namespace RopeyDVDManagementSystem.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var dvdCopyDetails = await _service.GetByIdAsync(id);
-            if (dvdCopyDetails == null) return View("Not Found");
+            if (dvdCopyDetails == null) return View("Not Found"); //Handeling errors
             return View(dvdCopyDetails);
         }
 
+        //Request to delete data
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var dvdCopyDetails = await _service.GetByIdAsync(id);
-            if (dvdCopyDetails == null) return View("Not Found");
+            if (dvdCopyDetails == null) return View("Not Found"); //Handeling errors
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }

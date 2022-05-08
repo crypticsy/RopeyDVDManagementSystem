@@ -31,24 +31,13 @@ namespace RopeyDVDManagementSystem.Controllers
             ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
             ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFullName");
 
-            return View();
+            return View(); //Assigning view to add new DVD Title
         }
 
+        //Request to post data 
         [HttpPost]
         public async Task<IActionResult> Create([Bind("DVDPoster,DVDTitleName,CategoryNumber,StudioNumber,ProducerNumber,DateReleased,CastMembers,StandardCharge,PenaltyCharge")] DVDTitle dvdTitle) //ADD DVCOPYS HERE
         {
-
-            //if (!ModelState.IsValid) 
-            //{
-            //    var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
-
-            //    ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFirstName");
-            //    ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
-            //    ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
-            //    ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
-                
-            //    return View(dvdTitle);
-            //}
 
             _service.Add(dvdTitle);
 
@@ -59,9 +48,9 @@ namespace RopeyDVDManagementSystem.Controllers
         {
             var dvdTitleDetails = await _service.GetById(id);
 
-            if (dvdTitleDetails == null) return View("NotFound");
+            if (dvdTitleDetails == null) return View("NotFound");//Handeling errors
 
-            return View(dvdTitleDetails);
+            return View(dvdTitleDetails); //Assigning view to view details
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -75,18 +64,15 @@ namespace RopeyDVDManagementSystem.Controllers
             ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
             ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFullName");
 
-            if (dvdTitleDetails == null) return View("NotFound");
+            if (dvdTitleDetails == null) return View("NotFound");//Handeling errors
 
-            return View(dvdTitleDetails);
+            return View(dvdTitleDetails); //Assigning view to edit
         }
 
+        //Request to post edited data
         [HttpPost]
         public async Task<IActionResult> Edit(int id, DVDTitle dvdTitle)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(dvdTitle);
-            //}
             dvdTitle.DVDNumber = Convert.ToUInt32(id);
             await _service.Update(id, dvdTitle);
 
@@ -98,19 +84,20 @@ namespace RopeyDVDManagementSystem.Controllers
 
             var dvdTitleDetails = await _service.GetById(id);
 
-            if (dvdTitleDetails == null) return View("NotFound");
+            if (dvdTitleDetails == null) return View("NotFound");//Handeling errors
 
-            return View(dvdTitleDetails);
+            return View(dvdTitleDetails); //Assigning view to delete
         }
 
+        //Request to delete data
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var dvdTitleDetails = await _service.GetById(id);
-            if (dvdTitleDetails == null) return View("NotFound");
+            if (dvdTitleDetails == null) return View("NotFound");//Handeling errors
 
             await _service.Delete(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); //Assigning view to delete
         }
     }
 }

@@ -21,9 +21,10 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            return View(); //Assigning view to add new Producer
         }
 
+        //Request to post data 
         [HttpPost]
         public async Task<IActionResult> Create([Bind("ProducerName")] Producer producer)
         {
@@ -37,9 +38,9 @@ namespace RopeyDVDManagementSystem.Controllers
         {
             var producerDetails = await _service.GetById(id);
 
-            if (producerDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(producerDetails);
+            return View(producerDetails); //Assigning view to view details
         }
 
         public async Task<IActionResult> Edit(int id)
@@ -47,11 +48,12 @@ namespace RopeyDVDManagementSystem.Controllers
 
             var producerDetails = await _service.GetById(id);
 
-            if (producerDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(producerDetails);
+            return View(producerDetails); //Assigning view to edit
         }
 
+        //Request to post edited data
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Producer producer)
         {
@@ -64,22 +66,19 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(actor);
-            //}
             var producerDetails = await _service.GetById(id);
 
-            if (producerDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(producerDetails);
+            return View(producerDetails); //Assigning view to delete
         }
 
+        //Request to delete data
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var producerDetails = await _service.GetById(id);
-            if (producerDetails == null) return View("NotFound");
+            if (producerDetails == null) return View("NotFound"); //Handeling errors
 
             await _service.Delete(id);
             return RedirectToAction(nameof(Index));

@@ -1,5 +1,7 @@
-﻿@model UserRegisterModel
+﻿@*Defining Model*@
+@model UserRegisterModel
 
+@*Defining Viewdata*@
 @{
 ViewData["Title"] = "Dashboard";
 ViewData["Section"] = "AssistantDetails";
@@ -7,15 +9,17 @@ Layout = "_LayoutAdmin";
 }
 
 
-
+@*Coding*@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body mx-3">
                 <h4 class="card-title mb-2">Update assistant</h4>
                 <p class="card-description mb-4">Update the following information. </p>
+                @*Defining Controller*@
                 <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @*Code for Assistant data view in editable fields*@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
@@ -92,6 +96,7 @@ Layout = "_LayoutAdmin";
                         </div>
                         <br />
                         <br />
+                        @*Code for Assistant update action buttons*@
                         <div class="col-md-6 col-sm-12">
                             <button value="Edit" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Update
                             </button>

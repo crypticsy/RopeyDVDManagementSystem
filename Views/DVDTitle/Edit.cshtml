@@ -1,22 +1,26 @@
-﻿@model DVDTitle
+﻿@*Defining Model*@
+@model DVDTitle
 
+@*Defining Viewdata*@
 @{
     ViewData["Title"] = "Dashboard";
     ViewData["Section"] = "DVDDetails";
     Layout = "_LayoutAdmin";
 }
 
+@*Coding*@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body mx-3">
                 <h4 class="card-title mb-2">Update DVD Title</h4>
                 <p class="card-description mb-4"> Update an existing DVD title </p>
+                @*Defining Controller*@
                 <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
 
-
+                         @*Code for DVD Details data view in editable fields*@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">DVD Name:</label>
@@ -163,7 +167,7 @@
                         </div>
                         <br />
                         
-
+                         @*Code for DVD Details update action buttons*@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
                                

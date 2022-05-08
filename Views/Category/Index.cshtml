@@ -14,6 +14,7 @@
             <div class="card">
                 <div class="card-body">
                 <div class="row">
+                    @*Code for search field view card*@
                     <div class="col-md-6" >
                         <h4 class="card-title mb-2">Categories</h4>
                         <p class="card-description mb-4"> List of Categories </p>
@@ -28,6 +29,7 @@
             </div>
         </div>
     </div>
+    @*Code for data display table*@
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
@@ -35,6 +37,7 @@
                     <div class="table-responsive">
 
                         <table class="table" style="width:100%">
+                            @*List of Table heads*@
                             <thead>
                                 <tr style="text-align:center;">
                                     <th class="text-white text-center">Category Number</th>
@@ -45,11 +48,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @*Adding data to list*@
                                 @foreach (var item in Model)
                                 {
-                                <tr style="text-align:center;">@*
-                                    <td class="align-middle"><img class="img-thumbnail" src="@item.DVDPoster"
-                                            style="max-width:100px;" /></td>*@
+                                <tr style="text-align:center;">
                                     <td class="align-middle">@item.CategoryNumber</td>
                                     <td class="align-middle">@item.CategoryName</td>
                                     <td class="align-middle">@item.CategoryDescription</td>

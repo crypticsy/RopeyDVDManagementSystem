@@ -53,8 +53,10 @@
     </div>
 </div>
 
+@*Code for data display table*@
 @if(Model != null && Model.Count() > 0)
 {
+    @*Code to display when table has data*@
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
@@ -62,6 +64,7 @@
                 <div class="table-responsive">
                 <table class="table">
                     <thead>
+                        @*List of Table heads*@
                         <tr style="text-align:center;">
                             <th class="text-white text-center">Copy Number</th>
                             <th class="text-white text-center">DVD Number</th>
@@ -70,6 +73,7 @@
                         </tr>
                     </thead>
                         <tbody>
+                            @*Adding data to list*@
                             @foreach (var item in Model)
                             {
                                 <tr class="border-0 text-center">
@@ -91,7 +95,7 @@
 }
 else
 {
-
+    @*Code to display when table is empty*@
     <div class="row">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">

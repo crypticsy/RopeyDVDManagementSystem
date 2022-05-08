@@ -21,42 +21,44 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            return View(); //Assigning view to add new Actor
         }
 
+
+        //Request to post data 
         [HttpPost]
         public async Task<IActionResult> Create([Bind("ActorFirstName, ActorSurName")] Actor actor)
         {
-
             _service.Add(actor);
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); 
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var actorDetails = await _service.GetById(id);
+            var actorDetails = await _service.GetById(id); //Assigning selected Actor table data to variable 'actorDetails'
 
-            if (actorDetails == null) return View("NotFound");
+            if (actorDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(actorDetails);
+            return View(actorDetails); //Assigning view to view details
         }
 
         public async Task<IActionResult> Edit(int id)
         {
 
-            var actorDetails = await _service.GetById(id);
+            var actorDetails = await _service.GetById(id); 
 
-            if (actorDetails == null) return View("NotFound");
+            if (actorDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(actorDetails);
+            return View(actorDetails); //Assigning view to edit
         }
 
+        //Request to post edited data
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Actor actor)
         {
 
-            actor.ActorNumber = Convert.ToUInt32(id);
+            actor.ActorNumber = Convert.ToUInt32(id); 
             await _service.Update(id, actor);
 
             return RedirectToAction(nameof(Index));
@@ -64,17 +66,14 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(actor);
-            //}
             var actorDetails = await _service.GetById(id);
 
-            if ( actorDetails == null) return View("NotFound");
+            if ( actorDetails == null) return View("NotFound"); //Handeling errors
 
-            return View(actorDetails);
+            return View(actorDetails); //Assigning view to delete
         }
 
+        //Request to delete data
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -82,7 +81,7 @@ namespace RopeyDVDManagementSystem.Controllers
             if (actorDetails == null) return View("NotFound");
 
             await _service.Delete(id);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index)); //Assigning view to delete
         }
     }
 }

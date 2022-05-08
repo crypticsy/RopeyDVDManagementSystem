@@ -1,11 +1,14 @@
-﻿@model DVDCopy
+﻿@*Defining Model*@
+@model DVDCopy
 
+@*Defining ViewData*@
 @{
     ViewData["Title"] = "DVDCopy";
     ViewData["Section"] = "DVDCopy";
     Layout = "_LayoutAdmin";
 }
 
+@*Coding*@
 <h1 style="text-align: center;">Delete confirmation for Copy Number: @Model.CopyNumber</h1>
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
