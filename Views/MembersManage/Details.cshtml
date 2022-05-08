@@ -1,0 +1,52 @@
+﻿@model Member
+
+@{
+   ViewData["Title"] = "Dashboard";
+   ViewData["Section"] = "MemberManage";
+   Layout = "_LayoutAdmin";
+}
+<h1 style="text-align: center;">Details for @Model.MemberFirstName @Model.MemberLastName </h1>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="form-group">
+                    <label class="control-label">First Name</label>
+                    <input asp-for="MemberFirstName" class="form-control" style="color: black;" readonly />
+                    <span asp-validation-for="MemberFirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Last Name</label>
+                    <input asp-for="MemberLastName" class="form-control" style="color: black;" readonly />
+                    <span asp-validation-for="MemberLastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Membership Category Number</label>
+                    <input asp-for="MembershipCategoryNumber" class="form-control" style="color: black;" readonly />
+                    <span asp-validation-for="MembershipCategoryNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Address</label>
+                    <input asp-for="MemberAddress" class="form-control" style="color: black;" readonly />
+                    <span asp-validation-for="MemberAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Date of Birth</label>
+                    <input asp-for="MemberDateOfBirth" class="form-control" style="color: black;" readonly />
+                    <span asp-validation-for="MemberDateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="margin:5px;">
+                    <a class = "btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.MemberNumber">Edit</a>
+                    <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>

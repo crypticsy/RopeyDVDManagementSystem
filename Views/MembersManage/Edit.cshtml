@@ -1,0 +1,95 @@
+﻿@model Member
+
+@{
+ViewData["Title"] = "Dashboard";
+ViewData["Section"] = "MemberManage";
+Layout = "_LayoutAdmin";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mx-3">
+                <h4 class="card-title mb-2">Update details for @Model.MemberFirstName @Model.MemberLastName</h4>
+                <p class="card-description mb-4"> Update the following information. </p>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">First Name :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberFirstName" style="width: 400px" class="typeahead"
+                                            type="text" placeholder="Enter first name. " />
+                                        <span asp-validation-for="MemberNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Last Name :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberLastName" style="width: 400px" class="typeahead"
+                                            type="text" placeholder="Enter last name. " />
+                                        <span asp-validation-for="MemberLastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Address:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberAddress" style="width: 400px" class="typeahead"
+                                            type="text" placeholder="Enter address. " />
+                                        <span asp-validation-for="MemberAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Membership Category :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MembershipCategoryNumber" style="width: 400px" class="typeahead"
+                                            type="text" placeholder="Select a category. " />
+                                        <span asp-validation-for="MembershipCategoryNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Date of Birth :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberDateOfBirth" style="width: 400px" class="typeahead" />
+                                        <span asp-validation-for="MemberDateOfBirth" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <br />
+                        <br />
+                        <div class="col-md-6 col-sm-12">
+                            <button value="Update" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Update
+                            </button>
+                            <a type="button" class="btn btn-inverse-danger btn-fw" asp-action="Index">Cancel</a>
+                        </div>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

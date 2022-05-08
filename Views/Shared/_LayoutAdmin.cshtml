@@ -13,17 +13,18 @@
     <title>@ViewData["Title"] - Ropey</title>
 
 	<!-- Required CSS Files  -->
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="stylesheet" href="~/admin_assets/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="~/admin_assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/admin_assets/assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/admin_assets/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
 	<link rel="stylesheet" href="~/admin_assets/vendors/jvectormap/jquery-jvectormap.css">
 	<link rel="stylesheet" href="~/admin_assets/vendors/flag-icon-css/css/flag-icon.min.css">
 	<link rel="stylesheet" href="~/admin_assets/vendors/owl-carousel-2/owl.carousel.min.css">
 	<link rel="stylesheet" href="~/admin_assets/vendors/owl-carousel-2/owl.theme.default.min.css">
 	<link rel="stylesheet" href="~/admin_assets/css/style.css">
-    <link rel="stylesheet" href="~/admin_assets/assets/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="~/admin_assets/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
-	
 	<!-- Custom CSS Files  -->
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
     
@@ -33,7 +34,7 @@
 
 
 
-<body class="customScrollDark">
+<body class="">
 
 	<div class="container-scroller">
 		
@@ -47,7 +48,7 @@
 
 			<ul class="nav">
 				
-				<li class="@(section == "Dashboard" ? "nav-item menu-items active mt-3" : "nav-item menu-items mt-3")">
+				<li class="@(section.Equals("Dashboard") ? "nav-item menu-items active mt-3" : "nav-item menu-items mt-3")">
 				
 					<a class="nav-link" asp-controller="Admin" asp-action="Index">
 						<span class="menu-icon">
@@ -64,12 +65,12 @@
 					<span class="nav-link">Assistants</span>
 				</li>
 				
-				<li class="@(section == "AssistantDetails" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="#">
+				<li class="@(section.Equals("AssistantDetails") ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" asp-controller="Assistant" asp-action="Index">
 						<span class="menu-icon">
-							<i class="mdi mdi-account-star"></i>
+							<i class="mdi mdi-clipboard-account"></i>
 						</span>
-						<span class="menu-title">Details</span>
+						<span class="menu-title">Manage</span>
 					</a>
 				</li>
 
@@ -80,21 +81,21 @@
 					<span class="nav-link">Members</span>
 				</li>
 				
-				<li class="@(section == "MemberDetails" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="#">
-						<span class="menu-icon">
-							<i class="mdi mdi-clipboard-account"></i>
-						</span>
-						<span class="menu-title">Details</span>
-					</a>
-				</li>
-				
-				<li class="@(section == "MemeberManage" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="#">
+				<li class="@(section.Equals("MemeberManage") ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" asp-controller="MembersManage" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-account-multiple"></i>
 						</span>
 						<span class="menu-title">Manage</span>
+					</a>
+				</li>
+				
+				<li class="@(section.Equals("MemberDetails") ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" asp-controller="MembersDetails" asp-action="Index">
+						<span class="menu-icon">
+							<i class="mdi mdi-format-list-bulleted-type"></i>
+						</span>
+						<span class="menu-title">History</span>
 					</a>
 				</li>
 
@@ -105,7 +106,7 @@
 					<span class="nav-link">DVD</span>
 				</li>
 				
-				<li class="@(section == "DVDDetails" ? "nav-item menu-items active" : "nav-item menu-items")">
+				<li class="@(section.Equals("DVDDetails") ? "nav-item menu-items active" : "nav-item menu-items")">
 					<a class="nav-link" href="#">
 						<span class="menu-icon">
 							<i class="mdi mdi-movie"></i>
@@ -114,8 +115,8 @@
 					</a>
 				</li>
 				
-				<li class="@(section == "DVDCopy" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="#">
+				<li class="@(section.Equals("DVDCopy") ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" asp-controller="DVDCopy" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-checkbox-multiple-blank"></i>
 						</span>
@@ -123,8 +124,8 @@
 					</a>
 				</li>
 
-				<li class="@(section == "DVDRent" ? "nav-item menu-items active" : "nav-item menu-items")">
-					<a class="nav-link" href="#">
+				<li class="@(section.Equals("DVDRent") ? "nav-item menu-items active" : "nav-item menu-items")">
+					<a class="nav-link" asp-controller="Rent" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-ticket-confirmation"></i>
 						</span>
@@ -132,7 +133,7 @@
 					</a>
 				</li>
 
-				<li class="@(section == "DVDReturn" ? "nav-item menu-items active" : "nav-item menu-items")">
+				<li class="@(section.Equals("DVDReturn") ? "nav-item menu-items active" : "nav-item menu-items")">
 					<a class="nav-link" asp-controller="DVDReturn" asp-action="Index">
 						<span class="menu-icon">
 							<i class="mdi mdi-clipboard-text"></i>
@@ -229,6 +230,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script src="~/admin_assets/vendors/js/vendor.bundle.base.js"></script>
 	<script src="~/admin_assets/vendors/progressbar.js/progressbar.min.js"></script>
+	<script src="~/admin_assets/vendors/select2/select2.min.js"></script>
+	<script src="~/admin_assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
 	<script src="~/admin_assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
 	<script src="~/admin_assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="~/admin_assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
@@ -236,17 +239,7 @@
 	<script src="~/admin_assets/js/hoverable-collapse.js"></script>
 	<script src="~/admin_assets/js/misc.js"></script>
 	<script src="~/admin_assets/js/settings.js"></script>
-	<script src="~/admin_assets/js/todolist.js"></script>
-	<script src="~/admin_assets/js/dashboard.js"></script>
 	
-	<script src="~/admin_assets/vendors/select2/select2.min.js"></script>
-	<script src="~/admin_assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
-	<script src="~/admin_assets/js/off-canvas.js"></script>
-	<script src="~/admin_assets/js/hoverable-collapse.js"></script>
-	<script src="~/admin_assets/js/misc.js"></script>
-	<script src="~/admin_assets/js/settings.js"></script>
-	<script src="~/admin_assets/js/todolist.js"></script>
-	<script src="~/admin_assets/js/file-upload.js"></script>
 	<script src="~/admin_assets/js/select2.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
