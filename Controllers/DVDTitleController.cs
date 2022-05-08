@@ -149,20 +149,9 @@ namespace RopeyDVDManagementSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(NewDVDTitleVM dvdTitle) //ADD DVCOPYS HERE
+        public async Task<IActionResult> Create(NewDVDTitleVM dvdTitle) 
         {
 
-            //if (!ModelState.IsValid) 
-            //{
-            //    var dvdTitleDropdownsData = await _service.GetDVDTitleDropdownValues();
-
-            //    ViewBag.ActorNumber = new SelectList(dvdTitleDropdownsData.Actors, "ActorNumber", "ActorFirstName");
-            //    ViewBag.CategoryNumber = new SelectList(dvdTitleDropdownsData.Categories, "CategoryNumber", "CategoryName"); //Returning the data for the dropdowns to the views through viewbags
-            //    ViewBag.ProducerNumber = new SelectList(dvdTitleDropdownsData.Producers, "ProducerNumber", "ProducerName");
-            //    ViewBag.StudioNumber = new SelectList(dvdTitleDropdownsData.Studios, "StudioNumber", "StudioName");
-                
-            //    return View(dvdTitle);
-            //}
 
             await _service.Add(dvdTitle);
 

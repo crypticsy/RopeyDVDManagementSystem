@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+    
 namespace RopeyDVDManagementSystem.Models
 {
     public class DVDTitle
@@ -25,7 +25,6 @@ namespace RopeyDVDManagementSystem.Models
         [Required]
         public DateTime DateReleased { get; set; }
 
-        [Required]
         public string? DVDPoster { get; set; }
 
         [Required]
@@ -37,5 +36,6 @@ namespace RopeyDVDManagementSystem.Models
         public ICollection<DVDCopy> DVDCopys { get; set; }
         
         public ICollection<CastMember> CastMembers { get; set; }
+
     }
 }
