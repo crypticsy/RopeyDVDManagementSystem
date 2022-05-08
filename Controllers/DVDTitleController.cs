@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Data.Services;
@@ -7,6 +8,7 @@ using RopeyDVDManagementSystem.Models.ViewModels;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class DVDTitleController : Controller
     {
         private readonly IDVDTitleService _service;

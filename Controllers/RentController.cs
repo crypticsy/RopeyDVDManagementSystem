@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.ViewModels;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class RentController : Controller
     {
         private readonly ApplicationDbContext _context;

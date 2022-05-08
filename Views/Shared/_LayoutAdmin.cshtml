@@ -61,6 +61,8 @@
 
 				<!------------------------------------- Assistant section ----------------------------------- -->
 				
+				@if (User.IsInRole("Manager"))
+				{
 				<li class="nav-item nav-category mt-2">
 					<span class="nav-link">Assistants</span>
 				</li>
@@ -73,6 +75,7 @@
 						<span class="menu-title">Manage</span>
 					</a>
 				</li>
+				}
 
 
 				<!------------------------------------- Member section ----------------------------------- -->

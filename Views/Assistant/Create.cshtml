@@ -1,9 +1,10 @@
-﻿@model UserRegisterModel
+﻿@using RopeyDVDManagementSystem.Models;
+@model UserRegisterModel;
 
 @{
-ViewData["Title"] = "Dashboard";
-ViewData["Section"] = "AssistantDetails";
-Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Dashboard";
+    ViewData["Section"] = "AssistantDetails";
+    Layout = "_LayoutAdmin";
 }
 
 
@@ -21,79 +22,62 @@ Layout = "_LayoutAdmin";
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">User Type :</label>
                                 <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="UserType" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Assistant" readonly />
-                                        <span asp-validation-for="UserType" class="text-danger"></span>
-                                    </div>
+                                    <p>Assistant</p>
                                 </div>
                             </div>
                             <br />
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">First Name :</label>
                                 <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="FirstName" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Enter first name. " />
-                                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                                    </div>
+                                    <input asp-for="FirstName" style="width: 400px" class="typeahead" type="text" placeholder="Enter first name " />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
                                 </div>
                             </div>
                             <br />
                         </div>
-                        <div class="col-md-6 col-sm-12">
 
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">Last Name:</label>
                                 <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="FirstName" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Enter first name. " />
-                                        <span asp-validation-for="FirstName" class="text-danger"></span>
-                                    </div>
+                                    <input asp-for="LastName" style="width: 400px" class="typeahead" type="text" placeholder="Enter Last name " />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
                             </div>
                             <br />
                             <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label">Username :</label>
+                                <label class="col-sm-3 col-form-label">Email:</label>
                                 <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="Username" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Enter username." />
-                                        <span asp-validation-for="Username" class="text-danger"></span>
-                                    </div>
+                                    <input asp-for="Email" style="width: 400px" class="typeahead" type="text" placeholder="Enter email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                             </div>
                             <br />
                         </div>
-                        <div class="col-md-6 col-sm-12">
 
+                        <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label">Email:</label>
+                                <label class="col-sm-3 col-form-label">Username :</label>
                                 <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="Email" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Enter email." />
-                                        <span asp-validation-for="Email" class="text-danger"></span>
-                                    </div>
+                                    <input asp-for="Username" style="width: 400px" class="typeahead" type="text" placeholder="Enter username" />
+                                    <span asp-validation-for="Username" class="text-danger"></span>
                                 </div>
                             </div>
                             <br />
                             <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label">Password :</label>
                                 <div class="col">
-                                    <div id="the-basics">
-                                        <input asp-for="Password" style="width: 400px" class="typeahead"
-                                            type="text" placeholder="Enter password." />
-                                        <span asp-validation-for="Password" class="text-danger"></span>
-                                    </div>
+                                    <input asp-for="Password" style="width: 400px" class="typeahead" type="password" placeholder="Enter password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
+
                         <br />
                         <br />
                         <div class="col-md-6 col-sm-12">
-                            <button value="Create" type="submit" class="btn btn-inverse-success btn-fw mr-4"> Save
+                            <button value="Create" type="submit" class="btn btn-inverse-success btn-fw mr-4"> 
+                                Save
                             </button>
                             <a type="button" class="btn btn-inverse-danger btn-fw" asp-action="Index">Cancel</a>
                         </div>

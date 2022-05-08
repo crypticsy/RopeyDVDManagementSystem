@@ -27,18 +27,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="float-right mt-2">
+                            <div class="text-white float-rightmt-2">
+                                <a asp-controller="DVDTitle" asp-action="Inactive" class="btn btn-inverse-info">
+                                    <i class="mdi mdi-account-plus"></i> Inactive List
+                                </a>
+                            </div>
+                            <div class="float-right mt-2 mr-3">
                                 <button type="submit" class="btn btn-inverse-primary mr-2" value="Search">
                                     <i class="mdi mdi-account-search" style="align-content:space-evenly;"></i>Search
                                 </button>
                             </div>
-                            <div class="text-white float-right mr-2 mt-2">
-                                <a asp-controller="DVDTitle" asp-action="Inactive" class="btn btn-inverse-info"><i
-                                        class="mdi mdi-account-plus"></i> Inactive List</a>
-                            </div>
                             <div class="text-white float-left mt-2">
-                                <a asp-controller="DVDTitle" asp-action="Create" class="btn btn-inverse-success"><i
-                                        class="mdi mdi-account-plus"></i> Add New</a>
+                                <a asp-controller="DVDTitle" asp-action="Create" class="btn btn-inverse-success">
+                                    <i class="mdi mdi-account-plus"></i> Add New
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +92,6 @@
                                     <a class="btn btn-inverse-info" style="margin:5px;" asp-action="Details" asp-route-id="@item.DVDNumber"><i class="mdi mdi-account-card-details"></i></a>
                                     <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.DVDNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.DVDNumber"></i></a>
                                 </td>
-
                             </tr>
                             }
                         </tbody>
