@@ -24,14 +24,14 @@ namespace RopeyDVDManagementSystem.Models
         public virtual Member Member { get; set; }
 
         [Required]
-        [Display(Name = "LoanDateOut")]
+        [Display(Name = "LoanDateOut"), DisplayFormat(DataFormatString = "{0:MMM d, yyyy}")]
         public DateTime DateOut { get; set; }
 
         [Required]
-        [Display(Name = "LoanDateDue")]
+        [Display(Name = "LoanDateDue"), DisplayFormat(DataFormatString = "{0:MMM d, yyyy}")]
         public DateTime DateDue { get; set; }
 
-        [Display(Name = "LoanDateReturned")]
+        [Display(Name = "LoanDateReturned"), DisplayFormat(DataFormatString = "{0:MMM d, yyyy}")]
         public DateTime DateReturned { get; set; }
 
         public decimal ReturnAmount { get; set; }

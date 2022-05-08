@@ -15,7 +15,5 @@ namespace RopeyDVDManagementSystem.Models.ViewModels
         public int LoanTypeNumber { get; set; }
 
         public int MemberNumber { get; set; }
-
-
     }
 }

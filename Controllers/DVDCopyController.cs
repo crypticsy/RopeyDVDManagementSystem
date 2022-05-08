@@ -15,8 +15,32 @@ namespace RopeyDVDManagementSystem.Controllers
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
+            ViewBag.AllCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(data.Select(x => x.CopyNumber).ToList());
             return View(data);
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string request)
+        {
+            string CopyNumber = Request.Form["SearchCopyNumber"];
+            ViewBag.SearchCopyNumber = CopyNumber;
+
+            var data = await _service.GetAllAsync();
+            ViewBag.AllCopyNumberList = (string)System.Text.Json.JsonSerializer.Serialize(data.Select(x => x.CopyNumber).ToList());
+
+            if (CopyNumber == "")
+            {
+                return View(data);
+            }
+            else if (uint.TryParse(CopyNumber,out uint result) && data.Where(x => x.CopyNumber == result).Count() > 0)
+            {   
+                data = data.Where(x => x.CopyNumber == result).ToList();
+                return View(data);
+            }
+            return View();
+        }
+
         //Get: DVDCopy/Create
         public IActionResult Create()
         {
@@ -45,8 +69,26 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public async Task<IActionResult> OldDVDCopy()
         {
-            var data = await _service.GetAllAsync();
+            var data =  (from d in await _service.GetAllAsync()
+                        where d.DatePurchased < DateTime.Now.AddYears(-1)
+                        select d).ToList();
             return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OldDVDCopy(string Request)
+        {
+            var data =  (from d in await _service.GetAllAsync()
+                        where d.DatePurchased < DateTime.Now.AddYears(-1) && d.IsOnLoan == false
+                        select d).ToList();
+            
+            // Delete all DVDCopy that are older than 1 year
+            foreach (var d in data)
+            {
+                await _service.DeleteAsync((int)d.CopyNumber);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         //Get: Members/Edit/1
@@ -68,6 +110,7 @@ namespace RopeyDVDManagementSystem.Controllers
             await _service.UpdateAsync(id, dvdcopy);
             return RedirectToAction(nameof(Index));
         }
+
         //Get: Members/Delete/1
         public async Task<IActionResult> Delete(int id)
         {

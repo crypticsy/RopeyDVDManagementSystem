@@ -20,7 +20,7 @@ namespace RopeyDVDManagementSystem.Models
         [Required(ErrorMessage = "Address is required!")]
         public string MemberAddress { get; set; }
 
-        [Required(ErrorMessage = "Date of birth is required!")]
+        [Required(ErrorMessage = "Date of birth is required!"), DisplayFormat(DataFormatString = "{0:MMM d, yyyy}")]
         public DateTime MemberDateOfBirth { get; set; }
 
         public ICollection<Loan> Loans { get; set; }
