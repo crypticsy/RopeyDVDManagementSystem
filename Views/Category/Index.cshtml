@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-6" >
                          <div class="text-white float-right mt-2">
-                                <a asp-controller="DVDCategory" asp-action="Create" class="btn btn-inverse-success"><i class="mdi mdi-account-plus"></i> Add New</a>
+                                <a asp-controller="Category" asp-action="Create" class="btn btn-inverse-success"><i class="mdi mdi-account-plus"></i> Add New</a>
                             </div>
                     </div>
                 </div>
@@ -40,6 +40,7 @@
                                     <th class="text-white text-center">Category Number</th>
                                     <th class="text-white text-center">Name</th>
                                     <th class="text-white text-center">Description</th>
+                                    <th class="text-white text-center">Age Restricted</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -52,6 +53,7 @@
                                     <td class="align-middle">@item.CategoryNumber</td>
                                     <td class="align-middle">@item.CategoryName</td>
                                     <td class="align-middle">@item.CategoryDescription</td>
+                                    <td class="align-middle">@item.AgeRestricted</td>
                                     <td class>
                                         <a class="btn btn-inverse-primary" style="margin:5px;" asp-action="Edit" asp-route-id="@item.CategoryNumber"><i class="mdi mdi-table-edit"></i></a>
                                         <a class="btn btn-inverse-danger" style="margin:5px;" asp-action="Delete" asp-route-id="@item.CategoryNumber"><i class="mdi mdi-delete" asp-action="Delete" asp-route-id="@item.CategoryNumber"></i></a>
