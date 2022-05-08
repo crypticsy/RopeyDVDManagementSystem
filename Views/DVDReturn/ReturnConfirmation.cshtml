@@ -83,7 +83,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">Remaining Payment Amount :</label>
-                                <div class="col text-success">$ @returnDetail.Payment</div>
+                                <div class="col text-success">$ @(returnDetail.Payment - returnDetail.StandardCharge)</div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-12">

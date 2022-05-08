@@ -155,6 +155,7 @@ namespace RopeyDVDManagementSystem.Controllers
             var loan = _context.Loans.Find(returnDVD.LoanNumber);
             loan.DateReturned = DateTime.Today;
             loan.ReturnAmount = returnDVD.Payment;
+            _context.SaveChanges();
             
             // Update the DVD copy record
             var copy = _context.DVDCopies.Find(returnDVD.CopyNumber);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data;
+using RopeyDVDManagementSystem.Models;
 using RopeyDVDManagementSystem.Models.ViewModels;
 
 namespace RopeyDVDManagementSystem.Controllers
@@ -126,7 +127,16 @@ namespace RopeyDVDManagementSystem.Controllers
             ViewBag.LoanTypeNumber = rent.LoanTypeNumber;
             ViewBag.MemberNumber = rent.MemberNumber;
             ViewBag.CopyNumber = rent.CopyNumber;
+            
+            string operation;
+            try{
+                operation = Request.Form["GenerateButton"];
+            }
+            catch{
+                operation = "";
+            }
 
+            // Check for age restriction
             bool ageRestriction =   (from dc in _context.DVDCopies
                                     join d in _context.DVDTitles on dc.DVDNumber equals d.DVDNumber
                                     join dtc in _context.DVDCategories on d.CategoryNumber equals dtc.CategoryNumber
@@ -135,8 +145,62 @@ namespace RopeyDVDManagementSystem.Controllers
 
             if ( ageRestriction == true &&  (DateTime.Today - _context.Members.Where(m => m.MemberNumber == rent.MemberNumber).First().MemberDateOfBirth).Days / 365 < 18)
             {
-                TempData["Error"] = "Member must be 18 years old to rent this DVD";
+                TempData["Error"] = "The Specified Member is below the age restriction for this DVD";
                 return View();
+            }
+
+            // Check for maximum loan limit
+            uint maxRentLimit = (from m in _context.Members
+                                join mt in _context.MembershipCategories on m.MembershipCategoryNumber equals mt.MembershipCategoryNumber
+                                where m.MemberNumber == rent.MemberNumber
+                                select mt.MembershipCategoryTotalLoans).FirstOrDefault();
+
+            if ( _context.Loans.Where(l => l.DateReturned == DateTime.MinValue && l.MemberNumber == rent.MemberNumber).Count() >= maxRentLimit )
+            {
+                TempData["Error"] = "The Specified Member has reached the maximum number of loans";
+                return View();
+            }
+            
+
+            // Display the loan information
+            uint loanDays = (from lt in _context.LoanTypes
+                            where lt.LoanTypeNumber == rent.LoanTypeNumber
+                            select lt.LoanDuration).First();
+
+            DVDReturnModel returnModel = (  from dt in _context.DVDTitles
+                                            join dtc in _context.DVDCategories on dt.CategoryNumber equals dtc.CategoryNumber
+                                            join dc in _context.DVDCopies on dt.DVDNumber equals dc.DVDNumber
+                                            where dc.CopyNumber == rent.CopyNumber
+                                            select new DVDReturnModel { CopyNumber = dc.CopyNumber,
+                                                                        DVDTitleName = dt.DVDTitleName,
+                                                                        DVDCategory = dtc.CategoryName,
+                                                                        DateOut = DateTime.Today,
+                                                                        DateDue = DateTime.Today.AddDays(loanDays),
+                                                                        MemberName = _context.Members.Where(m => m.MemberNumber == rent.MemberNumber).First().MemberFirstName + " " + _context.Members.Where(m => m.MemberNumber == rent.MemberNumber).First().MemberLastName,
+                                                                        StandardCharge = dt.StandardCharge, 
+                                                                        Payment = dt.StandardCharge * loanDays,
+                                                                    }).First();
+            ViewData["RentalInformation"] = returnModel;
+
+            if (operation != "Generate")
+            {
+                // add a new loan record
+                Loan loan = new Loan { CopyNumber = rent.CopyNumber,
+                                        MemberNumber = (uint)rent.MemberNumber,
+                                        LoanTypeNumber = (uint)rent.LoanTypeNumber,
+                                        DateOut = DateTime.Today,
+                                        DateDue = DateTime.Today.AddDays(loanDays),
+                                        DateReturned = DateTime.MinValue,
+                                        ReturnAmount = returnModel.Payment
+                                    };
+                _context.Loans.Add(loan);
+
+                // Put the copy status to unavailable
+                var Copy = _context.DVDCopies.Where(c => c.CopyNumber == rent.CopyNumber).First();
+                Copy.IsOnLoan = true;
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
             }
 
             return View();
