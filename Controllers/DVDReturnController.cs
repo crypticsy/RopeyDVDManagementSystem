@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data;
 using RopeyDVDManagementSystem.Models.ViewModels;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class DVDReturnController : Controller
     {
         private readonly ApplicationDbContext _context;

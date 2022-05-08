@@ -93,57 +93,57 @@ namespace RopeyDVDManagementSystem.Controllers
 
 
 
-        // GET: Authentication/Register
-        public IActionResult Register()
-        {
-            return View();
-        }
+        // // GET: Authentication/Register
+        // public IActionResult Register()
+        // {
+        //     return View();
+        // }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(UserRegisterModel model)
-        {
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Register(UserRegisterModel model)
+        // {
 
-            if (!ModelState.IsValid) return View(model);
+        //     if (!ModelState.IsValid) return View(model);
 
-            var userExists = await _userManager.FindByNameAsync(model.Username);
-            if (userExists != null)
-            {
-                TempData["Error"] = "Invalid credentials. Please, try again!";
-                return View(model);
-            }
+        //     var userExists = await _userManager.FindByNameAsync(model.Username);
+        //     if (userExists != null)
+        //     {
+        //         TempData["Error"] = "Invalid credentials. Please, try again!";
+        //         return View(model);
+        //     }
             
-            ApplicationUser user = new()
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
-            };
+        //     ApplicationUser user = new()
+        //     {
+        //         FirstName = model.FirstName,
+        //         LastName = model.LastName,
+        //         Email = model.Email,
+        //         SecurityStamp = Guid.NewGuid().ToString(),
+        //         UserName = model.Username
+        //     };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+        //     var result = await _userManager.CreateAsync(user, model.Password);
 
-            if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+        //     if (!result.Succeeded)
+        //         return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (model.UserType == "assistant")
-            {
-                if (await _roleManager.RoleExistsAsync(UserRoles.Assistant))
-                {
-                    await _userManager.AddToRoleAsync(user, UserRoles.Assistant);
-                }
-            }
-            else
-            {
-                if (await _roleManager.RoleExistsAsync(UserRoles.Manager))
-                {
-                    await _userManager.AddToRoleAsync(user, UserRoles.Manager);
-                }
-            }
+        //     if (model.UserType == "assistant")
+        //     {
+        //         if (await _roleManager.RoleExistsAsync(UserRoles.Assistant))
+        //         {
+        //             await _userManager.AddToRoleAsync(user, UserRoles.Assistant);
+        //         }
+        //     }
+        //     else
+        //     {
+        //         if (await _roleManager.RoleExistsAsync(UserRoles.Manager))
+        //         {
+        //             await _userManager.AddToRoleAsync(user, UserRoles.Manager);
+        //         }
+        //     }
 
-            return RedirectToAction("Index", "Home");
-        }
+        //     return RedirectToAction("Index", "Home");
+        // }
 
 
         public IActionResult UnauthorizedAccess()

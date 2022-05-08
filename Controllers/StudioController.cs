@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class StudioController : Controller
     {
         private readonly IStudioService _service;

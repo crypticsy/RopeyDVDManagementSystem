@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RopeyDVDManagementSystem.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RopeyDVDManagementSystem.Data.Services;
 using RopeyDVDManagementSystem.Models;
 
 namespace RopeyDVDManagementSystem.Controllers
 {
+    [Authorize]
     public class MembersManageController : Controller
     {
         private readonly IMembersService _service;
