@@ -1,56 +1,89 @@
 ﻿@model Member
 
 @{
-   ViewData["Title"] = "Dashboard";
-   ViewData["Section"] = "MemberManage";
-   Layout = "_LayoutAdmin";
+ViewData["Title"] = "Dashboard";
+ViewData["Section"] = "MemberManage";
+Layout = "_LayoutAdmin";
 }
 
-<h1 style="text-align: center;">Delete confirmation for @Model.MemberFirstName @Model.MemberLastName</h1>
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-<div class="row text">
-    <div class="col-md-8 offset-2">
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <div class="form-group">
-                    <label class="control-label">First Name</label>
-                    <input asp-for="MemberFirstName" class="form-control" style="color: black;" readonly />
-                    <span asp-validation-for="MemberFirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Last Name</label>
-                    <input asp-for="MemberLastName" class="form-control" style="color: black;" readonly />
-                    <span asp-validation-for="MemberLastName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Membership Category Number</label>
-                    <input asp-for="MembershipCategoryNumber" class="form-control" style="color: black;" readonly />
-                    <span asp-validation-for="MembershipCategoryNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Address</label>
-                    <input asp-for="MemberAddress" class="form-control" style="color: black;" readonly />
-                    <span asp-validation-for="MemberAddress" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Date of Birth</label>
-                    <input asp-for="MemberDateOfBirth" class="form-control" style="color: black;" readonly />
-                    <span asp-validation-for="MemberDateOfBirth" class="text-danger"></span>
-                </div>
-                <div class="form-group" style="margin:5px;">
-                    <form asp-action="Delete">
-                        <input type = "hidden" asp-for="MemberNumber">
-                        <input type = "Submit" value ="Confirm" class="btn btn-danger"/>
-                        <a class = "btn btn-outline-secondary" asp-action="Index" style="margin-left:7%;">Show All</a>
-                    </form>
-                </div>
-               
+
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body mx-3">
+                <h4 class="card-title mb-2">Delete confirmation for @Model.MemberFirstName @Model.MemberLastName</h4>
+                <p class="card-description mb-4"> Delete the following information. </p>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">First Name :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                         <input asp-for="MemberFirstName" class="form-control" style="color: black;" readonly />
+                                        <span asp-validation-for="MemberNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Last Name :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberLastName" class="form-control" style="color: black;" readonly />
+                                        <span asp-validation-for="MemberLastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Address:</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberAddress" class="form-control" style="color: black;" readonly />
+                                        <span asp-validation-for="MemberAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Membership Category :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MembershipCategoryNumber" class="form-control" style="color: black;" readonly />
+                                        <span asp-validation-for="MembershipCategoryNumber" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label">Date of Birth :</label>
+                                <div class="col">
+                                    <div id="the-basics">
+                                        <input asp-for="MemberDateOfBirth" class="form-control" style="color: black;" readonly />
+                                        <span asp-validation-for="MemberDateOfBirth" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <br />
+                        <br />
+                        <div class="col-md-6 col-sm-12">
+                             <input type = "hidden" asp-for="MemberNumber">
+                             <input type = "Submit" value ="Confirm" class="btn btn-inverse-danger btn-fw mr-4"/>
+                             <a type="button" class="btn btn-inverse-info btn-fw" asp-action="Index">Cancel</a>
+                        </div>
+                    </div>
+                    <br />
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>
