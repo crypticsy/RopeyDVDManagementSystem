@@ -16,7 +16,47 @@ namespace RopeyDVDManagementSystem.Controllers
         public async Task<IActionResult> Index()
         {
             var data = await _service.GetAllAsync();
+            
+            // Get a list of all Members Numbers and Last Names
+            var members = (List<String>) data.Select(x => x.MemberNumber.ToString()).ToList();
+            var membersLastNames = (List<String>) data.Select(x => x.MemberLastName).ToList();
+            members.AddRange(membersLastNames);
+            ViewBag.MemberSearchList = (string)System.Text.Json.JsonSerializer.Serialize(members);
+
             return View(data);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string request)
+        {
+            var data = await _service.GetAllAsync();
+
+            string MemberNumber = Request.Form["SearchMemberNumber"];
+            ViewBag.SearchCopyNumber = MemberNumber;
+            
+            // Get a list of all Members Numbers and Last Names
+            var members = (List<String>) data.Select(x => x.MemberNumber.ToString()).ToList();
+            var membersLastNames = (List<String>) data.Select(x => x.MemberLastName).ToList();
+            members.AddRange(membersLastNames);
+            ViewBag.MemberSearchList = (string)System.Text.Json.JsonSerializer.Serialize(members);
+
+            if (MemberNumber == "")
+            {
+                return View(data);
+            }
+            else if (uint.TryParse(MemberNumber,out uint result) && data.Where(x => x.MemberNumber == result).Count() > 0)
+            {   
+                data = data.Where(x => x.MemberNumber == result).ToList();
+                return View(data);
+            }
+            else if (data.Where(x => x.MemberLastName == MemberNumber).Count() > 0)
+            {
+                data = data.Where(x => x.MemberLastName == MemberNumber).ToList();
+                return View(data);
+            }
+
+            return View();
         }
 
        

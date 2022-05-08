@@ -12,7 +12,7 @@ namespace RopeyDVDManagementSystem.Models
 
         public DVDTitle DVDTitle { get; set; }
 
-        [Required]
+        [Required, DisplayFormat(DataFormatString = "{0:MMM d, yyyy}")]
         public DateTime DatePurchased { get; set; }
 
         public bool IsOnLoan { get; set; }
