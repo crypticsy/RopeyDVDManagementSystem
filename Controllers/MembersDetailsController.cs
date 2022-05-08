@@ -76,13 +76,14 @@ namespace RopeyDVDManagementSystem.Controllers
             }
 
             var currentMember = _context.Members.Where(x => x.MemberNumber == id).FirstOrDefault();
+            DateTime filterRange = DateTime.Today - TimeSpan.FromDays(31);
 
             ViewBag.MemberFirstName = currentMember.MemberFirstName;
             ViewBag.MemberLastName = currentMember.MemberLastName;
             ViewBag.MemberAddress = currentMember.MemberAddress;
-            ViewBag.Birthday = currentMember.MemberDateOfBirth;
+            ViewBag.Birthday = currentMember.MemberDateOfBirth.ToString("MMM d, yyyy");
             ViewBag.MemebershipType = _context.MembershipCategories.Where(x => x.MembershipCategoryNumber == currentMember.MembershipCategoryNumber).FirstOrDefault().MembershipCategoryName;
-            ViewBag.LastLoan = _context.Loans.Where(x => x.MemberNumber == currentMember.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut;
+            ViewBag.LastLoan = _context.Loans.Where(x => x.MemberNumber == currentMember.MemberNumber).OrderByDescending(x => x.DateOut).FirstOrDefault().DateOut.ToString("MMM d, yyyy");
             ViewBag.TotalLoans = _context.Loans.Where(x => x.MemberNumber == currentMember.MemberNumber).Count();
             
             IEnumerable<DVDReturnModel> loanRecord = (  from dt in _context.DVDTitles
@@ -91,7 +92,7 @@ namespace RopeyDVDManagementSystem.Controllers
                                                         join l in _context.Loans on dc.CopyNumber equals l.CopyNumber
                                                         join m in _context.Members on l.MemberNumber equals m.MemberNumber
                                                         orderby l.DateOut descending
-                                                        where m.MemberNumber == currentMember.MemberNumber && l.DateOut >= DateTime.Today - TimeSpan.FromDays(31)
+                                                        where m.MemberNumber == currentMember.MemberNumber && l.DateOut >= filterRange
                                                         select new DVDReturnModel { CopyNumber = dc.CopyNumber,
                                                                                     DVDTitleName = dt.DVDTitleName,
                                                                                     DVDCategory = dtc.CategoryName,
@@ -109,9 +110,9 @@ namespace RopeyDVDManagementSystem.Controllers
 
         public IActionResult ActiveMember()
         {
+            DateTime filterRange = DateTime.Today - TimeSpan.FromDays(31);
             IEnumerable<FilteredLoan> filteredLoan =    from l in _context.Loans
-                                                        where l.DateReturned == null
-                                                        where l.DateOut >= DateTime.Today - TimeSpan.FromDays(31)
+                                                        where l.DateOut >= filterRange
                                                         select new FilteredLoan{    DateOut = l.DateOut, 
                                                                                     MemberNumber = l.MemberNumber, 
                                                                                     CopyNumber= l.CopyNumber};

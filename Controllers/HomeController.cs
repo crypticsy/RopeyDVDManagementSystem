@@ -70,26 +70,27 @@ namespace RopeyDVDManagementSystem.Controllers
             var ageRestricted = HttpContext.Session.GetString("AgeRestricted");
             var dvdCategory = HttpContext.Session.GetString("DVDCategory");
 
-            var allDVDList = from dvd in _context.DVDTitles select dvd.DVDNumber;
+            IEnumerable<uint> allDVDList = (from a in _context.DVDTitles select a.DVDNumber).ToList();
 
             // filter dvd list by age restriction
             switch (ageRestricted)
             {
                 case "yes":
-                    allDVDList = from dvd in allDVDList
-                                join dc in _context.DVDCategories on dvd equals dc.CategoryNumber
-                                where dc.AgeRestricted == false
-                                select dvd;
+                    allDVDList = (IEnumerable<uint>)from b in allDVDList
+                                                    join x in _context.DVDTitles on b equals x.DVDNumber 
+                                                    join c in _context.DVDCategories on x.CategoryNumber equals c.CategoryNumber
+                                                    where c.AgeRestricted == false
+                                                    select b;
                     break;
             }
 
             // filter dvd list by category
             if (!string.IsNullOrEmpty(dvdCategory) && dvdCategory != "all")
-                allDVDList = from allList in allDVDList
-                            join dvd in _context.DVDTitles on allList equals dvd.DVDNumber
-                            join dc in _context.DVDCategories on dvd.CategoryNumber equals dc.CategoryNumber
-                            where dc.CategoryName.ToLower().Equals(dvdCategory.ToLower())
-                            select allList;
+                allDVDList = (IEnumerable<uint>)from d in allDVDList
+                                                join e in _context.DVDTitles on d equals e.DVDNumber
+                                                join f in _context.DVDCategories on e.CategoryNumber equals f.CategoryNumber
+                                                where f.CategoryName.ToLower().Equals(dvdCategory.ToLower())
+                                                select d;
 
 
 

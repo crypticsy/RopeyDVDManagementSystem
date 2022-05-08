@@ -5,13 +5,7 @@
     ViewData["Section"] = "DVDRent";
     Layout = "_LayoutAdmin";
 
-    var dvdRentDisplay = false;
-    var dvdRent = new RentModel();
-    if(ViewData["LoanRecord"] != null)
-    {
-        dvdRent = ViewData["LoanRecord"] as RentModel;
-        dvdRentDisplay = true;
-    }
+    var dvdRent = ViewData["LoanRecord"] as RentModel;
 }
 
 <div class="row">
@@ -30,7 +24,7 @@
                                 <div class="col">
                                     <div id="the-basics">
                                         <input class="typeahead" type="text" name="SearchCopyNumber"
-                                            placeholder="Select a Copy Number" value=@ViewBag.SearchCopyNumber>
+                                            placeholder="Select . . ." value=@ViewBag.SearchCopyNumber>
                                     </div>
                                 </div>
                             </div>
@@ -74,10 +68,15 @@
                                 <td class="text-center">@data.CopyNumber</td>
                                 <td class="text-center">@data.DVDTitleName</td>
                                 <td class="text-center">@data.DVDCategory</td>
-                                <td class="text-center">@data.AgeRestricted</td>
+                                <td class="text-center">
+                                    @if(data.AgeRestricted ){
+                                    <i class="mdi mdi-checkbox-marked-circle-outline text-success"></i>
+                                    }else{
+                                    <i class="mdi mdi-comment-remove-outline text-danger"></i>
+                                    }
+                                </td>
                                 <td>
-                                    <a type="button" class="btn btn-inverse-success btn-fw float-right"
-                                        asp-controller="Rent" asp-action="Create" asp-route-LoanID="@data.CopyNumber">
+                                    <a type="button" class="btn btn-inverse-success btn-fw float-right" asp-controller="Rent" asp-action="Create" asp-route-id="@data.CopyNumber">
                                         Loan
                                     </a>
                                 </td>
@@ -85,41 +84,6 @@
                             }
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-}
-else if(dvdRentDisplay)
-{
-
-<div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body mx-3">
-
-                <h4 class="card-title mb-2">Available DVD Copy Detail</h4>
-                <p class="card-description mb-4"> DVD Details for the particular DVD Copy </p>
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group row mb-0">
-                            <label class="col-sm-4 col-form-label text-gray">DVD Tile :</label>
-                            <div class="col">@dvdRent.DVDTitleName</div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <label class="col-sm-4 col-form-label text-gray">DVD Category :</label>
-                            <div class="col">@dvdRent.DVDCategory</div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <label class="col-sm-4 col-form-label text-gray">Copy Number :</label>
-                            <div class="col">@dvdRent.CopyNumber</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -141,7 +105,7 @@ else
                     </lottie-player>
                 </div>
 
-                <p class="text-gray text-center">Uh Oh! Loan for particular DVD Copy were not found.</p>
+                <p class="text-gray text-center">Uh Oh! The particular DVD Copy was not found or is unavailable at the moment.</p>
             </div>
         </div>
     </div>
@@ -175,7 +139,7 @@ else
             };
         };
 
-        var states = @Html.Raw(ViewBag.LoanedCopyNumberList);
+        var states = @Html.Raw(ViewBag.AvailableCopyNumberList);
 
         $('#the-basics .typeahead').typeahead({
             hint: true,
