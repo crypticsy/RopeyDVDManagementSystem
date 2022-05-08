@@ -5,6 +5,7 @@ namespace RopeyDVDManagementSystem.Data.Services
 {
     public interface IMembersService
     {
+        //Interface for the Members Service
         Task<IEnumerable<Member>> GetAllAsync();
         Task<IEnumerable<MemberDetailViewModel>> GetAllDetailsAsync();
         Task<IEnumerable<MemberDetailViewModel>> GetAllDetailsAsync(int id, string lastName);

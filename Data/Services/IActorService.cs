@@ -4,6 +4,7 @@ namespace RopeyDVDManagementSystem.Data.Services
 {
     public interface IActorService
     {
+        //This is the interface for the Actor Service
         Task<IEnumerable<Actor>> GetAll();
         Task<Actor> GetById(int id);
 

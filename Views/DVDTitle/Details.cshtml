@@ -50,14 +50,20 @@
                                 <label class="col-sm-4 col-form-label text-gray">Release Dates:</label>
                                 <div class="col">@Model.DateReleased</div>
                             </div>
-
-                            <div class="form-group row mb-0">
-                                <label class="col-sm-4 col-form-label text-gray">Cast Members :</label>
-                                <div class="col">@Model.CastMembers</div>
-                            </div>
                             <div class="form-group row mb-0">
                                 <label class="col-sm-4 col-form-label text-gray">No. of copies:</label>
                                 <div class="col">1</div>
+                            </div>
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label text-gray">Cast Members :</label>
+                                <div class="col">
+                                    @foreach (var actor in Model.CastMembers)
+                                    {
+                                        <div class="text-center">
+                                            @actor.Actor.ActorFullName
+                                        </div>
+                                    }
+                            </div>
                             </div>
                         </div>
                     </div>
