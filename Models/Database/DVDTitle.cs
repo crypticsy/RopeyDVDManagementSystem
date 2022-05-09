@@ -35,7 +35,7 @@ namespace RopeyDVDManagementSystem.Models
         public decimal PenaltyCharge { get; set; }
 
         [NotMapped]
-        public IFormFile image { get; set; }
+        public IFormFile image { get; set; } //Unmapped file to store the poster in
 
         public ICollection<DVDCopy> DVDCopys { get; set; }
         
