@@ -145,7 +145,7 @@ namespace RopeyDVDManagementSystem.Controllers
             var oldUserName = Request.Form["OldUser"];
             
             // Check if the user name is same
-            if (oldUserName == model.Username)
+            if (oldUserName != model.Username)
             {
                 var userExists = await _userManager.FindByNameAsync(model.Username);
                 if (userExists != null)
@@ -159,19 +159,19 @@ namespace RopeyDVDManagementSystem.Controllers
             
             // Check if password is same
             // dehash password
-            if(_userManager.CheckPasswordAsync(user, model.Password).Result)
+            if(user.PasswordHash != model.Password)
             {
                 _userManager.RemovePasswordAsync(user).Wait();
                 await _userManager.AddPasswordAsync(user, model.Password);
             }
 
-            user = _userManager.FindByNameAsync(oldUserName).Result;
+            user = await _userManager.FindByNameAsync(oldUserName);
+
             // Update User Info
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.Email = model.Email;
             user.UserName = model.Username;
-            _userManager.UpdateAsync(user).Wait();
             
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
