@@ -7,37 +7,37 @@ Of course that's what the project started as, a simple assignment for our last y
 </br></br>
 
 <p align="center">
-    <img src="./images/1.png" width="350"/>
+    <img src="./images/1.png"/>
 </p>
 
-<br/><br/>
+<br/>
 
 <p align="center">
-    <img src="./images/2.png" width="350"/>
+    <img src="./images/2.png"/>
 </p>
 
-</br></br>
+</br>
 
 <p align="center">
-    <img src="./images/3.png" width="350"/>
+    <img src="./images/3.png"/>
 </p>
 
-<br/><br/>
+<br/>
 
 <p align="center">
-    <img src="./images/4.png" width="350"/>
+    <img src="./images/4.png"/>
 </p>
 
-</br></br>
+</br>
 
 <p align="center">
-    <img src="./images/5.png" width="350"/>
+    <img src="./images/5.png"/>
 </p>
 
-<br/><br/>
+<br/>
 
 <p align="center">
-    <img src="./images/6.png" width="350"/>
+    <img src="./images/6.png"/>
 </p>
 
 </br></br>
