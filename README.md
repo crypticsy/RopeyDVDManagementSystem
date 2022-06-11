@@ -1,6 +1,6 @@
 # Ropey DVD Management System
 
-<p style="font-style: italic;font-size: small;">"Application development coursework for creating an application to support the administration of renting and distributing DvDs of Ropey DvD's."</p>
+*"Application development coursework for creating an application to support the administration of renting and distributing DvDs of Ropey DvD's."*
 
 Of course that's what the project started as, a simple assignment for our last year of undergrad. But we had no idea that the project was much more than a simple assignment, and that it would be a flurry of late hours, constant pull requests, work division, and, most importantly, a well working team effort.
 
@@ -23,9 +23,9 @@ Ropey DVD Management System is an inventory and rental management system develop
 <a name="requirements"></a>
 ## Requirements
 
-- 	The.NET Framework [Ideally V.6 was used] must be installed on the system.
+- 	The.NET Framework [Ideally V.6] must be installed on the system.
 - 	Microsoft SQL Server Management Studio [Ideally 2018 version] must be installed.
--   Before running the application, perform "update-database" in the package console manager.
+-   Before running the application, perform `update-database` in the package console manager.
 
 </br></br>
 
