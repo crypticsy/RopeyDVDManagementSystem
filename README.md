@@ -2,7 +2,7 @@
 
 *"Application development coursework for creating an application to support the administration of renting and distributing DvDs of Ropey DvD's."*
 
-Of course that's what the project started as, a simple assignment for our last year of undergrad. But we had no idea that the project was much more than a simple assignment, and that it would be a flurry of late hours, constant pull requests, work division, and, most importantly, a well working team effort.
+Ofcourse that's what the project started as, a simple assignment for our last year of undergrad. But we had no idea that the project was much more than a simple assignment, and that it would be a flurry of late hours, constant pull requests, work division, and, most importantly, a well working team effort.
 
 </br></br>
 
@@ -15,7 +15,7 @@ Of course that's what the project started as, a simple assignment for our last y
 
 <a name="about"></a>
 ## About
-Ropey DVD Management System is an inventory and rental management system developed in ASP.NET MVC Framework with the aid of the five individuals as part of an assessment. The application's has multiple level of access based on user levell, as well as an interactive user interface to help with the leasing process.
+Ropey DVD Management System is an inventory and rental management system developed in ASP.NET MVC Framework with the aid of the five individuals as part of an assessment. The application has multiple level of access based on user level, as well as an interactive user interface to help with the leasing process.
 
 </br></br>
 
@@ -66,5 +66,3 @@ Ropey DVD Management System is an inventory and rental management system develop
 <p align="center">
     <img src="./images/6.png"/>
 </p>
-
-</br></br>
